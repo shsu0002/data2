@@ -686,5 +686,109 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
 
 </div><!-- end page-journey -->
 
+<!-- ══ VEGA-LITE CHARTS ══ -->
+<div style="max-width:1100px;margin:0 auto;padding:4rem 2rem 5rem">
+
+  <!-- Section 1 -->
+  <div style="margin-bottom:4rem">
+    <div style="font-size:0.68rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem"><span style="display:inline-block;width:1.5rem;height:1px;background:var(--red)"></span>Section 1 — The Big Picture</div>
+    <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:400;margin-bottom:0.5rem">Melbourne's Asian community, mapped</h2>
+    <p style="font-size:0.9rem;color:var(--ink-mid);max-width:60ch;line-height:1.7;margin-bottom:2rem">One in three Melburnians was born overseas. In pockets of the east and south-east, that figure rises to over half.</p>
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:1.5rem;margin-bottom:1.5rem">
+      <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;min-width:0">
+        <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart 3 · ABS Census 2021</div>
+        <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.4rem">Top suburbs by Asian-born share</div>
+        <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem">Springvale and Box Hill lead — both with over half their population born in Asia.</div>
+        <div id="chart-bar-suburbs" style="width:100%"></div>
+      </div>
+      <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;min-width:0">
+        <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart 2 · OpenStreetMap</div>
+        <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.4rem">Asian cuisine breakdown</div>
+        <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem">Chinese restaurants make up nearly a quarter of all Asian dining.</div>
+        <div id="chart-donut" style="width:100%"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid var(--rule);margin:0 0 4rem">
+
+  <!-- Section 2 -->
+  <div style="margin-bottom:4rem">
+    <div style="font-size:0.68rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem"><span style="display:inline-block;width:1.5rem;height:1px;background:var(--red)"></span>Section 2 — Where They Eat</div>
+    <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:400;margin-bottom:0.5rem">Asian restaurants follow the community</h2>
+    <p style="font-size:0.9rem;color:var(--ink-mid);max-width:60ch;line-height:1.7;margin-bottom:2rem">The suburbs with the most Asian residents also have the most Asian restaurants.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+      <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;min-width:0">
+        <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart 5 · ABS + OpenStreetMap</div>
+        <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.4rem">Population drives restaurants</div>
+        <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem">Each dot is a suburb. More Asian-born residents = higher share of Asian restaurants.</div>
+        <div id="chart-scatter" style="width:100%"></div>
+      </div>
+      <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;min-width:0">
+        <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart 6 · OpenStreetMap 2025</div>
+        <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.4rem">Each suburb has its own flavour</div>
+        <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem">Box Hill = Chinese. Springvale = Vietnamese. Clayton = Indian.</div>
+        <div id="chart-heatmap" style="width:100%"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid var(--rule);margin:0 0 4rem">
+
+  <!-- Section 4 -->
+  <div style="margin-bottom:4rem">
+    <div style="font-size:0.68rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem"><span style="display:inline-block;width:1.5rem;height:1px;background:var(--red)"></span>Section 4 — Twenty Years in the CBD</div>
+    <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:400;margin-bottom:0.5rem">How Melbourne's dining scene transformed</h2>
+    <p style="font-size:0.9rem;color:var(--ink-mid);max-width:60ch;line-height:1.7;margin-bottom:2rem">The City of Melbourne has tracked every restaurant since 2002.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-bottom:1.5rem">
+      <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;min-width:0">
+        <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart 9 · CLUE</div>
+        <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.4rem">CBD restaurants 2002–2024</div>
+        <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem">From under 1,000 to over 1,800 in two decades.</div>
+        <div id="chart-line-total" style="width:100%"></div>
+      </div>
+      <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;min-width:0">
+        <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart 10 · CLUE</div>
+        <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.4rem">Asian vs other restaurants</div>
+        <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem">Asian-identified grew faster than the market.</div>
+        <div id="chart-line-asian" style="width:100%"></div>
+      </div>
+      <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;min-width:0">
+        <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart 11 · CLUE</div>
+        <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.4rem">Indoor vs outdoor seats</div>
+        <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem">Outdoor dining surged after laneway policy changes.</div>
+        <div id="chart-area-seats" style="width:100%"></div>
+      </div>
+    </div>
+    <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;min-width:0">
+      <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart 12 · CLUE</div>
+      <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.4rem">Growth varied across CBD sub-areas</div>
+      <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem">CBD and Carlton drove most growth. Docklands grew more slowly.</div>
+      <div id="chart-multiline" style="width:100%"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="border-top:1px solid var(--rule);padding-top:2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem">
+    <div>
+      <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.75rem">Data sources</div>
+      <div style="font-size:0.8rem;color:var(--ink-muted);line-height:1.7">
+        <a href="https://www.abs.gov.au/census/find-census-data/datapacks" style="color:var(--teal)">ABS 2021 Census — General Community Profile (SAL, Victoria)</a><br>
+        <a href="https://www.openstreetmap.org" style="color:var(--teal)">OpenStreetMap via Overpass API</a><br>
+        <a href="https://data.melbourne.vic.gov.au" style="color:var(--teal)">City of Melbourne — CLUE 2002–2024</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.75rem">About</div>
+      <div style="font-size:0.8rem;color:var(--ink-muted);line-height:1.7">FIT2179 Data Visualisation 2, Monash University, Semester 1 2026. Visualisations built with Vega-Lite and custom JavaScript.</div>
+    </div>
+    <div>
+      <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.75rem">Acknowledgements</div>
+      <div style="font-size:0.8rem;color:var(--ink-muted);line-height:1.7">Original mouse character illustration. AI tools used for data processing and code assistance (Claude, Anthropic). Food background from personal collection.</div>
+    </div>
+  </div>
+
+</div><!-- end vega charts -->
+
 </body>
 </html>
