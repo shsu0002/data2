@@ -325,37 +325,63 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
 </head>
 <body>
 <!-- PAGE 1: WELCOME -->
-  <div id="page-welcome" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 2rem;width:100%;box-sizing:border-box;text-align:center;position:relative;overflow:hidden">
+  <div id="page-welcome" style="width:100%;min-height:100vh;background:#0d0905;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;font-family:'DM Sans',sans-serif">
 
-    <!-- Melbourne background image -->
-    <div style="position:absolute;inset:0;background-image:url('food-bg.jpg');background-size:cover;background-position:center center;z-index:0"></div>
-    <!-- dark overlay so text is readable -->
-    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,4,2,0.88) 0%,rgba(16,8,4,0.80) 40%,rgba(8,4,2,0.88) 100%);z-index:1"></div>
+    <!-- bg food image -->
+    <div style="position:absolute;inset:0;background:url('food-bg.jpg') center/cover no-repeat;opacity:0.35;z-index:0"></div>
+    <!-- gradient: dark left, fade right -->
+    <div style="position:absolute;inset:0;background:linear-gradient(105deg,rgba(8,4,2,0.97) 0%,rgba(8,4,2,0.92) 42%,rgba(8,4,2,0.55) 70%,rgba(8,4,2,0.3) 100%);z-index:1"></div>
 
-    <!-- eyebrow -->
-    <div class="title-welcome" style="font-size:0.72rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:2rem;display:flex;align-items:center;gap:1rem;position:relative;z-index:2">
-      <span style="display:inline-block;width:3rem;height:1px;background:rgba(255,255,255,0.2)"></span>
-      Melbourne · Food &amp; Migration · ABS 2021
-      <span style="display:inline-block;width:3rem;height:1px;background:rgba(255,255,255,0.2)"></span>
+    <!-- LEFT: text -->
+    <div style="position:relative;z-index:2;padding:3.5rem 3rem 3.5rem 3.5rem;display:flex;flex-direction:column;justify-content:center">
+
+      <div class="title-welcome" style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1.8rem;display:flex;align-items:center;gap:10px">
+        <span style="width:2rem;height:1px;background:rgba(255,255,255,0.2);display:inline-block"></span>
+        Melbourne · Food &amp; Migration · ABS 2021
+        <span style="width:2rem;height:1px;background:rgba(255,255,255,0.2);display:inline-block"></span>
+      </div>
+
+      <h1 class="title-welcome" style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:700;line-height:1.06;letter-spacing:-0.025em;color:#fff;margin-bottom:1.2rem">
+        Where Asia Meets<br><em style="font-style:italic;color:#f08070">Melbourne's Table</em>
+      </h1>
+
+      <p class="sub-welcome" style="font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.75;max-width:38ch;margin-bottom:2.5rem">
+        Over half the residents of Springvale and Box Hill were born in Asia. So were their restaurants — and this is how it happened.
+      </p>
+
+      <div class="stats-welcome" style="display:flex;gap:0;border:0.5px solid rgba(255,255,255,0.12);border-radius:8px;overflow:hidden;margin-bottom:2rem;max-width:360px">
+        <div style="flex:1;padding:0.9rem 0.8rem;text-align:center;border-right:0.5px solid rgba(255,255,255,0.1)">
+          <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.7rem;font-weight:700;color:#f08070;line-height:1">56%</div>
+          <div style="font-size:0.6rem;color:rgba(255,255,255,0.4);letter-spacing:0.04em;margin-top:4px;line-height:1.35">Asian-born<br>Springvale</div>
+        </div>
+        <div style="flex:1;padding:0.9rem 0.8rem;text-align:center;border-right:0.5px solid rgba(255,255,255,0.1)">
+          <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.7rem;font-weight:700;color:#f08070;line-height:1">1,864</div>
+          <div style="font-size:0.6rem;color:rgba(255,255,255,0.4);letter-spacing:0.04em;margin-top:4px;line-height:1.35">Asian<br>restaurants</div>
+        </div>
+        <div style="flex:1;padding:0.9rem 0.8rem;text-align:center">
+          <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.7rem;font-weight:700;color:#f08070;line-height:1">5</div>
+          <div style="font-size:0.6rem;color:rgba(255,255,255,0.4);letter-spacing:0.04em;margin-top:4px;line-height:1.35">suburbs to<br>explore</div>
+        </div>
+      </div>
+
+      <button class="cta-welcome" onclick="document.getElementById('page-journey').scrollIntoView({behavior:'smooth'})" style="display:inline-flex;align-items:center;gap:8px;background:#c94030;color:white;border:none;padding:0.9rem 2rem;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;letter-spacing:0.08em;cursor:pointer;width:fit-content" onmouseover="this.style.background='#a83020'" onmouseout="this.style.background='#c94030'">
+        Explore the story <span style="font-size:1rem">↓</span>
+      </button>
+
+      <div style="margin-top:1.2rem;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);display:flex;align-items:center;gap:8px">
+        <span style="width:1.5rem;height:1px;background:rgba(255,255,255,0.15);display:inline-block"></span>
+        Scroll to begin
+      </div>
     </div>
 
-    <!-- title -->
-    <h1 class="title-welcome" style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:700;line-height:1.06;letter-spacing:-0.03em;margin-bottom:1rem;color:white;text-align:center;position:relative;z-index:2">
-      Where Asia Meets<br><em style="color:#f08070">Melbourne's Table</em>
-    </h1>
+    <!-- RIGHT: Remy + bubble -->
+    <div style="position:relative;z-index:2;display:flex;align-items:center;justify-content:flex-start;padding:2rem 2rem 2rem 0">
+      <div class="remy-welcome" style="display:flex;flex-direction:column;align-items:center">
 
-    <!-- subtitle -->
-    <p class="sub-welcome" style="font-size:1.15rem;color:rgba(255,255,255,0.75);max-width:52ch;line-height:1.75;margin-bottom:3rem;text-align:center;position:relative;z-index:2">
-      Over half the residents of Springvale and Box Hill were born in Asia.<br>So were their restaurants.
-    </p>
-
-    <!-- Remy + card row -->
-    <div class="remy-welcome" style="display:flex;align-items:center;justify-content:center;gap:4rem;position:relative;z-index:2">
-
-      <!-- Remy with glow -->
-      <div style="position:relative;flex-shrink:0">
-        <div style="position:absolute;inset:-24px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.08) 0%,transparent 70%)"></div>
-        <svg viewBox="-18 -8 156 162" width="260" height="300" style="display:block;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.12))">
+        <!-- glow + Remy -->
+        <div style="position:relative">
+          <div style="position:absolute;inset:-40px;border-radius:50%;background:radial-gradient(circle,rgba(240,128,112,0.08) 0%,transparent 65%)"></div>
+          <svg viewBox="-18 -8 156 162" width="260" height="300" style="display:block;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.12))">
             <ellipse cx="60" cy="133" rx="28" ry="7" fill="#e0d8cc" opacity=".6"/>
         <path d="M72 108 Q110 118 120 102 Q128 88 118 78" fill="none" stroke="#b8a898" stroke-width="4" stroke-linecap="round"/>
         <ellipse cx="60" cy="95" rx="32" ry="40" fill="#c8bdb0"/>
@@ -394,56 +420,27 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
         <line x1="74" y1="69" x2="102" y2="68" stroke="#8a7a70" stroke-width="1"/>
       
           </svg>
-      </div>
-
-      <!-- right card -->
-      <div style="display:flex;flex-direction:column;gap:1.2rem;width:340px">
-
-        <!-- speech bubble — dark glass style -->
-        <div class="bubble-welcome" style="position:relative">
-          <div style="position:absolute;left:-10px;top:28px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-right:10px solid rgba(255,255,255,0.12);z-index:2"></div>
-          <div style="background:rgba(255,255,255,0.1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.18);border-radius:16px;padding:1.25rem 1.5rem;text-align:left">
-            <p id="typewriter-line1" style="font-family:'Playfair Display',Georgia,serif;font-size:1.2rem;font-style:italic;color:white;line-height:1.6;margin-bottom:0.5rem;min-height:1.92rem"></p>
-            <p id="typewriter-line2" style="font-size:0.95rem;color:rgba(255,255,255,0.65);line-height:1.65;min-height:4.75rem"></p>
-          </div>
         </div>
 
-        <!-- stats -->
-        <div class="stats-welcome" style="display:flex;gap:0;border:1px solid rgba(255,255,255,0.15);border-radius:8px;overflow:hidden;background:rgba(255,255,255,0.08)">
-          <div style="flex:1;padding:0.75rem 0.5rem;text-align:center;border-right:1px solid rgba(255,255,255,0.12)">
-            <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.9rem;font-weight:700;color:#f08070;line-height:1">56%</div>
-            <div style="font-size:0.68rem;color:rgba(255,255,255,0.55);letter-spacing:0.04em;margin-top:4px;line-height:1.3">Asian-born<br>Springvale</div>
-          </div>
-          <div style="flex:1;padding:0.75rem 0.5rem;text-align:center;border-right:1px solid rgba(255,255,255,0.12)">
-            <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.9rem;font-weight:700;color:#f08070;line-height:1">1,864</div>
-            <div style="font-size:0.68rem;color:rgba(255,255,255,0.55);letter-spacing:0.04em;margin-top:4px;line-height:1.3">Asian<br>restaurants</div>
-          </div>
-          <div style="flex:1;padding:0.75rem 0.5rem;text-align:center">
-            <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.9rem;font-weight:700;color:#f08070;line-height:1">5</div>
-            <div style="font-size:0.68rem;color:rgba(255,255,255,0.55);letter-spacing:0.04em;margin-top:4px;line-height:1.3">suburbs to<br>explore</div>
+        <!-- bubble below Remy -->
+        <div class="bubble-welcome" style="position:relative;margin-top:1rem;max-width:260px">
+          <div style="position:absolute;top:-8px;left:32px;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:8px solid rgba(255,255,255,0.15)"></div>
+          <div style="background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.15);border-radius:14px;padding:1.1rem 1.3rem">
+            <p id="typewriter-line1" style="font-family:'Playfair Display',Georgia,serif;font-size:0.95rem;font-style:italic;color:white;margin-bottom:0.3rem;min-height:1.52rem"></p>
+            <p id="typewriter-line2" style="font-size:0.75rem;color:rgba(255,255,255,0.5);line-height:1.6;min-height:3.6rem"></p>
           </div>
         </div>
-
-        <!-- button — NOT animated, static -->
-        <button onclick="document.getElementById('page-journey').scrollIntoView({behavior:'smooth'})" style="font-family:'DM Sans',sans-serif;background:#c94030;color:white;border:none;padding:1.1rem 1.5rem;border-radius:6px;font-size:1rem;font-weight:500;letter-spacing:0.08em;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:0.5rem" onmouseover="this.style.background='#a83020'" onmouseout="this.style.background='#c94030'">
-          Explore the story ↓
-        </button>
 
       </div>
     </div>
 
     <!-- bottom credit -->
-    <div style="position:absolute;bottom:1.2rem;left:50%;transform:translateX(-50%);z-index:2;white-space:nowrap">
-      <p style="font-size:0.6rem;color:rgba(255,255,255,0.3);letter-spacing:0.06em">
-        Data: ABS 2021 · OpenStreetMap · City of Melbourne CLUE 2002–2024
-      </p>
+    <div style="position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);z-index:3;white-space:nowrap">
+      <p style="font-size:0.58rem;color:rgba(255,255,255,0.2);letter-spacing:0.06em">Data: ABS 2021 · OpenStreetMap · City of Melbourne CLUE 2002–2024</p>
     </div>
-
   </div>
 
-<div class="journey-wrap">
-
-  <!-- PAGE 3: JOURNEY (hidden until button click) -->
+<!-- PAGE 3: JOURNEY (hidden until button click) -->
   <div id="page-journey">
   <div class="journey-eyebrow">Interactive journey · OpenStreetMap + ABS 2021</div>
   <h2 class="journey-title">Follow Remy across Melbourne's<br><em>Asian food trail</em></h2>
