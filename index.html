@@ -680,9 +680,9 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
   </div>
 
   <!-- nav row always visible below story-strip -->
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1.25rem;padding:1rem 0;border-top:1px solid var(--rule)">
+  <div id="nav-row" style="display:flex;align-items:center;justify-content:space-between;margin-top:1.25rem;padding:1.25rem 0;border-top:2px solid var(--rule);background:var(--paper);position:sticky;bottom:0;z-index:10">
     <button class="btn btn-secondary" id="btn-prev" onclick="prevStop()" disabled>← Back</button>
-    <span class="step-label" id="step-label" style="font-size:0.72rem;color:var(--ink-muted);letter-spacing:0.04em"></span>
+    <span class="step-label" id="step-label" style="font-size:0.72rem;color:var(--ink-muted);letter-spacing:0.04em">—</span>
     <button class="btn btn-primary" id="btn-next" onclick="nextStop()">Next stop →</button>
   </div>
 
