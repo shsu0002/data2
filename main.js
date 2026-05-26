@@ -1,26 +1,6 @@
-
 // ── Journey stops + interactivity ──
 
 const STOPS = [
-  {
-    id: 'doncaster',
-    name: 'Doncaster',
-    tagline: 'Gateway to Melbourne\'s east',
-    region: 'region-doncaster',
-    remyLeft: '71.7%', remyTop: '7.0%',
-    pop: '25,020', pct: '36.5%',
-    bars: [
-      {country:'China',       pct:14.9, color:'#1d7a68'},
-      {country:'Malaysia',    pct:5.5,  color:'#c94030'},
-      {country:'Hong Kong',   pct:4.9,  color:'#b87c2a'},
-      {country:'India',       pct:2.5,  color:'#7f6ab8'},
-      {country:'Vietnam',     pct:1.1,  color:'#378add'},
-    ],
-    rest: '42', chart2Type:'donut', chart2Data:{asian:36.5, nonAsian:63.5},
-    chart2Title:'Asian-born share of population',
-    foods: ['Chinese','Cantonese','Malaysian','Yum cha'],
-    story: 'Perched on Melbourne\'s eastern ridge, Doncaster is the quiet start of a journey. A third of its residents trace roots to Asia — predominantly China and Malaysia — and its food courts hum with Cantonese and yum cha, a taste of what lies ahead.'
-  },
   {
     id: 'boxhill',
     name: 'Box Hill',
@@ -599,4 +579,3 @@ vegaEmbed('#chart-multiline', {
     tooltip: [{field:'year',title:'Year'},{field:'area',title:'Area'},{field:'count',title:'Restaurants'}]
   }
 }, {actions:false});
-
