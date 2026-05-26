@@ -347,8 +347,8 @@ buildTrail();
 // ── Typewriter animation ──
 
 (function(){
-  var line1 = ['“Bonjour! I’m Remy.”'].join('');
-  var line2 = ['I’ve sniffed out something extraordinary about this city — follow me and I’ll show you how migration shaped the way Melbourne eats.'].join('');
+  var line1 = `“Bonjour! I’m Remy.”`;
+  var line2 = `I’ve sniffed out something extraordinary about this city — follow me and I’ll show you how migration shaped the way Melbourne eats.`;
   var el1 = document.getElementById('typewriter-line1');
   var el2 = document.getElementById('typewriter-line2');
   if(!el1 || !el2) return;
