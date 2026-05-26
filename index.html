@@ -9,6 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 <style>
+html,body{margin:0;padding:0;width:100%;overflow-x:hidden;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --ink:#1a1714;--ink-mid:#4a4540;--ink-muted:#8a837a;
@@ -20,7 +21,7 @@
   --serif:'Playfair Display',Georgia,serif;
   --sans:'DM Sans',system-ui,sans-serif;
 }
-body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;margin:0;padding:0;}
 
 /* ── outer wrapper ── */
 .journey-wrap{
@@ -323,10 +324,8 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
 </style>
 </head>
 <body>
-<div class="journey-wrap">
-
-  <!-- PAGE 1: WELCOME -->
-  <div id="page-welcome" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 2rem;text-align:center;position:relative;overflow:hidden">
+<!-- PAGE 1: WELCOME -->
+  <div id="page-welcome" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 2rem;width:100%;box-sizing:border-box;text-align:center;position:relative;overflow:hidden">
 
     <!-- Melbourne background image -->
     <div style="position:absolute;inset:0;background-image:url('food-bg.jpg');background-size:cover;background-position:center center;z-index:0"></div>
@@ -442,7 +441,9 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
 
   </div>
 
-<!-- PAGE 3: JOURNEY (hidden until button click) -->
+<div class="journey-wrap">
+
+  <!-- PAGE 3: JOURNEY (hidden until button click) -->
   <div id="page-journey" style="display:none">
   <div class="journey-eyebrow">Interactive journey · OpenStreetMap + ABS 2021</div>
   <h2 class="journey-title">Follow Remy across Melbourne's<br><em>Asian food trail</em></h2>
