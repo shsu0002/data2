@@ -590,14 +590,20 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
         <p style="margin-bottom:1rem">The map shows schematic locations of Melbourne's key Asian food suburbs. Follow Remy from Doncaster to the CBD — each stop reveals a different community and a different set of flavours.</p>
       </div>
 
-      <!-- Start button + Remy top-right -->
-      <div id="btn-start-wrap" style="position:relative;margin-top:1rem">
-        <div style="position:absolute;bottom:100%;right:0;display:flex;align-items:flex-end;gap:6px;margin-bottom:-4px">
-          <div style="background:white;border:1px solid var(--rule);border-radius:8px;padding:0.35rem 0.65rem;font-size:0.72rem;font-style:italic;font-family:'Playfair Display',Georgia,serif;color:var(--ink);white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,0.06);margin-bottom:4px;position:relative">
+      <!-- Start button with Remy alongside -->
+      <div id="btn-start-wrap" style="display:flex;align-items:flex-end;gap:0.75rem;margin-top:1rem">
+
+        <button class="btn btn-primary" id="btn-start" onclick="goToStop(0);document.getElementById('btn-start-wrap').style.display='none'" style="flex:1;padding:1rem;font-size:0.95rem">
+          Start the journey →
+        </button>
+
+        <!-- Remy beside button -->
+        <div style="flex-shrink:0;position:relative">
+          <div style="position:absolute;bottom:100%;right:0;margin-bottom:4px;background:white;border:1px solid var(--rule);border-radius:8px;padding:0.3rem 0.6rem;font-size:0.72rem;font-style:italic;font-family:'Playfair Display',Georgia,serif;color:var(--ink);white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,0.06)">
             Let's go! 🍜
-            <div style="position:absolute;bottom:-5px;right:16px;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid white"></div>
+            <div style="position:absolute;bottom:-5px;right:14px;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid white"></div>
           </div>
-          <svg viewBox="-18 -8 156 100" width="70" height="45" style="display:block;flex-shrink:0">
+          <svg viewBox="-18 0 156 120" width="64" height="50" style="display:block">
             <ellipse cx="60" cy="95" rx="32" ry="40" fill="#c8bdb0"/>
             <ellipse cx="60" cy="108" rx="20" ry="26" fill="#e8ddd4"/>
             <path d="M36 88 Q16 96 14 110" fill="none" stroke="#b8a898" stroke-width="8" stroke-linecap="round"/>
@@ -628,7 +634,7 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
             <line x1="74" y1="69" x2="102" y2="68" stroke="#8a7a70" stroke-width="1"/>
           </svg>
         </div>
-        <button class="btn btn-primary" id="btn-start" onclick="goToStop(0);document.getElementById('btn-start-wrap').style.display='none'" style="width:100%;padding:1rem">Start the journey →</button>
+      </div>
       </div>
 
       <div class="stop-card" id="stop-card">
