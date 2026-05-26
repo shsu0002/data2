@@ -1,0 +1,1497 @@
+[
+  {
+    "year": 2002,
+    "area": "Carlton",
+    "count": 130
+  },
+  {
+    "year": 2002,
+    "area": "Docklands",
+    "count": 14
+  },
+  {
+    "year": 2002,
+    "area": "East Melbourne",
+    "count": 23
+  },
+  {
+    "year": 2002,
+    "area": "Kensington",
+    "count": 5
+  },
+  {
+    "year": 2002,
+    "area": "Melbourne (CBD)",
+    "count": 643
+  },
+  {
+    "year": 2002,
+    "area": "Melbourne (Remainder)",
+    "count": 21
+  },
+  {
+    "year": 2002,
+    "area": "North Melbourne",
+    "count": 43
+  },
+  {
+    "year": 2002,
+    "area": "Parkville",
+    "count": 18
+  },
+  {
+    "year": 2002,
+    "area": "Port Melbourne",
+    "count": 2
+  },
+  {
+    "year": 2002,
+    "area": "South Yarra",
+    "count": 6
+  },
+  {
+    "year": 2002,
+    "area": "Southbank",
+    "count": 58
+  },
+  {
+    "year": 2002,
+    "area": "West Melbourne (Industrial)",
+    "count": 7
+  },
+  {
+    "year": 2002,
+    "area": "West Melbourne (Residential)",
+    "count": 30
+  },
+  {
+    "year": 2003,
+    "area": "Carlton",
+    "count": 140
+  },
+  {
+    "year": 2003,
+    "area": "Docklands",
+    "count": 27
+  },
+  {
+    "year": 2003,
+    "area": "East Melbourne",
+    "count": 26
+  },
+  {
+    "year": 2003,
+    "area": "Kensington",
+    "count": 5
+  },
+  {
+    "year": 2003,
+    "area": "Melbourne (CBD)",
+    "count": 643
+  },
+  {
+    "year": 2003,
+    "area": "Melbourne (Remainder)",
+    "count": 21
+  },
+  {
+    "year": 2003,
+    "area": "North Melbourne",
+    "count": 51
+  },
+  {
+    "year": 2003,
+    "area": "Parkville",
+    "count": 20
+  },
+  {
+    "year": 2003,
+    "area": "Port Melbourne",
+    "count": 2
+  },
+  {
+    "year": 2003,
+    "area": "South Yarra",
+    "count": 6
+  },
+  {
+    "year": 2003,
+    "area": "Southbank",
+    "count": 58
+  },
+  {
+    "year": 2003,
+    "area": "West Melbourne (Industrial)",
+    "count": 8
+  },
+  {
+    "year": 2003,
+    "area": "West Melbourne (Residential)",
+    "count": 29
+  },
+  {
+    "year": 2004,
+    "area": "Carlton",
+    "count": 140
+  },
+  {
+    "year": 2004,
+    "area": "Docklands",
+    "count": 27
+  },
+  {
+    "year": 2004,
+    "area": "East Melbourne",
+    "count": 26
+  },
+  {
+    "year": 2004,
+    "area": "Kensington",
+    "count": 5
+  },
+  {
+    "year": 2004,
+    "area": "Melbourne (CBD)",
+    "count": 686
+  },
+  {
+    "year": 2004,
+    "area": "Melbourne (Remainder)",
+    "count": 24
+  },
+  {
+    "year": 2004,
+    "area": "North Melbourne",
+    "count": 51
+  },
+  {
+    "year": 2004,
+    "area": "Parkville",
+    "count": 20
+  },
+  {
+    "year": 2004,
+    "area": "Port Melbourne",
+    "count": 5
+  },
+  {
+    "year": 2004,
+    "area": "South Yarra",
+    "count": 7
+  },
+  {
+    "year": 2004,
+    "area": "Southbank",
+    "count": 63
+  },
+  {
+    "year": 2004,
+    "area": "West Melbourne (Industrial)",
+    "count": 8
+  },
+  {
+    "year": 2004,
+    "area": "West Melbourne (Residential)",
+    "count": 29
+  },
+  {
+    "year": 2005,
+    "area": "Carlton",
+    "count": 156
+  },
+  {
+    "year": 2005,
+    "area": "Docklands",
+    "count": 61
+  },
+  {
+    "year": 2005,
+    "area": "East Melbourne",
+    "count": 33
+  },
+  {
+    "year": 2005,
+    "area": "Kensington",
+    "count": 5
+  },
+  {
+    "year": 2005,
+    "area": "Melbourne (CBD)",
+    "count": 734
+  },
+  {
+    "year": 2005,
+    "area": "Melbourne (Remainder)",
+    "count": 24
+  },
+  {
+    "year": 2005,
+    "area": "North Melbourne",
+    "count": 57
+  },
+  {
+    "year": 2005,
+    "area": "Parkville",
+    "count": 18
+  },
+  {
+    "year": 2005,
+    "area": "Port Melbourne",
+    "count": 5
+  },
+  {
+    "year": 2005,
+    "area": "South Yarra",
+    "count": 7
+  },
+  {
+    "year": 2005,
+    "area": "Southbank",
+    "count": 63
+  },
+  {
+    "year": 2005,
+    "area": "West Melbourne (Industrial)",
+    "count": 8
+  },
+  {
+    "year": 2005,
+    "area": "West Melbourne (Residential)",
+    "count": 31
+  },
+  {
+    "year": 2006,
+    "area": "Carlton",
+    "count": 156
+  },
+  {
+    "year": 2006,
+    "area": "Docklands",
+    "count": 61
+  },
+  {
+    "year": 2006,
+    "area": "East Melbourne",
+    "count": 33
+  },
+  {
+    "year": 2006,
+    "area": "Kensington",
+    "count": 6
+  },
+  {
+    "year": 2006,
+    "area": "Melbourne (CBD)",
+    "count": 768
+  },
+  {
+    "year": 2006,
+    "area": "Melbourne (Remainder)",
+    "count": 23
+  },
+  {
+    "year": 2006,
+    "area": "North Melbourne",
+    "count": 57
+  },
+  {
+    "year": 2006,
+    "area": "Parkville",
+    "count": 18
+  },
+  {
+    "year": 2006,
+    "area": "Port Melbourne",
+    "count": 6
+  },
+  {
+    "year": 2006,
+    "area": "South Yarra",
+    "count": 8
+  },
+  {
+    "year": 2006,
+    "area": "Southbank",
+    "count": 71
+  },
+  {
+    "year": 2006,
+    "area": "West Melbourne (Industrial)",
+    "count": 8
+  },
+  {
+    "year": 2006,
+    "area": "West Melbourne (Residential)",
+    "count": 31
+  },
+  {
+    "year": 2007,
+    "area": "Carlton",
+    "count": 164
+  },
+  {
+    "year": 2007,
+    "area": "Docklands",
+    "count": 76
+  },
+  {
+    "year": 2007,
+    "area": "East Melbourne",
+    "count": 39
+  },
+  {
+    "year": 2007,
+    "area": "Kensington",
+    "count": 6
+  },
+  {
+    "year": 2007,
+    "area": "Melbourne (CBD)",
+    "count": 784
+  },
+  {
+    "year": 2007,
+    "area": "Melbourne (Remainder)",
+    "count": 23
+  },
+  {
+    "year": 2007,
+    "area": "North Melbourne",
+    "count": 58
+  },
+  {
+    "year": 2007,
+    "area": "Parkville",
+    "count": 19
+  },
+  {
+    "year": 2007,
+    "area": "Port Melbourne",
+    "count": 6
+  },
+  {
+    "year": 2007,
+    "area": "South Yarra",
+    "count": 8
+  },
+  {
+    "year": 2007,
+    "area": "Southbank",
+    "count": 71
+  },
+  {
+    "year": 2007,
+    "area": "West Melbourne (Industrial)",
+    "count": 6
+  },
+  {
+    "year": 2007,
+    "area": "West Melbourne (Residential)",
+    "count": 32
+  },
+  {
+    "year": 2008,
+    "area": "Carlton",
+    "count": 164
+  },
+  {
+    "year": 2008,
+    "area": "Docklands",
+    "count": 76
+  },
+  {
+    "year": 2008,
+    "area": "East Melbourne",
+    "count": 39
+  },
+  {
+    "year": 2008,
+    "area": "Kensington",
+    "count": 17
+  },
+  {
+    "year": 2008,
+    "area": "Melbourne (CBD)",
+    "count": 825
+  },
+  {
+    "year": 2008,
+    "area": "Melbourne (Remainder)",
+    "count": 32
+  },
+  {
+    "year": 2008,
+    "area": "North Melbourne",
+    "count": 58
+  },
+  {
+    "year": 2008,
+    "area": "Parkville",
+    "count": 19
+  },
+  {
+    "year": 2008,
+    "area": "Port Melbourne",
+    "count": 6
+  },
+  {
+    "year": 2008,
+    "area": "South Yarra",
+    "count": 8
+  },
+  {
+    "year": 2008,
+    "area": "Southbank",
+    "count": 78
+  },
+  {
+    "year": 2008,
+    "area": "West Melbourne (Industrial)",
+    "count": 6
+  },
+  {
+    "year": 2008,
+    "area": "West Melbourne (Residential)",
+    "count": 32
+  },
+  {
+    "year": 2009,
+    "area": "Carlton",
+    "count": 176
+  },
+  {
+    "year": 2009,
+    "area": "Docklands",
+    "count": 111
+  },
+  {
+    "year": 2009,
+    "area": "East Melbourne",
+    "count": 40
+  },
+  {
+    "year": 2009,
+    "area": "Kensington",
+    "count": 17
+  },
+  {
+    "year": 2009,
+    "area": "Melbourne (CBD)",
+    "count": 864
+  },
+  {
+    "year": 2009,
+    "area": "Melbourne (Remainder)",
+    "count": 32
+  },
+  {
+    "year": 2009,
+    "area": "North Melbourne",
+    "count": 67
+  },
+  {
+    "year": 2009,
+    "area": "Parkville",
+    "count": 19
+  },
+  {
+    "year": 2009,
+    "area": "Port Melbourne",
+    "count": 6
+  },
+  {
+    "year": 2009,
+    "area": "South Yarra",
+    "count": 8
+  },
+  {
+    "year": 2009,
+    "area": "Southbank",
+    "count": 78
+  },
+  {
+    "year": 2009,
+    "area": "West Melbourne (Industrial)",
+    "count": 7
+  },
+  {
+    "year": 2009,
+    "area": "West Melbourne (Residential)",
+    "count": 37
+  },
+  {
+    "year": 2010,
+    "area": "Carlton",
+    "count": 176
+  },
+  {
+    "year": 2010,
+    "area": "Docklands",
+    "count": 111
+  },
+  {
+    "year": 2010,
+    "area": "East Melbourne",
+    "count": 40
+  },
+  {
+    "year": 2010,
+    "area": "Kensington",
+    "count": 17
+  },
+  {
+    "year": 2010,
+    "area": "Melbourne (CBD)",
+    "count": 904
+  },
+  {
+    "year": 2010,
+    "area": "Melbourne (Remainder)",
+    "count": 31
+  },
+  {
+    "year": 2010,
+    "area": "North Melbourne",
+    "count": 67
+  },
+  {
+    "year": 2010,
+    "area": "Parkville",
+    "count": 25
+  },
+  {
+    "year": 2010,
+    "area": "Port Melbourne",
+    "count": 13
+  },
+  {
+    "year": 2010,
+    "area": "South Yarra",
+    "count": 8
+  },
+  {
+    "year": 2010,
+    "area": "Southbank",
+    "count": 78
+  },
+  {
+    "year": 2010,
+    "area": "West Melbourne (Industrial)",
+    "count": 7
+  },
+  {
+    "year": 2010,
+    "area": "West Melbourne (Residential)",
+    "count": 37
+  },
+  {
+    "year": 2011,
+    "area": "Carlton",
+    "count": 176
+  },
+  {
+    "year": 2011,
+    "area": "Docklands",
+    "count": 111
+  },
+  {
+    "year": 2011,
+    "area": "East Melbourne",
+    "count": 40
+  },
+  {
+    "year": 2011,
+    "area": "Kensington",
+    "count": 24
+  },
+  {
+    "year": 2011,
+    "area": "Melbourne (CBD)",
+    "count": 947
+  },
+  {
+    "year": 2011,
+    "area": "Melbourne (Remainder)",
+    "count": 31
+  },
+  {
+    "year": 2011,
+    "area": "North Melbourne",
+    "count": 67
+  },
+  {
+    "year": 2011,
+    "area": "Parkville",
+    "count": 25
+  },
+  {
+    "year": 2011,
+    "area": "Port Melbourne",
+    "count": 13
+  },
+  {
+    "year": 2011,
+    "area": "South Yarra",
+    "count": 8
+  },
+  {
+    "year": 2011,
+    "area": "Southbank",
+    "count": 96
+  },
+  {
+    "year": 2011,
+    "area": "West Melbourne (Industrial)",
+    "count": 7
+  },
+  {
+    "year": 2011,
+    "area": "West Melbourne (Residential)",
+    "count": 37
+  },
+  {
+    "year": 2012,
+    "area": "Carlton",
+    "count": 172
+  },
+  {
+    "year": 2012,
+    "area": "Docklands",
+    "count": 128
+  },
+  {
+    "year": 2012,
+    "area": "East Melbourne",
+    "count": 42
+  },
+  {
+    "year": 2012,
+    "area": "Kensington",
+    "count": 24
+  },
+  {
+    "year": 2012,
+    "area": "Melbourne (CBD)",
+    "count": 945
+  },
+  {
+    "year": 2012,
+    "area": "Melbourne (Remainder)",
+    "count": 31
+  },
+  {
+    "year": 2012,
+    "area": "North Melbourne",
+    "count": 69
+  },
+  {
+    "year": 2012,
+    "area": "Parkville",
+    "count": 28
+  },
+  {
+    "year": 2012,
+    "area": "Port Melbourne",
+    "count": 13
+  },
+  {
+    "year": 2012,
+    "area": "South Yarra",
+    "count": 8
+  },
+  {
+    "year": 2012,
+    "area": "Southbank",
+    "count": 96
+  },
+  {
+    "year": 2012,
+    "area": "West Melbourne (Industrial)",
+    "count": 7
+  },
+  {
+    "year": 2012,
+    "area": "West Melbourne (Residential)",
+    "count": 41
+  },
+  {
+    "year": 2013,
+    "area": "Carlton",
+    "count": 172
+  },
+  {
+    "year": 2013,
+    "area": "Docklands",
+    "count": 128
+  },
+  {
+    "year": 2013,
+    "area": "East Melbourne",
+    "count": 42
+  },
+  {
+    "year": 2013,
+    "area": "Kensington",
+    "count": 30
+  },
+  {
+    "year": 2013,
+    "area": "Melbourne (CBD)",
+    "count": 1002
+  },
+  {
+    "year": 2013,
+    "area": "Melbourne (Remainder)",
+    "count": 33
+  },
+  {
+    "year": 2013,
+    "area": "North Melbourne",
+    "count": 69
+  },
+  {
+    "year": 2013,
+    "area": "Parkville",
+    "count": 28
+  },
+  {
+    "year": 2013,
+    "area": "Port Melbourne",
+    "count": 13
+  },
+  {
+    "year": 2013,
+    "area": "South Yarra",
+    "count": 7
+  },
+  {
+    "year": 2013,
+    "area": "Southbank",
+    "count": 129
+  },
+  {
+    "year": 2013,
+    "area": "West Melbourne (Industrial)",
+    "count": 7
+  },
+  {
+    "year": 2013,
+    "area": "West Melbourne (Residential)",
+    "count": 41
+  },
+  {
+    "year": 2014,
+    "area": "Carlton",
+    "count": 181
+  },
+  {
+    "year": 2014,
+    "area": "Docklands",
+    "count": 164
+  },
+  {
+    "year": 2014,
+    "area": "East Melbourne",
+    "count": 40
+  },
+  {
+    "year": 2014,
+    "area": "Kensington",
+    "count": 30
+  },
+  {
+    "year": 2014,
+    "area": "Melbourne (CBD)",
+    "count": 1050
+  },
+  {
+    "year": 2014,
+    "area": "Melbourne (Remainder)",
+    "count": 33
+  },
+  {
+    "year": 2014,
+    "area": "North Melbourne",
+    "count": 75
+  },
+  {
+    "year": 2014,
+    "area": "Parkville",
+    "count": 36
+  },
+  {
+    "year": 2014,
+    "area": "Port Melbourne",
+    "count": 13
+  },
+  {
+    "year": 2014,
+    "area": "South Yarra",
+    "count": 7
+  },
+  {
+    "year": 2014,
+    "area": "Southbank",
+    "count": 129
+  },
+  {
+    "year": 2014,
+    "area": "West Melbourne (Industrial)",
+    "count": 8
+  },
+  {
+    "year": 2014,
+    "area": "West Melbourne (Residential)",
+    "count": 41
+  },
+  {
+    "year": 2015,
+    "area": "Carlton",
+    "count": 181
+  },
+  {
+    "year": 2015,
+    "area": "Docklands",
+    "count": 164
+  },
+  {
+    "year": 2015,
+    "area": "East Melbourne",
+    "count": 40
+  },
+  {
+    "year": 2015,
+    "area": "Kensington",
+    "count": 34
+  },
+  {
+    "year": 2015,
+    "area": "Melbourne (CBD)",
+    "count": 1079
+  },
+  {
+    "year": 2015,
+    "area": "Melbourne (Remainder)",
+    "count": 41
+  },
+  {
+    "year": 2015,
+    "area": "North Melbourne",
+    "count": 75
+  },
+  {
+    "year": 2015,
+    "area": "Parkville",
+    "count": 36
+  },
+  {
+    "year": 2015,
+    "area": "Port Melbourne",
+    "count": 13
+  },
+  {
+    "year": 2015,
+    "area": "South Yarra",
+    "count": 8
+  },
+  {
+    "year": 2015,
+    "area": "Southbank",
+    "count": 133
+  },
+  {
+    "year": 2015,
+    "area": "West Melbourne (Industrial)",
+    "count": 8
+  },
+  {
+    "year": 2015,
+    "area": "West Melbourne (Residential)",
+    "count": 41
+  },
+  {
+    "year": 2016,
+    "area": "Carlton",
+    "count": 200
+  },
+  {
+    "year": 2016,
+    "area": "Docklands",
+    "count": 194
+  },
+  {
+    "year": 2016,
+    "area": "East Melbourne",
+    "count": 44
+  },
+  {
+    "year": 2016,
+    "area": "Kensington",
+    "count": 34
+  },
+  {
+    "year": 2016,
+    "area": "Melbourne (CBD)",
+    "count": 1094
+  },
+  {
+    "year": 2016,
+    "area": "Melbourne (Remainder)",
+    "count": 41
+  },
+  {
+    "year": 2016,
+    "area": "North Melbourne",
+    "count": 82
+  },
+  {
+    "year": 2016,
+    "area": "Parkville",
+    "count": 44
+  },
+  {
+    "year": 2016,
+    "area": "Port Melbourne",
+    "count": 13
+  },
+  {
+    "year": 2016,
+    "area": "South Yarra",
+    "count": 8
+  },
+  {
+    "year": 2016,
+    "area": "Southbank",
+    "count": 133
+  },
+  {
+    "year": 2016,
+    "area": "West Melbourne (Industrial)",
+    "count": 3
+  },
+  {
+    "year": 2016,
+    "area": "West Melbourne (Residential)",
+    "count": 36
+  },
+  {
+    "year": 2017,
+    "area": "Carlton",
+    "count": 200
+  },
+  {
+    "year": 2017,
+    "area": "Docklands",
+    "count": 194
+  },
+  {
+    "year": 2017,
+    "area": "East Melbourne",
+    "count": 44
+  },
+  {
+    "year": 2017,
+    "area": "Kensington",
+    "count": 36
+  },
+  {
+    "year": 2017,
+    "area": "Melbourne (CBD)",
+    "count": 1114
+  },
+  {
+    "year": 2017,
+    "area": "Melbourne (Remainder)",
+    "count": 40
+  },
+  {
+    "year": 2017,
+    "area": "North Melbourne",
+    "count": 82
+  },
+  {
+    "year": 2017,
+    "area": "Parkville",
+    "count": 44
+  },
+  {
+    "year": 2017,
+    "area": "Port Melbourne",
+    "count": 16
+  },
+  {
+    "year": 2017,
+    "area": "South Yarra",
+    "count": 8
+  },
+  {
+    "year": 2017,
+    "area": "Southbank",
+    "count": 136
+  },
+  {
+    "year": 2017,
+    "area": "West Melbourne (Industrial)",
+    "count": 3
+  },
+  {
+    "year": 2017,
+    "area": "West Melbourne (Residential)",
+    "count": 36
+  },
+  {
+    "year": 2018,
+    "area": "Carlton",
+    "count": 196
+  },
+  {
+    "year": 2018,
+    "area": "Docklands",
+    "count": 199
+  },
+  {
+    "year": 2018,
+    "area": "East Melbourne",
+    "count": 43
+  },
+  {
+    "year": 2018,
+    "area": "Kensington",
+    "count": 36
+  },
+  {
+    "year": 2018,
+    "area": "Melbourne (CBD)",
+    "count": 1137
+  },
+  {
+    "year": 2018,
+    "area": "Melbourne (Remainder)",
+    "count": 40
+  },
+  {
+    "year": 2018,
+    "area": "North Melbourne",
+    "count": 86
+  },
+  {
+    "year": 2018,
+    "area": "Parkville",
+    "count": 47
+  },
+  {
+    "year": 2018,
+    "area": "Port Melbourne",
+    "count": 16
+  },
+  {
+    "year": 2018,
+    "area": "South Yarra",
+    "count": 8
+  },
+  {
+    "year": 2018,
+    "area": "Southbank",
+    "count": 136
+  },
+  {
+    "year": 2018,
+    "area": "West Melbourne (Industrial)",
+    "count": 4
+  },
+  {
+    "year": 2018,
+    "area": "West Melbourne (Residential)",
+    "count": 44
+  },
+  {
+    "year": 2019,
+    "area": "Carlton",
+    "count": 196
+  },
+  {
+    "year": 2019,
+    "area": "Docklands",
+    "count": 199
+  },
+  {
+    "year": 2019,
+    "area": "East Melbourne",
+    "count": 43
+  },
+  {
+    "year": 2019,
+    "area": "Kensington",
+    "count": 35
+  },
+  {
+    "year": 2019,
+    "area": "Melbourne (CBD)",
+    "count": 1123
+  },
+  {
+    "year": 2019,
+    "area": "Melbourne (Remainder)",
+    "count": 39
+  },
+  {
+    "year": 2019,
+    "area": "North Melbourne",
+    "count": 86
+  },
+  {
+    "year": 2019,
+    "area": "Parkville",
+    "count": 47
+  },
+  {
+    "year": 2019,
+    "area": "Port Melbourne",
+    "count": 17
+  },
+  {
+    "year": 2019,
+    "area": "South Yarra",
+    "count": 9
+  },
+  {
+    "year": 2019,
+    "area": "Southbank",
+    "count": 150
+  },
+  {
+    "year": 2019,
+    "area": "West Melbourne (Industrial)",
+    "count": 4
+  },
+  {
+    "year": 2019,
+    "area": "West Melbourne (Residential)",
+    "count": 44
+  },
+  {
+    "year": 2020,
+    "area": "Carlton",
+    "count": 187
+  },
+  {
+    "year": 2020,
+    "area": "Docklands",
+    "count": 213
+  },
+  {
+    "year": 2020,
+    "area": "East Melbourne",
+    "count": 38
+  },
+  {
+    "year": 2020,
+    "area": "Kensington",
+    "count": 35
+  },
+  {
+    "year": 2020,
+    "area": "Melbourne (CBD)",
+    "count": 1033
+  },
+  {
+    "year": 2020,
+    "area": "Melbourne (Remainder)",
+    "count": 36
+  },
+  {
+    "year": 2020,
+    "area": "North Melbourne",
+    "count": 75
+  },
+  {
+    "year": 2020,
+    "area": "Parkville",
+    "count": 39
+  },
+  {
+    "year": 2020,
+    "area": "Port Melbourne",
+    "count": 17
+  },
+  {
+    "year": 2020,
+    "area": "South Yarra",
+    "count": 9
+  },
+  {
+    "year": 2020,
+    "area": "Southbank",
+    "count": 144
+  },
+  {
+    "year": 2020,
+    "area": "West Melbourne (Industrial)",
+    "count": 3
+  },
+  {
+    "year": 2020,
+    "area": "West Melbourne (Residential)",
+    "count": 39
+  },
+  {
+    "year": 2021,
+    "area": "Carlton",
+    "count": 187
+  },
+  {
+    "year": 2021,
+    "area": "Docklands",
+    "count": 185
+  },
+  {
+    "year": 2021,
+    "area": "East Melbourne",
+    "count": 38
+  },
+  {
+    "year": 2021,
+    "area": "Kensington",
+    "count": 30
+  },
+  {
+    "year": 2021,
+    "area": "Melbourne (CBD)",
+    "count": 1035
+  },
+  {
+    "year": 2021,
+    "area": "Melbourne (Remainder)",
+    "count": 37
+  },
+  {
+    "year": 2021,
+    "area": "North Melbourne",
+    "count": 75
+  },
+  {
+    "year": 2021,
+    "area": "Parkville",
+    "count": 39
+  },
+  {
+    "year": 2021,
+    "area": "Port Melbourne",
+    "count": 14
+  },
+  {
+    "year": 2021,
+    "area": "South Yarra",
+    "count": 9
+  },
+  {
+    "year": 2021,
+    "area": "Southbank",
+    "count": 134
+  },
+  {
+    "year": 2021,
+    "area": "West Melbourne (Industrial)",
+    "count": 3
+  },
+  {
+    "year": 2021,
+    "area": "West Melbourne (Residential)",
+    "count": 39
+  },
+  {
+    "year": 2022,
+    "area": "Carlton",
+    "count": 187
+  },
+  {
+    "year": 2022,
+    "area": "Docklands",
+    "count": 185
+  },
+  {
+    "year": 2022,
+    "area": "East Melbourne",
+    "count": 30
+  },
+  {
+    "year": 2022,
+    "area": "Kensington",
+    "count": 30
+  },
+  {
+    "year": 2022,
+    "area": "Melbourne (CBD)",
+    "count": 971
+  },
+  {
+    "year": 2022,
+    "area": "Melbourne (Remainder)",
+    "count": 37
+  },
+  {
+    "year": 2022,
+    "area": "North Melbourne",
+    "count": 80
+  },
+  {
+    "year": 2022,
+    "area": "Parkville",
+    "count": 36
+  },
+  {
+    "year": 2022,
+    "area": "Port Melbourne",
+    "count": 14
+  },
+  {
+    "year": 2022,
+    "area": "South Yarra",
+    "count": 9
+  },
+  {
+    "year": 2022,
+    "area": "Southbank",
+    "count": 134
+  },
+  {
+    "year": 2022,
+    "area": "West Melbourne (Industrial)",
+    "count": 2
+  },
+  {
+    "year": 2022,
+    "area": "West Melbourne (Residential)",
+    "count": 34
+  },
+  {
+    "year": 2023,
+    "area": "Carlton",
+    "count": 207
+  },
+  {
+    "year": 2023,
+    "area": "Docklands",
+    "count": 167
+  },
+  {
+    "year": 2023,
+    "area": "East Melbourne",
+    "count": 30
+  },
+  {
+    "year": 2023,
+    "area": "Kensington",
+    "count": 31
+  },
+  {
+    "year": 2023,
+    "area": "Melbourne (CBD)",
+    "count": 971
+  },
+  {
+    "year": 2023,
+    "area": "Melbourne (Remainder)",
+    "count": 35
+  },
+  {
+    "year": 2023,
+    "area": "North Melbourne",
+    "count": 89
+  },
+  {
+    "year": 2023,
+    "area": "Parkville",
+    "count": 36
+  },
+  {
+    "year": 2023,
+    "area": "Port Melbourne",
+    "count": 16
+  },
+  {
+    "year": 2023,
+    "area": "South Yarra",
+    "count": 9
+  },
+  {
+    "year": 2023,
+    "area": "Southbank",
+    "count": 132
+  },
+  {
+    "year": 2023,
+    "area": "West Melbourne (Industrial)",
+    "count": 2
+  },
+  {
+    "year": 2023,
+    "area": "West Melbourne (Residential)",
+    "count": 43
+  },
+  {
+    "year": 2024,
+    "area": "Carlton",
+    "count": 207
+  },
+  {
+    "year": 2024,
+    "area": "Docklands",
+    "count": 167
+  },
+  {
+    "year": 2024,
+    "area": "East Melbourne",
+    "count": 30
+  },
+  {
+    "year": 2024,
+    "area": "Kensington",
+    "count": 31
+  },
+  {
+    "year": 2024,
+    "area": "Melbourne (CBD)",
+    "count": 1106
+  },
+  {
+    "year": 2024,
+    "area": "Melbourne (Remainder)",
+    "count": 35
+  },
+  {
+    "year": 2024,
+    "area": "North Melbourne",
+    "count": 89
+  },
+  {
+    "year": 2024,
+    "area": "Parkville",
+    "count": 36
+  },
+  {
+    "year": 2024,
+    "area": "Port Melbourne",
+    "count": 16
+  },
+  {
+    "year": 2024,
+    "area": "South Yarra",
+    "count": 9
+  },
+  {
+    "year": 2024,
+    "area": "Southbank",
+    "count": 132
+  },
+  {
+    "year": 2024,
+    "area": "West Melbourne (Industrial)",
+    "count": 2
+  },
+  {
+    "year": 2024,
+    "area": "West Melbourne (Residential)",
+    "count": 43
+  }
+]

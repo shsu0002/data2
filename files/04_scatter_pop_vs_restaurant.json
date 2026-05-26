@@ -1,0 +1,122 @@
+[
+  {
+    "suburb": "Box Hill",
+    "pct_asian_pop": 53.6,
+    "pct_asian_restaurants": 80.0,
+    "total_restaurants": 75,
+    "asian_restaurants": 60,
+    "population": 14353
+  },
+  {
+    "suburb": "Springvale",
+    "pct_asian_pop": 56.4,
+    "pct_asian_restaurants": 58.2,
+    "total_restaurants": 55,
+    "asian_restaurants": 32,
+    "population": 22174
+  },
+  {
+    "suburb": "Glen Waverley",
+    "pct_asian_pop": 47.9,
+    "pct_asian_restaurants": 59.5,
+    "total_restaurants": 37,
+    "asian_restaurants": 22,
+    "population": 42642
+  },
+  {
+    "suburb": "Footscray",
+    "pct_asian_pop": 24.6,
+    "pct_asian_restaurants": 44.0,
+    "total_restaurants": 50,
+    "asian_restaurants": 22,
+    "population": 17131
+  },
+  {
+    "suburb": "Clayton",
+    "pct_asian_pop": 52.3,
+    "pct_asian_restaurants": 57.8,
+    "total_restaurants": 45,
+    "asian_restaurants": 26,
+    "population": 18988
+  },
+  {
+    "suburb": "Richmond",
+    "pct_asian_pop": 11.4,
+    "pct_asian_restaurants": 47.3,
+    "total_restaurants": 55,
+    "asian_restaurants": 26,
+    "population": 28587
+  },
+  {
+    "suburb": "Melbourne CBD",
+    "pct_asian_pop": 8.3,
+    "pct_asian_restaurants": 59.8,
+    "total_restaurants": 624,
+    "asian_restaurants": 373,
+    "population": 4896
+  },
+  {
+    "suburb": "Doncaster",
+    "pct_asian_pop": 36.5,
+    "pct_asian_restaurants": 60.0,
+    "total_restaurants": 30,
+    "asian_restaurants": 18,
+    "population": 25020
+  },
+  {
+    "suburb": "St Albans",
+    "pct_asian_pop": 36.9,
+    "pct_asian_restaurants": 36.4,
+    "total_restaurants": 22,
+    "asian_restaurants": 8,
+    "population": 38042
+  },
+  {
+    "suburb": "Sunshine",
+    "pct_asian_pop": 33.5,
+    "pct_asian_restaurants": 50.0,
+    "total_restaurants": 14,
+    "asian_restaurants": 7,
+    "population": 9445
+  },
+  {
+    "suburb": "Keysborough",
+    "pct_asian_pop": 38.8,
+    "pct_asian_restaurants": 14.3,
+    "total_restaurants": 21,
+    "asian_restaurants": 3,
+    "population": 30018
+  },
+  {
+    "suburb": "Noble Park",
+    "pct_asian_pop": 44.3,
+    "pct_asian_restaurants": 22.2,
+    "total_restaurants": 9,
+    "asian_restaurants": 2,
+    "population": 32257
+  },
+  {
+    "suburb": "Dandenong",
+    "pct_asian_pop": 29.0,
+    "pct_asian_restaurants": 15.4,
+    "total_restaurants": 26,
+    "asian_restaurants": 4,
+    "population": 30127
+  },
+  {
+    "suburb": "Tarneit",
+    "pct_asian_pop": 42.0,
+    "pct_asian_restaurants": 0.0,
+    "total_restaurants": 15,
+    "asian_restaurants": 0,
+    "population": 56370
+  },
+  {
+    "suburb": "Truganina",
+    "pct_asian_pop": 42.9,
+    "pct_asian_restaurants": 0.0,
+    "total_restaurants": 7,
+    "asian_restaurants": 0,
+    "population": 36305
+  }
+]

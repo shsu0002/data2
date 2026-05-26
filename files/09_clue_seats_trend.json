@@ -1,0 +1,232 @@
+[
+  {
+    "year": 2002,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 76966
+  },
+  {
+    "year": 2002,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 11013
+  },
+  {
+    "year": 2003,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 79865
+  },
+  {
+    "year": 2003,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 12635
+  },
+  {
+    "year": 2004,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 81214
+  },
+  {
+    "year": 2004,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 15488
+  },
+  {
+    "year": 2005,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 87735
+  },
+  {
+    "year": 2005,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 18639
+  },
+  {
+    "year": 2006,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 89629
+  },
+  {
+    "year": 2006,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 19298
+  },
+  {
+    "year": 2007,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 90619
+  },
+  {
+    "year": 2007,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 20232
+  },
+  {
+    "year": 2008,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 93755
+  },
+  {
+    "year": 2008,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 21927
+  },
+  {
+    "year": 2009,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 99459
+  },
+  {
+    "year": 2009,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 24123
+  },
+  {
+    "year": 2010,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 96786
+  },
+  {
+    "year": 2010,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 25602
+  },
+  {
+    "year": 2011,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 102665
+  },
+  {
+    "year": 2011,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 26816
+  },
+  {
+    "year": 2012,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 105508
+  },
+  {
+    "year": 2012,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 27849
+  },
+  {
+    "year": 2013,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 112298
+  },
+  {
+    "year": 2013,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 29866
+  },
+  {
+    "year": 2014,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 119227
+  },
+  {
+    "year": 2014,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 30820
+  },
+  {
+    "year": 2015,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 120845
+  },
+  {
+    "year": 2015,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 30908
+  },
+  {
+    "year": 2016,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 124200
+  },
+  {
+    "year": 2016,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 31621
+  },
+  {
+    "year": 2017,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 125852
+  },
+  {
+    "year": 2017,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 31401
+  },
+  {
+    "year": 2018,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 124828
+  },
+  {
+    "year": 2018,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 29611
+  },
+  {
+    "year": 2019,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 124663
+  },
+  {
+    "year": 2019,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 29098
+  },
+  {
+    "year": 2020,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 115388
+  },
+  {
+    "year": 2020,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 26896
+  },
+  {
+    "year": 2021,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 110340
+  },
+  {
+    "year": 2021,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 26605
+  },
+  {
+    "year": 2022,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 106387
+  },
+  {
+    "year": 2022,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 25707
+  },
+  {
+    "year": 2023,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 103438
+  },
+  {
+    "year": 2023,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 25131
+  },
+  {
+    "year": 2024,
+    "seating_type": "Seats - Indoor",
+    "total_seats": 110344
+  },
+  {
+    "year": 2024,
+    "seating_type": "Seats - Outdoor",
+    "total_seats": 25298
+  }
+]

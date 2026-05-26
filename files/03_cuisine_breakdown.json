@@ -1,0 +1,57 @@
+[
+  {
+    "cuisine": "Chinese",
+    "count": 413,
+    "pct": 22.2
+  },
+  {
+    "cuisine": "Japanese",
+    "count": 373,
+    "pct": 20.0
+  },
+  {
+    "cuisine": "Indian",
+    "count": 248,
+    "pct": 13.3
+  },
+  {
+    "cuisine": "Thai",
+    "count": 209,
+    "pct": 11.2
+  },
+  {
+    "cuisine": "Vietnamese",
+    "count": 198,
+    "pct": 10.6
+  },
+  {
+    "cuisine": "Asian (general)",
+    "count": 129,
+    "pct": 6.9
+  },
+  {
+    "cuisine": "Korean",
+    "count": 94,
+    "pct": 5.0
+  },
+  {
+    "cuisine": "Malaysian",
+    "count": 51,
+    "pct": 2.7
+  },
+  {
+    "cuisine": "Noodle",
+    "count": 42,
+    "pct": 2.3
+  },
+  {
+    "cuisine": "Other Asian",
+    "count": 32,
+    "pct": 1.7
+  },
+  {
+    "cuisine": "Other Asian",
+    "count": 75,
+    "pct": 4.1
+  }
+]

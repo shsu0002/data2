@@ -1,0 +1,962 @@
+[
+  {
+    "suburb": "Box Hill",
+    "country": "China",
+    "count": 4236,
+    "pct": 29.5
+  },
+  {
+    "suburb": "Box Hill",
+    "country": "Vietnam",
+    "count": 275,
+    "pct": 1.9
+  },
+  {
+    "suburb": "Box Hill",
+    "country": "India",
+    "count": 644,
+    "pct": 4.5
+  },
+  {
+    "suburb": "Box Hill",
+    "country": "Malaysia",
+    "count": 920,
+    "pct": 6.4
+  },
+  {
+    "suburb": "Box Hill",
+    "country": "Korea",
+    "count": 192,
+    "pct": 1.3
+  },
+  {
+    "suburb": "Box Hill",
+    "country": "Thailand",
+    "count": 73,
+    "pct": 0.5
+  },
+  {
+    "suburb": "Box Hill",
+    "country": "Philippines",
+    "count": 153,
+    "pct": 1.1
+  },
+  {
+    "suburb": "Box Hill",
+    "country": "Sri Lanka",
+    "count": 169,
+    "pct": 1.2
+  },
+  {
+    "suburb": "Box Hill",
+    "country": "Indonesia",
+    "count": 114,
+    "pct": 0.8
+  },
+  {
+    "suburb": "Box Hill",
+    "country": "Nepal",
+    "count": 128,
+    "pct": 0.9
+  },
+  {
+    "suburb": "Box Hill",
+    "country": "Hong Kong",
+    "count": 360,
+    "pct": 2.5
+  },
+  {
+    "suburb": "Box Hill",
+    "country": "Pakistan",
+    "count": 56,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Box Hill",
+    "country": "Singapore",
+    "count": 106,
+    "pct": 0.7
+  },
+  {
+    "suburb": "Box Hill",
+    "country": "Taiwan",
+    "count": 174,
+    "pct": 1.2
+  },
+  {
+    "suburb": "Box Hill",
+    "country": "Australia-born",
+    "count": 6656,
+    "pct": 46.4
+  },
+  {
+    "suburb": "Springvale",
+    "country": "China",
+    "count": 1186,
+    "pct": 5.3
+  },
+  {
+    "suburb": "Springvale",
+    "country": "Vietnam",
+    "count": 4645,
+    "pct": 20.9
+  },
+  {
+    "suburb": "Springvale",
+    "country": "India",
+    "count": 1646,
+    "pct": 7.4
+  },
+  {
+    "suburb": "Springvale",
+    "country": "Malaysia",
+    "count": 1022,
+    "pct": 4.6
+  },
+  {
+    "suburb": "Springvale",
+    "country": "Korea",
+    "count": 194,
+    "pct": 0.9
+  },
+  {
+    "suburb": "Springvale",
+    "country": "Thailand",
+    "count": 473,
+    "pct": 2.1
+  },
+  {
+    "suburb": "Springvale",
+    "country": "Philippines",
+    "count": 324,
+    "pct": 1.5
+  },
+  {
+    "suburb": "Springvale",
+    "country": "Sri Lanka",
+    "count": 339,
+    "pct": 1.5
+  },
+  {
+    "suburb": "Springvale",
+    "country": "Indonesia",
+    "count": 255,
+    "pct": 1.1
+  },
+  {
+    "suburb": "Springvale",
+    "country": "Myanmar",
+    "count": 625,
+    "pct": 2.8
+  },
+  {
+    "suburb": "Springvale",
+    "country": "Bangladesh",
+    "count": 64,
+    "pct": 0.3
+  },
+  {
+    "suburb": "Springvale",
+    "country": "Cambodia",
+    "count": 1243,
+    "pct": 5.6
+  },
+  {
+    "suburb": "Springvale",
+    "country": "Hong Kong",
+    "count": 105,
+    "pct": 0.5
+  },
+  {
+    "suburb": "Springvale",
+    "country": "Pakistan",
+    "count": 180,
+    "pct": 0.8
+  },
+  {
+    "suburb": "Springvale",
+    "country": "Singapore",
+    "count": 68,
+    "pct": 0.3
+  },
+  {
+    "suburb": "Springvale",
+    "country": "Taiwan",
+    "count": 53,
+    "pct": 0.2
+  },
+  {
+    "suburb": "Springvale",
+    "country": "Australia-born",
+    "count": 9678,
+    "pct": 43.6
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "China",
+    "count": 7571,
+    "pct": 17.8
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Vietnam",
+    "count": 777,
+    "pct": 1.8
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "India",
+    "count": 3417,
+    "pct": 8.0
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Malaysia",
+    "count": 2385,
+    "pct": 5.6
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Korea",
+    "count": 474,
+    "pct": 1.1
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Japan",
+    "count": 121,
+    "pct": 0.3
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Thailand",
+    "count": 130,
+    "pct": 0.3
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Philippines",
+    "count": 232,
+    "pct": 0.5
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Sri Lanka",
+    "count": 2276,
+    "pct": 5.3
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Indonesia",
+    "count": 428,
+    "pct": 1.0
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Bangladesh",
+    "count": 169,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Nepal",
+    "count": 77,
+    "pct": 0.2
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Cambodia",
+    "count": 172,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Hong Kong",
+    "count": 1075,
+    "pct": 2.5
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Pakistan",
+    "count": 250,
+    "pct": 0.6
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Singapore",
+    "count": 596,
+    "pct": 1.4
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Taiwan",
+    "count": 249,
+    "pct": 0.6
+  },
+  {
+    "suburb": "Glen Waverley",
+    "country": "Australia-born",
+    "count": 22210,
+    "pct": 52.1
+  },
+  {
+    "suburb": "Footscray",
+    "country": "China",
+    "count": 374,
+    "pct": 2.2
+  },
+  {
+    "suburb": "Footscray",
+    "country": "Vietnam",
+    "count": 1460,
+    "pct": 8.5
+  },
+  {
+    "suburb": "Footscray",
+    "country": "India",
+    "count": 800,
+    "pct": 4.7
+  },
+  {
+    "suburb": "Footscray",
+    "country": "Malaysia",
+    "count": 233,
+    "pct": 1.4
+  },
+  {
+    "suburb": "Footscray",
+    "country": "Korea",
+    "count": 54,
+    "pct": 0.3
+  },
+  {
+    "suburb": "Footscray",
+    "country": "Japan",
+    "count": 68,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Footscray",
+    "country": "Thailand",
+    "count": 71,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Footscray",
+    "country": "Philippines",
+    "count": 253,
+    "pct": 1.5
+  },
+  {
+    "suburb": "Footscray",
+    "country": "Sri Lanka",
+    "count": 68,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Footscray",
+    "country": "Indonesia",
+    "count": 122,
+    "pct": 0.7
+  },
+  {
+    "suburb": "Footscray",
+    "country": "Bangladesh",
+    "count": 145,
+    "pct": 0.8
+  },
+  {
+    "suburb": "Footscray",
+    "country": "Nepal",
+    "count": 255,
+    "pct": 1.5
+  },
+  {
+    "suburb": "Footscray",
+    "country": "Hong Kong",
+    "count": 84,
+    "pct": 0.5
+  },
+  {
+    "suburb": "Footscray",
+    "country": "Pakistan",
+    "count": 62,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Footscray",
+    "country": "Singapore",
+    "count": 78,
+    "pct": 0.5
+  },
+  {
+    "suburb": "Footscray",
+    "country": "Australia-born",
+    "count": 12917,
+    "pct": 75.4
+  },
+  {
+    "suburb": "Clayton",
+    "country": "China",
+    "count": 2796,
+    "pct": 14.7
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Vietnam",
+    "count": 423,
+    "pct": 2.2
+  },
+  {
+    "suburb": "Clayton",
+    "country": "India",
+    "count": 3122,
+    "pct": 16.4
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Malaysia",
+    "count": 642,
+    "pct": 3.4
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Korea",
+    "count": 210,
+    "pct": 1.1
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Japan",
+    "count": 78,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Thailand",
+    "count": 77,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Philippines",
+    "count": 356,
+    "pct": 1.9
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Sri Lanka",
+    "count": 679,
+    "pct": 3.6
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Indonesia",
+    "count": 343,
+    "pct": 1.8
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Bangladesh",
+    "count": 207,
+    "pct": 1.1
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Nepal",
+    "count": 270,
+    "pct": 1.4
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Cambodia",
+    "count": 72,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Hong Kong",
+    "count": 223,
+    "pct": 1.2
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Pakistan",
+    "count": 135,
+    "pct": 0.7
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Singapore",
+    "count": 159,
+    "pct": 0.8
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Taiwan",
+    "count": 110,
+    "pct": 0.6
+  },
+  {
+    "suburb": "Clayton",
+    "country": "Australia-born",
+    "count": 9053,
+    "pct": 47.7
+  },
+  {
+    "suburb": "Richmond",
+    "country": "China",
+    "count": 472,
+    "pct": 1.7
+  },
+  {
+    "suburb": "Richmond",
+    "country": "Vietnam",
+    "count": 1220,
+    "pct": 4.3
+  },
+  {
+    "suburb": "Richmond",
+    "country": "India",
+    "count": 316,
+    "pct": 1.1
+  },
+  {
+    "suburb": "Richmond",
+    "country": "Malaysia",
+    "count": 264,
+    "pct": 0.9
+  },
+  {
+    "suburb": "Richmond",
+    "country": "Korea",
+    "count": 75,
+    "pct": 0.3
+  },
+  {
+    "suburb": "Richmond",
+    "country": "Japan",
+    "count": 66,
+    "pct": 0.2
+  },
+  {
+    "suburb": "Richmond",
+    "country": "Thailand",
+    "count": 100,
+    "pct": 0.3
+  },
+  {
+    "suburb": "Richmond",
+    "country": "Philippines",
+    "count": 191,
+    "pct": 0.7
+  },
+  {
+    "suburb": "Richmond",
+    "country": "Sri Lanka",
+    "count": 116,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Richmond",
+    "country": "Indonesia",
+    "count": 93,
+    "pct": 0.3
+  },
+  {
+    "suburb": "Richmond",
+    "country": "Hong Kong",
+    "count": 116,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Richmond",
+    "country": "Singapore",
+    "count": 92,
+    "pct": 0.3
+  },
+  {
+    "suburb": "Richmond",
+    "country": "Taiwan",
+    "count": 61,
+    "pct": 0.2
+  },
+  {
+    "suburb": "Richmond",
+    "country": "Australia-born",
+    "count": 25327,
+    "pct": 88.6
+  },
+  {
+    "suburb": "St Albans",
+    "country": "China",
+    "count": 403,
+    "pct": 1.1
+  },
+  {
+    "suburb": "St Albans",
+    "country": "Vietnam",
+    "count": 8176,
+    "pct": 21.5
+  },
+  {
+    "suburb": "St Albans",
+    "country": "India",
+    "count": 2222,
+    "pct": 5.8
+  },
+  {
+    "suburb": "St Albans",
+    "country": "Malaysia",
+    "count": 163,
+    "pct": 0.4
+  },
+  {
+    "suburb": "St Albans",
+    "country": "Thailand",
+    "count": 112,
+    "pct": 0.3
+  },
+  {
+    "suburb": "St Albans",
+    "country": "Philippines",
+    "count": 1148,
+    "pct": 3.0
+  },
+  {
+    "suburb": "St Albans",
+    "country": "Sri Lanka",
+    "count": 291,
+    "pct": 0.8
+  },
+  {
+    "suburb": "St Albans",
+    "country": "Indonesia",
+    "count": 63,
+    "pct": 0.2
+  },
+  {
+    "suburb": "St Albans",
+    "country": "Myanmar",
+    "count": 289,
+    "pct": 0.8
+  },
+  {
+    "suburb": "St Albans",
+    "country": "Bangladesh",
+    "count": 65,
+    "pct": 0.2
+  },
+  {
+    "suburb": "St Albans",
+    "country": "Nepal",
+    "count": 376,
+    "pct": 1.0
+  },
+  {
+    "suburb": "St Albans",
+    "country": "Hong Kong",
+    "count": 88,
+    "pct": 0.2
+  },
+  {
+    "suburb": "St Albans",
+    "country": "Pakistan",
+    "count": 515,
+    "pct": 1.4
+  },
+  {
+    "suburb": "St Albans",
+    "country": "Australia-born",
+    "count": 23998,
+    "pct": 63.1
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "China",
+    "count": 617,
+    "pct": 1.9
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "Vietnam",
+    "count": 3397,
+    "pct": 10.5
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "India",
+    "count": 3148,
+    "pct": 9.8
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "Malaysia",
+    "count": 967,
+    "pct": 3.0
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "Korea",
+    "count": 121,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "Thailand",
+    "count": 354,
+    "pct": 1.1
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "Philippines",
+    "count": 664,
+    "pct": 2.1
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "Sri Lanka",
+    "count": 1265,
+    "pct": 3.9
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "Indonesia",
+    "count": 178,
+    "pct": 0.6
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "Myanmar",
+    "count": 338,
+    "pct": 1.0
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "Bangladesh",
+    "count": 232,
+    "pct": 0.7
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "Nepal",
+    "count": 140,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "Cambodia",
+    "count": 2278,
+    "pct": 7.1
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "Hong Kong",
+    "count": 84,
+    "pct": 0.3
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "Pakistan",
+    "count": 407,
+    "pct": 1.3
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "Singapore",
+    "count": 53,
+    "pct": 0.2
+  },
+  {
+    "suburb": "Noble Park",
+    "country": "Australia-born",
+    "count": 17953,
+    "pct": 55.7
+  },
+  {
+    "suburb": "Doncaster East",
+    "country": "China",
+    "count": 4603,
+    "pct": 14.9
+  },
+  {
+    "suburb": "Doncaster East",
+    "country": "Vietnam",
+    "count": 353,
+    "pct": 1.1
+  },
+  {
+    "suburb": "Doncaster East",
+    "country": "India",
+    "count": 775,
+    "pct": 2.5
+  },
+  {
+    "suburb": "Doncaster East",
+    "country": "Malaysia",
+    "count": 1702,
+    "pct": 5.5
+  },
+  {
+    "suburb": "Doncaster East",
+    "country": "Korea",
+    "count": 287,
+    "pct": 0.9
+  },
+  {
+    "suburb": "Doncaster East",
+    "country": "Japan",
+    "count": 57,
+    "pct": 0.2
+  },
+  {
+    "suburb": "Doncaster East",
+    "country": "Thailand",
+    "count": 59,
+    "pct": 0.2
+  },
+  {
+    "suburb": "Doncaster East",
+    "country": "Philippines",
+    "count": 128,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Doncaster East",
+    "country": "Sri Lanka",
+    "count": 211,
+    "pct": 0.7
+  },
+  {
+    "suburb": "Doncaster East",
+    "country": "Indonesia",
+    "count": 181,
+    "pct": 0.6
+  },
+  {
+    "suburb": "Doncaster East",
+    "country": "Hong Kong",
+    "count": 1525,
+    "pct": 4.9
+  },
+  {
+    "suburb": "Doncaster East",
+    "country": "Pakistan",
+    "count": 244,
+    "pct": 0.8
+  },
+  {
+    "suburb": "Doncaster East",
+    "country": "Singapore",
+    "count": 309,
+    "pct": 1.0
+  },
+  {
+    "suburb": "Doncaster East",
+    "country": "Taiwan",
+    "count": 282,
+    "pct": 0.9
+  },
+  {
+    "suburb": "Doncaster East",
+    "country": "Australia-born",
+    "count": 20135,
+    "pct": 65.1
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "China",
+    "count": 526,
+    "pct": 0.9
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "Vietnam",
+    "count": 327,
+    "pct": 0.6
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "India",
+    "count": 16231,
+    "pct": 28.8
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "Malaysia",
+    "count": 282,
+    "pct": 0.5
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "Korea",
+    "count": 58,
+    "pct": 0.1
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "Thailand",
+    "count": 138,
+    "pct": 0.2
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "Philippines",
+    "count": 1912,
+    "pct": 3.4
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "Sri Lanka",
+    "count": 733,
+    "pct": 1.3
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "Indonesia",
+    "count": 243,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "Myanmar",
+    "count": 144,
+    "pct": 0.3
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "Bangladesh",
+    "count": 771,
+    "pct": 1.4
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "Nepal",
+    "count": 430,
+    "pct": 0.8
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "Hong Kong",
+    "count": 87,
+    "pct": 0.2
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "Pakistan",
+    "count": 1433,
+    "pct": 2.5
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "Singapore",
+    "count": 229,
+    "pct": 0.4
+  },
+  {
+    "suburb": "Tarneit",
+    "country": "Australia-born",
+    "count": 32720,
+    "pct": 58.0
+  }
+]

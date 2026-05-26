@@ -1,0 +1,117 @@
+[
+  {
+    "year": 2002,
+    "restaurant_count": 989,
+    "total_seats": 87979
+  },
+  {
+    "year": 2003,
+    "restaurant_count": 1023,
+    "total_seats": 92500
+  },
+  {
+    "year": 2004,
+    "restaurant_count": 1075,
+    "total_seats": 96702
+  },
+  {
+    "year": 2005,
+    "restaurant_count": 1183,
+    "total_seats": 106374
+  },
+  {
+    "year": 2006,
+    "restaurant_count": 1224,
+    "total_seats": 108927
+  },
+  {
+    "year": 2007,
+    "restaurant_count": 1273,
+    "total_seats": 110851
+  },
+  {
+    "year": 2008,
+    "restaurant_count": 1339,
+    "total_seats": 115682
+  },
+  {
+    "year": 2009,
+    "restaurant_count": 1430,
+    "total_seats": 123582
+  },
+  {
+    "year": 2010,
+    "restaurant_count": 1473,
+    "total_seats": 122388
+  },
+  {
+    "year": 2011,
+    "restaurant_count": 1542,
+    "total_seats": 129481
+  },
+  {
+    "year": 2012,
+    "restaurant_count": 1565,
+    "total_seats": 133357
+  },
+  {
+    "year": 2013,
+    "restaurant_count": 1659,
+    "total_seats": 142164
+  },
+  {
+    "year": 2014,
+    "restaurant_count": 1754,
+    "total_seats": 150047
+  },
+  {
+    "year": 2015,
+    "restaurant_count": 1798,
+    "total_seats": 151753
+  },
+  {
+    "year": 2016,
+    "restaurant_count": 1870,
+    "total_seats": 155821
+  },
+  {
+    "year": 2017,
+    "restaurant_count": 1893,
+    "total_seats": 157253
+  },
+  {
+    "year": 2018,
+    "restaurant_count": 1935,
+    "total_seats": 154439
+  },
+  {
+    "year": 2019,
+    "restaurant_count": 1934,
+    "total_seats": 153761
+  },
+  {
+    "year": 2020,
+    "restaurant_count": 1809,
+    "total_seats": 142284
+  },
+  {
+    "year": 2021,
+    "restaurant_count": 1768,
+    "total_seats": 136945
+  },
+  {
+    "year": 2022,
+    "restaurant_count": 1698,
+    "total_seats": 132094
+  },
+  {
+    "year": 2023,
+    "restaurant_count": 1720,
+    "total_seats": 128569
+  },
+  {
+    "year": 2024,
+    "restaurant_count": 1855,
+    "total_seats": 135642
+  }
+]

@@ -1,0 +1,247 @@
+[
+  {
+    "cluster": "Box Hill",
+    "cuisine": "Chinese",
+    "count": 36
+  },
+  {
+    "cluster": "Box Hill",
+    "cuisine": "Japanese",
+    "count": 6
+  },
+  {
+    "cluster": "Box Hill",
+    "cuisine": "Korean",
+    "count": 8
+  },
+  {
+    "cluster": "Box Hill",
+    "cuisine": "Other Asian",
+    "count": 4
+  },
+  {
+    "cluster": "Box Hill",
+    "cuisine": "Thai",
+    "count": 1
+  },
+  {
+    "cluster": "Box Hill",
+    "cuisine": "Vietnamese",
+    "count": 3
+  },
+  {
+    "cluster": "CBD/Carlton",
+    "cuisine": "Chinese",
+    "count": 114
+  },
+  {
+    "cluster": "CBD/Carlton",
+    "cuisine": "Indian",
+    "count": 37
+  },
+  {
+    "cluster": "CBD/Carlton",
+    "cuisine": "Japanese",
+    "count": 129
+  },
+  {
+    "cluster": "CBD/Carlton",
+    "cuisine": "Korean",
+    "count": 38
+  },
+  {
+    "cluster": "CBD/Carlton",
+    "cuisine": "Malaysian",
+    "count": 16
+  },
+  {
+    "cluster": "CBD/Carlton",
+    "cuisine": "Other Asian",
+    "count": 45
+  },
+  {
+    "cluster": "CBD/Carlton",
+    "cuisine": "Thai",
+    "count": 33
+  },
+  {
+    "cluster": "CBD/Carlton",
+    "cuisine": "Vietnamese",
+    "count": 30
+  },
+  {
+    "cluster": "Clayton",
+    "cuisine": "Chinese",
+    "count": 7
+  },
+  {
+    "cluster": "Clayton",
+    "cuisine": "Indian",
+    "count": 11
+  },
+  {
+    "cluster": "Clayton",
+    "cuisine": "Japanese",
+    "count": 2
+  },
+  {
+    "cluster": "Clayton",
+    "cuisine": "Korean",
+    "count": 2
+  },
+  {
+    "cluster": "Clayton",
+    "cuisine": "Malaysian",
+    "count": 2
+  },
+  {
+    "cluster": "Clayton",
+    "cuisine": "Other Asian",
+    "count": 1
+  },
+  {
+    "cluster": "Clayton",
+    "cuisine": "Thai",
+    "count": 1
+  },
+  {
+    "cluster": "Clayton",
+    "cuisine": "Vietnamese",
+    "count": 1
+  },
+  {
+    "cluster": "Footscray",
+    "cuisine": "Chinese",
+    "count": 8
+  },
+  {
+    "cluster": "Footscray",
+    "cuisine": "Indian",
+    "count": 1
+  },
+  {
+    "cluster": "Footscray",
+    "cuisine": "Japanese",
+    "count": 3
+  },
+  {
+    "cluster": "Footscray",
+    "cuisine": "Korean",
+    "count": 1
+  },
+  {
+    "cluster": "Footscray",
+    "cuisine": "Malaysian",
+    "count": 2
+  },
+  {
+    "cluster": "Footscray",
+    "cuisine": "Other Asian",
+    "count": 2
+  },
+  {
+    "cluster": "Footscray",
+    "cuisine": "Thai",
+    "count": 2
+  },
+  {
+    "cluster": "Footscray",
+    "cuisine": "Vietnamese",
+    "count": 14
+  },
+  {
+    "cluster": "Glen Waverley",
+    "cuisine": "Chinese",
+    "count": 4
+  },
+  {
+    "cluster": "Glen Waverley",
+    "cuisine": "Japanese",
+    "count": 9
+  },
+  {
+    "cluster": "Glen Waverley",
+    "cuisine": "Korean",
+    "count": 5
+  },
+  {
+    "cluster": "Glen Waverley",
+    "cuisine": "Malaysian",
+    "count": 1
+  },
+  {
+    "cluster": "Glen Waverley",
+    "cuisine": "Other Asian",
+    "count": 3
+  },
+  {
+    "cluster": "Glen Waverley",
+    "cuisine": "Thai",
+    "count": 1
+  },
+  {
+    "cluster": "Glen Waverley",
+    "cuisine": "Vietnamese",
+    "count": 1
+  },
+  {
+    "cluster": "Noble Park",
+    "cuisine": "Chinese",
+    "count": 1
+  },
+  {
+    "cluster": "Noble Park",
+    "cuisine": "Indian",
+    "count": 2
+  },
+  {
+    "cluster": "Springvale",
+    "cuisine": "Chinese",
+    "count": 7
+  },
+  {
+    "cluster": "Springvale",
+    "cuisine": "Indian",
+    "count": 4
+  },
+  {
+    "cluster": "Springvale",
+    "cuisine": "Korean",
+    "count": 1
+  },
+  {
+    "cluster": "Springvale",
+    "cuisine": "Other Asian",
+    "count": 5
+  },
+  {
+    "cluster": "Springvale",
+    "cuisine": "Thai",
+    "count": 4
+  },
+  {
+    "cluster": "Springvale",
+    "cuisine": "Vietnamese",
+    "count": 13
+  },
+  {
+    "cluster": "St Albans",
+    "cuisine": "Chinese",
+    "count": 1
+  },
+  {
+    "cluster": "St Albans",
+    "cuisine": "Indian",
+    "count": 2
+  },
+  {
+    "cluster": "St Albans",
+    "cuisine": "Other Asian",
+    "count": 2
+  },
+  {
+    "cluster": "St Albans",
+    "cuisine": "Vietnamese",
+    "count": 6
+  }
+]
