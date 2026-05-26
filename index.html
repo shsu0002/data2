@@ -444,12 +444,8 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
   <h2 class="journey-title">Follow Remy across Melbourne's<br><em>Asian food trail</em></h2>
   <p class="journey-sub">Start in Doncaster and travel south-west through Melbourne's most vibrant Asian communities. Each suburb has its own story — its own flavour.</p>
 
-  <!-- progress trail -->
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
-    <button class="btn btn-secondary" id="btn-prev" onclick="prevStop()" disabled>← Back</button>
-    <div class="trail" id="trail" style="flex:1;margin:0 1rem;margin-bottom:0"></div>
-    <button class="btn btn-primary" id="btn-next" onclick="nextStop()">Explore the story ↓</button>
-  </div>
+  <!-- trail above map, nav moved to bottom -->
+  <div class="trail" id="trail" style="margin-bottom:1rem"></div>
 
   <div class="journey-main">
 
@@ -591,8 +587,8 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
     <div class="sidebar">
 
       <div class="overview-note" id="overview-note">
-        The map shows schematic locations of Melbourne's key Asian food suburbs.
-        Press <strong>Start the journey</strong> to follow Remy from Doncaster to the CBD.
+        <p style="margin-bottom:1rem">The map shows schematic locations of Melbourne's key Asian food suburbs. Follow Remy from Doncaster to the CBD — each stop reveals a different community and a different set of flavours.</p>
+        <button class="btn btn-primary" onclick="goToStop(0)" style="width:100%">Start the journey →</button>
       </div>
 
       <div class="stop-card" id="stop-card">
@@ -640,6 +636,13 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
       <div>
         <div class="stop-story" id="stop-story" style="font-size:0.9rem;color:var(--ink-mid);line-height:1.75;border-left:3px solid var(--red-light);padding-left:1rem"></div>
       </div>
+    </div>
+
+    <!-- nav buttons at bottom -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--rule)">
+      <button class="btn btn-secondary" id="btn-prev" onclick="prevStop()" disabled>← Back</button>
+      <span class="step-label" id="step-label" style="font-size:0.72rem;color:var(--ink-muted);letter-spacing:0.04em"></span>
+      <button class="btn btn-primary" id="btn-next" onclick="nextStop()">Next stop →</button>
     </div>
   </div>
 
