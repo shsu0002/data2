@@ -234,8 +234,9 @@ function prevStop() {
 
 
 function renderChart2(stop){
-  var container = document.getElementById('chart2-content-strip'); if(!container) return;
-  var ct = document.getElementById('chart2-title-strip'); if(ct) ct.textContent = stop.chart2Title || '';
+  // Render chart2 in sidebar (below bar chart) for all stops
+  var container = document.getElementById('chart2-content'); if(!container) return;
+  var ct = document.getElementById('chart2-title'); if(ct) ct.textContent = stop.chart2Title || '';
   container.innerHTML = '';
   if(!stop.chart2Type) return;
   if(stop.chart2Type === 'donut')     renderDonut(stop.chart2Data, container);
