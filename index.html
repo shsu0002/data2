@@ -365,13 +365,16 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
 
     </div>
 
-    <!-- RIGHT: Remy (left) + bubble (right) side by side -->
-    <div style="position:relative;z-index:2;display:flex;align-items:center;justify-content:center;padding:3rem 3rem 3rem 1rem;gap:2rem">
+        <!-- RIGHT: Remy + bubble stacked, button below -->
+    <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 3rem 3rem 1rem;gap:1.5rem">
 
-      <!-- Remy -->
-      <div class="remy-welcome" style="flex-shrink:0;position:relative">
-        <div style="position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(240,128,112,0.07) 0%,transparent 65%)"></div>
-        <svg viewBox="-18 -8 156 162" width="260" height="300" style="display:block;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.12))">
+      <!-- Remy + bubble side by side -->
+      <div style="display:flex;align-items:center;gap:2rem">
+
+        <!-- Remy -->
+        <div class="remy-welcome" style="flex-shrink:0;position:relative">
+          <div style="position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(240,128,112,0.07) 0%,transparent 65%)"></div>
+          <svg viewBox="-18 -8 156 162" width="260" height="300" style="display:block;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.12))">
             <ellipse cx="60" cy="133" rx="28" ry="7" fill="#e0d8cc" opacity=".6"/>
         <path d="M72 108 Q110 118 120 102 Q128 88 118 78" fill="none" stroke="#b8a898" stroke-width="4" stroke-linecap="round"/>
         <ellipse cx="60" cy="95" rx="32" ry="40" fill="#c8bdb0"/>
@@ -410,28 +413,26 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
         <line x1="74" y1="69" x2="102" y2="68" stroke="#8a7a70" stroke-width="1"/>
       
           </svg>
-      </div>
+        </div>
 
-      <!-- Speech bubble -->
-      <div class="bubble-welcome" style="position:relative;max-width:220px">
-        <!-- tail pointing LEFT toward Remy -->
-        <div style="position:absolute;left:-9px;top:28px;width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-right:9px solid rgba(255,255,255,0.15);z-index:2"></div>
-        <div style="background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.18);border-radius:14px;padding:1.1rem 1.3rem;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
-          <p id="typewriter-line1" style="font-family:'Playfair Display',Georgia,serif;font-size:0.95rem;font-style:italic;color:white;margin-bottom:0.4rem;min-height:1.52rem"></p>
-          <p id="typewriter-line2" style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.6;min-height:3.7rem"></p>
+        <!-- Speech bubble -->
+        <div class="bubble-welcome" style="position:relative;max-width:220px">
+          <div style="position:absolute;left:-9px;top:28px;width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-right:9px solid rgba(255,255,255,0.15);z-index:2"></div>
+          <div style="background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.18);border-radius:14px;padding:1.1rem 1.3rem;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
+            <p id="typewriter-line1" style="font-family:'Playfair Display',Georgia,serif;font-size:0.95rem;font-style:italic;color:white;margin-bottom:0.4rem;min-height:1.52rem"></p>
+            <p id="typewriter-line2" style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.6;min-height:3.7rem"></p>
+          </div>
         </div>
       </div>
 
-      <!-- button below remy -->
-      <div style="margin-top:1.2rem;text-align:center">
-        <button class="cta-welcome" onclick="document.getElementById('page-journey').scrollIntoView({behavior:'smooth'})" style="display:inline-flex;align-items:center;gap:8px;background:#c94030;color:white;border:none;padding:0.85rem 1.8rem;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;letter-spacing:0.08em;cursor:pointer" onmouseover="this.style.background='#a83020'" onmouseout="this.style.background='#c94030'">
-        </br>Let's explore ↓
-        </button>
-      </div>
+      <!-- Button below Remy+bubble -->
+      <button class="cta-welcome" onclick="document.getElementById('page-journey').scrollIntoView({behavior:'smooth'})" style="display:inline-flex;align-items:center;gap:8px;background:#c94030;color:white;border:none;padding:0.85rem 2.5rem;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;letter-spacing:0.08em;cursor:pointer" onmouseover="this.style.background='#a83020'" onmouseout="this.style.background='#c94030'">
+        Let's explore ↓
+      </button>
 
     </div>
 
-    <!-- bottom credit -->
+        <!-- bottom credit -->
     <div style="position:absolute;bottom:1rem;left:0;right:0;text-align:center;z-index:3">
       <p style="font-size:0.58rem;color:rgba(255,255,255,0.2);letter-spacing:0.06em">Data: ABS 2021 · OpenStreetMap · City of Melbourne CLUE 2002–2024</p>
     </div>
