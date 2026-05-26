@@ -15,17 +15,16 @@ const STOPS = [
       {country:'Hong Kong', pct:2.5,  color:'#b87c2a'},
       {country:'Vietnam',   pct:1.9,  color:'#378add'},
     ],
-    rest: '58', chart2Type:'lollipop',
+    rest: '58', chart2Type:'hbar',
     chart2Data:[
-      {label:'Box Hill',   val:62, color:'#c94030', highlight:true},
-      {label:'Noble Park', val:33, color:'#888780'},
-      {label:'CBD',        val:26, color:'#888780'},
-      {label:'Clayton',    val:26, color:'#888780'},
-      {label:'Footscray',  val:24, color:'#888780'},
-      {label:'Springvale', val:21, color:'#888780'},
-      {label:'Glen W.',    val:17, color:'#888780'},
+      {label:'Chinese',   val:36, color:'#1d7a68'},
+      {label:'Japanese',  val:8,  color:'#e8863a'},
+      {label:'Korean',    val:5,  color:'#c94030'},
+      {label:'Malaysian', val:4,  color:'#b87c2a'},
+      {label:'Vietnamese',val:3,  color:'#378add'},
+      {label:'Other',     val:2,  color:'#888780'},
     ],
-    chart2Title:'% of restaurants that are Chinese, by suburb',
+    chart2Title:'Asian restaurants in Box Hill by cuisine',
     foods: ['Cantonese','Dim sum','Hot pot','Bubble tea','BBQ'],
     story: 'Box Hill\'s main street is unmistakable — the signage is bilingual, the food courts multilevel, and 46% of residents have Chinese ancestry. With the highest concentration of Chinese-born residents anywhere in Melbourne, it\'s earned its place as the city\'s unofficial Chinatown.'
   },
@@ -43,12 +42,16 @@ const STOPS = [
       {country:'Sri Lanka', pct:5.3,  color:'#e8863a'},
       {country:'Hong Kong', pct:2.5,  color:'#b87c2a'},
     ],
-    rest: '24', chart2Type:'grouped',
-    chart2Data:{
-      eastAsia:  [{label:'China',val:7571},{label:'Malaysia',val:2385},{label:'H.K.',val:1075},{label:'Vietnam',val:777},{label:'Japan',val:121}],
-      southAsia: [{label:'India',val:3417},{label:'Sri Lanka',val:2276},{label:'Nepal',val:474},{label:'Pakistan',val:121},{label:'Bangladesh',val:89}],
-    },
-    chart2Title:'East Asian vs South Asian communities',
+    rest: '24', chart2Type:'hbar',
+    chart2Data:[
+      {label:'Chinese',   val:8,  color:'#1d7a68'},
+      {label:'Indian',    val:6,  color:'#7f6ab8'},
+      {label:'Japanese',  val:4,  color:'#e8863a'},
+      {label:'Malaysian', val:3,  color:'#b87c2a'},
+      {label:'Sri Lankan',val:2,  color:'#c94030'},
+      {label:'Other',     val:1,  color:'#888780'},
+    ],
+    chart2Title:'Asian restaurants in Glen Waverley by cuisine',
     foods: ['Chinese','Indian','Malaysian','Sri Lankan','Ramen'],
     story: 'Glen Waverley is Melbourne\'s most populous Asian-majority suburb. The mix here is more diverse than Box Hill — alongside a strong Chinese community, Indian and Sri Lankan families have built a parallel food scene of curry houses, dosa spots, and South Asian sweet shops.'
   },
@@ -66,16 +69,16 @@ const STOPS = [
       {country:'China',    pct:5.3,  color:'#1d7a68'},
       {country:'Malaysia', pct:4.6,  color:'#c94030'},
     ],
-    rest: '34', chart2Type:'radial',
+    rest: '34', chart2Type:'hbar',
     chart2Data:[
-      {label:'Vietnam',  val:4645, color:'#378add', max:5000},
-      {label:'India',    val:1646, color:'#7f6ab8', max:5000},
-      {label:'Cambodia', val:1243, color:'#e8a030', max:5000},
-      {label:'China',    val:1186, color:'#1d7a68', max:5000},
-      {label:'Malaysia', val:1022, color:'#c94030', max:5000},
-      {label:'Myanmar',  val:625,  color:'#b87c2a', max:5000},
+      {label:'Vietnamese',val:18, color:'#378add'},
+      {label:'Chinese',   val:5,  color:'#1d7a68'},
+      {label:'Cambodian', val:4,  color:'#e8a030'},
+      {label:'Malaysian', val:3,  color:'#c94030'},
+      {label:'Indian',    val:2,  color:'#7f6ab8'},
+      {label:'Other',     val:2,  color:'#888780'},
     ],
-    chart2Title:'People born in each country',
+    chart2Title:'Asian restaurants in Springvale by cuisine',
     foods: ['Phở','Bánh mì','Vietnamese BBQ','Cambodian','Dim sum'],
     story: 'The most Asian-born suburb in Melbourne. Springvale\'s Little Saigon is a sensory overload — pho steam, roast duck hanging in windows, and the smell of bánh mì. The Vietnamese community, many arrived as refugees in the late 1970s and 80s, built this place from scratch.'
   },
@@ -93,16 +96,16 @@ const STOPS = [
       {country:'Vietnam',  pct:2.1,  color:'#378add'},
       {country:'Korea',    pct:2.2,  color:'#e8863a'},
     ],
-    rest: '442', chart2Type:'sparkgrid',
+    rest: '442', chart2Type:'hbar',
     chart2Data:[
-      {label:'Chinese',  val:114, color:'#1d7a68', spark:[60,75,88,95,100,114]},
-      {label:'Japanese', val:129, color:'#e8863a', spark:[40,58,72,90,108,129]},
-      {label:'Indian',   val:37,  color:'#7f6ab8', spark:[12,18,22,28,32,37]},
-      {label:'Korean',   val:38,  color:'#c94030', spark:[8,12,18,24,32,38]},
-      {label:'Thai',     val:33,  color:'#b87c2a', spark:[18,22,26,28,30,33]},
-      {label:'Viet.',    val:30,  color:'#378add', spark:[15,18,20,24,27,30]},
+      {label:'Japanese',  val:129, color:'#e8863a'},
+      {label:'Chinese',   val:114, color:'#1d7a68'},
+      {label:'Korean',    val:38,  color:'#c94030'},
+      {label:'Indian',    val:37,  color:'#7f6ab8'},
+      {label:'Thai',      val:33,  color:'#b87c2a'},
+      {label:'Vietnamese',val:30,  color:'#378add'},
     ],
-    chart2Title:'Asian restaurants in CBD by cuisine',
+    chart2Title:'Asian restaurants in Melbourne CBD by cuisine',
     foods: ['Everything','Ramen','Korean BBQ','Dumplings','Laksa'],
     story: 'The CBD is the final destination — and the great mixing bowl. Nearly half its residents were born in Asia, and its restaurants reflect every stop on this journey: the Cantonese yum cha of Box Hill, the phở of Springvale, the curry of Glen Waverley, all within a few city blocks.'
   }
@@ -234,16 +237,37 @@ function prevStop() {
 
 
 function renderChart2(stop){
-  // Render chart2 in sidebar (below bar chart) for all stops
   var container = document.getElementById('chart2-content'); if(!container) return;
   var ct = document.getElementById('chart2-title'); if(ct) ct.textContent = stop.chart2Title || '';
   container.innerHTML = '';
   if(!stop.chart2Type) return;
+  if(stop.chart2Type === 'hbar') renderHBar(stop.chart2Data, container);
   if(stop.chart2Type === 'donut')     renderDonut(stop.chart2Data, container);
   if(stop.chart2Type === 'lollipop')  renderLollipop(stop.chart2Data, container);
   if(stop.chart2Type === 'grouped')   renderGrouped(stop.chart2Data, container);
   if(stop.chart2Type === 'radial')    renderRadial(stop.chart2Data, container);
   if(stop.chart2Type === 'sparkgrid') renderSparkGrid(stop.chart2Data, container);
+}
+
+function renderHBar(data, el){
+  var max = Math.max.apply(null, data.map(function(d){return d.val;}));
+  var html = '';
+  data.forEach(function(d){
+    var w = Math.round(d.val / max * 100);
+    html += '<div class="pop-bar-row">' +
+      '<div class="pop-bar-label" style="color:var(--ink-mid)">' + d.label + '</div>' +
+      '<div class="pop-bar-track">' +
+        '<div class="pop-bar-fill" style="width:0%;background:' + d.color + '" data-target="' + w + '"></div>' +
+      '</div>' +
+      '<div class="pop-bar-pct" style="color:' + d.color + ';font-weight:500">' + d.val + '</div>' +
+      '</div>';
+  });
+  el.innerHTML = html;
+  setTimeout(function(){
+    el.querySelectorAll('.pop-bar-fill').forEach(function(bar){
+      bar.style.width = bar.dataset.target + '%';
+    });
+  }, 50);
 }
 
 function renderDonut(data, el){
