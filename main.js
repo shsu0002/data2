@@ -202,6 +202,8 @@ function goToStop(idx) {
   card.classList.remove('visible');
   var strip = document.getElementById('story-strip');
   if(strip) strip.style.display = 'block';
+  var nav = document.getElementById('nav-row');
+  if(nav) nav.style.display = 'flex';
   setTimeout(()=>{ card.classList.add('visible'); }, 50);
 
   function setText(id, val){ var el=document.getElementById(id); if(el) el.textContent=val; }
