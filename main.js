@@ -202,13 +202,7 @@ function goToStop(idx) {
   card.classList.remove('visible');
   var strip = document.getElementById('story-strip');
   if(strip) strip.style.display = 'block';
-  var nav = document.getElementById('nav-row');
-  if(nav) { nav.style.display = 'flex'; nav.style.visibility = 'visible'; }
-  setTimeout(()=>{ 
-    card.classList.add('visible');
-    var nav2 = document.getElementById('nav-row');
-    if(nav2) nav2.style.display = 'flex';
-  }, 50);
+  setTimeout(()=>{ card.classList.add('visible'); }, 50);
 
   function setText(id, val){ var el=document.getElementById(id); if(el) el.textContent=val; }
   setText('card-eyebrow', `Stop ${idx+1} of ${STOPS.length}`);
