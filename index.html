@@ -21,7 +21,7 @@ html,body{margin:0;padding:0;width:100%;overflow-x:hidden;}
   --serif:'Playfair Display',Georgia,serif;
   --sans:'DM Sans',system-ui,sans-serif;
 }
-body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;margin:0;padding:0;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;margin:0;padding:0 0 80px;}
 
 /* ── outer wrapper ── */
 .journey-wrap{
@@ -679,14 +679,14 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
     <div class="stop-story" id="stop-story" style="font-size:0.9rem;color:var(--ink-mid);line-height:1.75;border-left:3px solid #f0e0dd;padding-left:1rem"></div>
   </div>
 
-  <!-- nav row always visible below story-strip -->
-  <div id="nav-row" style="display:flex;align-items:center;justify-content:space-between;margin-top:1.25rem;padding:1.25rem 0;border-top:2px solid var(--rule);background:var(--paper);position:sticky;bottom:0;z-index:10">
-    <button class="btn btn-secondary" id="btn-prev" onclick="prevStop()" disabled>← Back</button>
-    <span class="step-label" id="step-label" style="font-size:0.72rem;color:var(--ink-muted);letter-spacing:0.04em">—</span>
-    <button class="btn btn-primary" id="btn-next" onclick="nextStop()">Next stop →</button>
-  </div>
-
 </div><!-- end page-journey -->
+
+<!-- nav row fixed at bottom of viewport -->
+<div id="nav-row" style="position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--paper);border-top:2px solid var(--rule);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto;box-shadow:0 -2px 12px rgba(26,23,20,0.08)">
+  <button class="btn btn-secondary" id="btn-prev" onclick="prevStop()" disabled>← Back</button>
+  <span class="step-label" id="step-label" style="font-size:0.72rem;color:var(--ink-muted);letter-spacing:0.04em">—</span>
+  <button class="btn btn-primary" id="btn-next" onclick="nextStop()">Next stop →</button>
+</div>
 
 <!-- ══ VEGA-LITE CHARTS ══ -->
 <div style="max-width:1100px;margin:0 auto;padding:4rem 2rem 5rem">
