@@ -15,7 +15,7 @@ const STOPS = [
       {country:'Hong Kong', pct:2.5,  color:'#b87c2a'},
       {country:'Vietnam',   pct:1.9,  color:'#378add'},
     ],
-    rest: '58', chart2Type:'hbar',
+    rest: '58', chart2Type:'lollipop',
     chart2Data:[
       {label:'Chinese',   val:36, color:'#1d7a68'},
       {label:'Japanese',  val:8,  color:'#e8863a'},
@@ -42,7 +42,7 @@ const STOPS = [
       {country:'Sri Lanka', pct:5.3,  color:'#e8863a'},
       {country:'Hong Kong', pct:2.5,  color:'#b87c2a'},
     ],
-    rest: '24', chart2Type:'hbar',
+    rest: '24', chart2Type:'lollipop',
     chart2Data:[
       {label:'Chinese',   val:8,  color:'#1d7a68'},
       {label:'Indian',    val:6,  color:'#7f6ab8'},
@@ -69,7 +69,7 @@ const STOPS = [
       {country:'China',    pct:5.3,  color:'#1d7a68'},
       {country:'Malaysia', pct:4.6,  color:'#c94030'},
     ],
-    rest: '34', chart2Type:'hbar',
+    rest: '34', chart2Type:'lollipop',
     chart2Data:[
       {label:'Vietnamese',val:18, color:'#378add'},
       {label:'Chinese',   val:5,  color:'#1d7a68'},
@@ -96,7 +96,7 @@ const STOPS = [
       {country:'Vietnam',  pct:2.1,  color:'#378add'},
       {country:'Korea',    pct:2.2,  color:'#e8863a'},
     ],
-    rest: '442', chart2Type:'hbar',
+    rest: '442', chart2Type:'lollipop',
     chart2Data:[
       {label:'Japanese',  val:129, color:'#e8863a'},
       {label:'Chinese',   val:114, color:'#1d7a68'},
@@ -295,9 +295,9 @@ function renderLollipop(data, el){
       '<div class="lollipop-label"'+(d.highlight?' style="color:var(--red);font-weight:500"':'')+'>'+d.label+'</div>'+
       '<div class="lollipop-track">'+
       '<div class="lollipop-line" style="width:0%;background:'+d.color+'" data-w="'+w+'"></div>'+
-      '<div class="lollipop-dot" style="left:0%;background:'+d.color+';border:2px solid white" data-w="'+w+'"></div>'+
+      '<div class="lollipop-dot" style="left:0%;background:'+d.color+';border:2px solid white;box-shadow:0 0 0 2px '+d.color+'22" data-w="'+w+'"></div>'+
       '</div>'+
-      '<div class="lollipop-val"'+(d.highlight?' style="color:var(--red);font-weight:500"':'')+'>'+d.val+'%</div>'+
+      '<div class="lollipop-val"'+(d.highlight?' style="color:'+d.color+';font-weight:600"':' style="color:var(--ink-muted)"')+'>'+d.val+'</div>'+
       '</div>';
   });
   el.innerHTML=html;
