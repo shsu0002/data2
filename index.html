@@ -675,15 +675,15 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
   </div><!-- end journey-main -->
 
   <!-- Story strip: chart2 + story below map+sidebar -->
-  <div id="story-strip" style="margin-top:1.5rem;padding:1.5rem;background:white;border:1px solid var(--rule);border-radius:6px;display:none">
-    <div class="stop-story" id="stop-story" style="font-size:0.9rem;color:var(--ink-mid);line-height:1.75;border-left:3px solid #f0e0dd;padding-left:1rem"></div>
-  </div>
-
-  <!-- nav row below story text -->
-  <div id="nav-row" style="display:none;align-items:center;justify-content:space-between;margin-top:1rem;padding:1rem 0;border-top:1px solid var(--rule)">
-    <button class="btn btn-secondary" id="btn-prev" onclick="prevStop()" disabled>← Back</button>
-    <span class="step-label" id="step-label" style="font-size:0.72rem;color:var(--ink-muted);letter-spacing:0.04em">—</span>
-    <button class="btn btn-primary" id="btn-next" onclick="nextStop()">Next stop →</button>
+  <div id="story-strip" style="margin-top:1.5rem;background:white;border:1px solid var(--rule);border-radius:6px;display:none;overflow:hidden">
+    <div style="padding:1.5rem">
+      <div class="stop-story" id="stop-story" style="font-size:0.9rem;color:var(--ink-mid);line-height:1.75;border-left:3px solid #f0e0dd;padding-left:1rem"></div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-top:1px solid var(--rule);background:var(--paper-warm)">
+      <button class="btn btn-secondary" id="btn-prev" onclick="prevStop()" disabled>← Back</button>
+      <span class="step-label" id="step-label" style="font-size:0.72rem;color:var(--ink-muted);letter-spacing:0.04em">—</span>
+      <button class="btn btn-primary" id="btn-next" onclick="nextStop()">Next stop →</button>
+    </div>
   </div>
 
 </div><!-- end page-journey -->
