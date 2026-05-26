@@ -676,12 +676,13 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
   <!-- Story strip: chart2 + story below map+sidebar -->
   <diid="story-strip" style="margin-top:1.5rem;padding:1.5rem;background:white;border:1px solid var(--rule);border-radius:6px;display:none">
     <div class="stop-story" id="stop-story" style="font-size:0.9rem;color:var(--ink-mid);line-height:1.75;border-left:3px solid #f0e0dd;padding-left:1rem"></div>
-      <!-- nav buttons inside story strip -->
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--rule)">
-      <button class="btn btn-secondary" id="btn-prev" onclick="prevStop()" disabled>← Back</button>
-      <span class="step-label" id="step-label" style="font-size:0.72rem;color:var(--ink-muted);letter-spacing:0.04em"></span>
-      <button class="btn btn-primary" id="btn-next" onclick="nextStop()">Next stop →</button>
-    </div>
+  </div>
+
+  <!-- nav row always visible below story-strip -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1.25rem;padding:1rem 0;border-top:1px solid var(--rule)">
+    <button class="btn btn-secondary" id="btn-prev" onclick="prevStop()" disabled>← Back</button>
+    <span class="step-label" id="step-label" style="font-size:0.72rem;color:var(--ink-muted);letter-spacing:0.04em"></span>
+    <button class="btn btn-primary" id="btn-next" onclick="nextStop()">Next stop →</button>
   </div>
 
 </div><!-- end page-journey -->
