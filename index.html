@@ -547,6 +547,7 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
 
       </svg>
 
+      <!-- Remy marker -->
       <!-- Remy marker (positioned absolutely over SVG) -->
       <div id="remy-marker" style="left:60.8%;top:26.4%">
         <svg viewBox="0 0 60 70" width="60" height="70">
@@ -590,7 +591,6 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
         <p style="margin-bottom:1rem">The map shows schematic locations of Melbourne's key Asian food suburbs. Follow Remy from Box Hill to the CBD — each stop reveals a different community and a different set of flavours.</p>
       </div>
 
-      <!-- Start button with Remy alongside -->
       <div id="btn-start-wrap" style="display:flex;align-items:flex-end;gap:0.75rem;margin-top:1rem">
 
         <button class="btn btn-primary" id="btn-start" onclick="goToStop(0);document.getElementById('btn-start-wrap').style.display='none'" style="flex:1;padding:1rem;font-size:0.95rem">
@@ -634,7 +634,7 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
             <line x1="74" y1="69" x2="102" y2="68" stroke="#8a7a70" stroke-width="1"/>
           </svg>
         </div>
-      </div>
+
       <div class="stop-card" id="stop-card">
         <div class="stop-card-eyebrow" id="card-eyebrow">Stop 1 of 5</div>
         <div class="stop-card-title" id="card-title">Doncaster</div>
@@ -669,6 +669,8 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
         <div id="food-badges" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:0.25rem"></div>
 
       </div>
+
+    </div>
 
     </div>
   </div>
