@@ -575,21 +575,43 @@ vegaEmbed('#chart-line-total', {
   ]
 }, {actions:false});
 
-// ── Chart 10: Dual line — Asian vs Other ──
+// ── Chart 10: Area — Asian share growing over time ──
 vegaEmbed('#chart-line-asian', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '07_clue_asian_trend.json'},
+  data: {url: BASE + '07b_asian_pct_trend.json'},
   config: CONFIG,
   width: 'container', height: 200,
-  mark: {type:'line', strokeWidth:2},
-  encoding: {
-    x: {field:'year', type:'quantitative', title:null, axis:{format:'d', tickCount:6}},
-    y: {field:'count', type:'quantitative', title:'Restaurants'},
-    color: {field:'type', type:'nominal',
-      scale:{domain:['Asian-identified','Other'], range:[COLORS.teal, COLORS.muted]},
-      legend:{title:null}},
-    tooltip: [{field:'year',title:'Year'},{field:'type',title:'Type'},{field:'count',title:'Count'}]
-  }
+  layer: [
+    {
+      mark: {type:'area', opacity:0.15, color: COLORS.teal},
+      encoding: {
+        x: {field:'year', type:'quantitative', title:null, axis:{format:'d', tickCount:6}},
+        y: {field:'pct_asian', type:'quantitative', title:'Asian share (%)', axis:{format:'.0f'}}
+      }
+    },
+    {
+      mark: {type:'line', color: COLORS.teal, strokeWidth:2.5},
+      encoding: {
+        x: {field:'year', type:'quantitative'},
+        y: {field:'pct_asian', type:'quantitative'},
+        tooltip: [
+          {field:'year', title:'Year'},
+          {field:'pct_asian', title:'Asian share %', format:'.1f'},
+          {field:'asian_count', title:'Asian restaurants'},
+          {field:'total', title:'Total restaurants'}
+        ]
+      }
+    },
+    {
+      mark: {type:'text', align:'left', dx:5, dy:-8, fontSize:10, color: COLORS.teal, fontWeight:'500'},
+      transform: [{filter: 'datum.year == 2024'}],
+      encoding: {
+        x: {field:'year', type:'quantitative'},
+        y: {field:'pct_asian', type:'quantitative'},
+        text: {field:'pct_asian', format:'.1f', type:'quantitative'}
+      }
+    }
+  ]
 }, {actions:false});
 
 // ── Chart 11: Stacked area — seats ──
