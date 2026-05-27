@@ -448,24 +448,36 @@ vegaEmbed('#chart-bar-suburbs', {
   }
 }, {actions:false});
 
-// ── Chart 2: Donut — cuisine breakdown ──
+// ── Chart 2: Dot map — Asian restaurant locations ──
 vegaEmbed('#chart-donut', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '03_cuisine_breakdown.json'},
+  data: {url: BASE + '02_asian_restaurant_points.json'},
   config: CONFIG,
-  width: 220, height: 220,
-  layer: [
-    {
-      mark: {type:'arc', innerRadius:60, outerRadius:105, padAngle:0.02, cornerRadius:3},
-      encoding: {
-        theta: {field:'count', type:'quantitative'},
-        color: {field:'cuisine', type:'nominal',
-          scale:{range:['#1d7a68','#c94030','#7f6ab8','#b87c2a','#378add','#e8863a','#d4537e','#485860']},
-          legend:{orient:'right', title:null}},
-        tooltip: [{field:'cuisine',title:'Cuisine'},{field:'count',title:'Restaurants'},{field:'pct',title:'Share %',format:'.1f'}]
-      }
-    }
-  ]
+  width: 'container', height: 320,
+  projection: {type: 'mercator'},
+  mark: {
+    type: 'point',
+    filled: true,
+    size: 12,
+    opacity: 0.65,
+    strokeWidth: 0
+  },
+  encoding: {
+    longitude: {field: 'lon', type: 'quantitative'},
+    latitude:  {field: 'lat', type: 'quantitative'},
+    color: {
+      field: 'cuisine_label', type: 'nominal',
+      scale: {
+        domain: ['Chinese','Japanese','Vietnamese','Indian','Korean','Malaysian','Thai','Other Asian'],
+        range:  ['#1d7a68','#e8863a','#378add','#7f6ab8','#c94030','#b87c2a','#d4537e','#888780']
+      },
+      legend: {title: null, columns: 2, symbolSize: 60}
+    },
+    tooltip: [
+      {field: 'name', title: 'Restaurant'},
+      {field: 'cuisine_label', title: 'Cuisine'}
+    ]
+  }
 }, {actions:false});
 
 // ── Chart 5: Scatter — pop vs restaurants ──
