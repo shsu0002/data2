@@ -452,33 +452,37 @@ vegaEmbed('#chart-bar-suburbs', {
 vegaEmbed('#chart-donut', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
   config: CONFIG,
-  width: 'container', height: 380,
-  projection: {
-    type: 'mercator',
-    center: [145.0, -37.85],
-    scale: 45000
-  },
+  width: 'container', height: 340,
   layer: [
     {
-      data: {
-        url: 'https://data.gov.au/geoserver/vic-suburb-locality-boundaries-psma-administrative-boundaries/wfs?request=GetFeature&typeName=ckan_af33dd8c_0534_4e18_9245_fc64440f742e&outputFormat=json',
-        format: {type: 'json', property: 'features'}
-      },
-      mark: {type: 'geoshape', fill: '#eef4f8', stroke: '#d0dce8', strokeWidth: 0.4}
+      data: {values: [{}]},
+      mark: {type: 'rect', fill: '#eef4f8', stroke: null}
     },
     {
       data: {url: BASE + '02_asian_restaurant_points.json'},
-      mark: {type: 'point', filled: true, size: 10, opacity: 0.7, strokeWidth: 0},
+      transform: [
+        {filter: 'datum.lat > -38.2 && datum.lat < -37.5 && datum.lon > 144.6 && datum.lon < 145.6'}
+      ],
+      mark: {type: 'point', filled: true, size: 16, opacity: 0.75, strokeWidth: 0},
       encoding: {
-        longitude: {field: 'lon', type: 'quantitative'},
-        latitude:  {field: 'lat', type: 'quantitative'},
+        x: {
+          field: 'lon', type: 'quantitative',
+          scale: {domain: [144.6, 145.6]},
+          axis: null
+        },
+        y: {
+          field: 'lat', type: 'quantitative',
+          scale: {domain: [-38.2, -37.5]},
+          axis: null,
+          sort: 'descending'
+        },
         color: {
           field: 'cuisine_label', type: 'nominal',
           scale: {
             domain: ['Chinese','Japanese','Vietnamese','Indian','Korean','Malaysian','Thai','Other Asian'],
             range:  ['#1d7a68','#e8863a','#378add','#7f6ab8','#c94030','#b87c2a','#d4537e','#888780']
           },
-          legend: {title: null, columns: 2, symbolSize: 60}
+          legend: {title: null, columns: 2, symbolSize: 80, labelFontSize: 11}
         },
         tooltip: [
           {field: 'name', title: 'Restaurant'},
