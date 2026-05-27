@@ -451,33 +451,42 @@ vegaEmbed('#chart-bar-suburbs', {
 // ── Chart 2: Dot map — Asian restaurant locations ──
 vegaEmbed('#chart-donut', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '02_asian_restaurant_points.json'},
   config: CONFIG,
-  width: 'container', height: 320,
-  projection: {type: 'mercator'},
-  mark: {
-    type: 'point',
-    filled: true,
-    size: 12,
-    opacity: 0.65,
-    strokeWidth: 0
+  width: 'container', height: 380,
+  projection: {
+    type: 'mercator',
+    center: [145.0, -37.85],
+    scale: 45000
   },
-  encoding: {
-    longitude: {field: 'lon', type: 'quantitative'},
-    latitude:  {field: 'lat', type: 'quantitative'},
-    color: {
-      field: 'cuisine_label', type: 'nominal',
-      scale: {
-        domain: ['Chinese','Japanese','Vietnamese','Indian','Korean','Malaysian','Thai','Other Asian'],
-        range:  ['#1d7a68','#e8863a','#378add','#7f6ab8','#c94030','#b87c2a','#d4537e','#888780']
+  layer: [
+    {
+      data: {
+        url: 'https://data.gov.au/geoserver/vic-suburb-locality-boundaries-psma-administrative-boundaries/wfs?request=GetFeature&typeName=ckan_af33dd8c_0534_4e18_9245_fc64440f742e&outputFormat=json',
+        format: {type: 'json', property: 'features'}
       },
-      legend: {title: null, columns: 2, symbolSize: 60}
+      mark: {type: 'geoshape', fill: '#eef4f8', stroke: '#d0dce8', strokeWidth: 0.4}
     },
-    tooltip: [
-      {field: 'name', title: 'Restaurant'},
-      {field: 'cuisine_label', title: 'Cuisine'}
-    ]
-  }
+    {
+      data: {url: BASE + '02_asian_restaurant_points.json'},
+      mark: {type: 'point', filled: true, size: 10, opacity: 0.7, strokeWidth: 0},
+      encoding: {
+        longitude: {field: 'lon', type: 'quantitative'},
+        latitude:  {field: 'lat', type: 'quantitative'},
+        color: {
+          field: 'cuisine_label', type: 'nominal',
+          scale: {
+            domain: ['Chinese','Japanese','Vietnamese','Indian','Korean','Malaysian','Thai','Other Asian'],
+            range:  ['#1d7a68','#e8863a','#378add','#7f6ab8','#c94030','#b87c2a','#d4537e','#888780']
+          },
+          legend: {title: null, columns: 2, symbolSize: 60}
+        },
+        tooltip: [
+          {field: 'name', title: 'Restaurant'},
+          {field: 'cuisine_label', title: 'Cuisine'}
+        ]
+      }
+    }
+  ]
 }, {actions:false});
 
 // ── Chart 5: Scatter — pop vs restaurants ──
