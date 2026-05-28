@@ -207,25 +207,28 @@ function goToStop(idx) {
   if(strip) strip.style.display = 'block';
   var mapSec = document.getElementById('stop-map-section');
   if(mapSec) mapSec.style.display = 'block';
-  var bubble = document.getElementById('remy-restaurant-bubble');
-  var textEl = document.getElementById('remy-restaurant-text');
-  if (bubble && textEl) {
-    bubble.style.display = 'flex';
+  // Remy welcome message
+  var _bubble = document.getElementById('remy-restaurant-bubble');
+  var _textEl = document.getElementById('remy-restaurant-text');
+  if (_bubble && _textEl) {
+    _bubble.style.display = 'flex';
     var _welcomes = {
       'boxhill':    "Welcome to Box Hill! Tap any dot to discover a restaurant. Chinese BBQ, dim sum, bubble tea... I know them all!",
       'glen':       "Glen Waverley has something for everyone! Click a dot and I'll tell you what's cooking.",
-      'springvale': "Little Saigon is calling! Tap a dot and I'll introduce you to the best Vietnamese and Cambodian eats in town.",
+      'springvale': "Little Saigon! Tap a dot and I'll introduce you to the best Vietnamese and Cambodian eats.",
       'cbd':        "The CBD is a food lover's paradise! 442 Asian restaurants — click any dot and I'll be your guide!"
     };
     var _msg = _welcomes[s.id] || "Tap any dot on the map to discover a restaurant!";
-    textEl.textContent = '';
+    _textEl.textContent = '';
     var _ti = 0;
-    if (bubble._typeTimer) clearInterval(bubble._typeTimer);
-    bubble._typeTimer = setInterval(function(){
-      if (_ti < _msg.length) { textEl.textContent = _msg.slice(0, ++_ti); }
-      else { clearInterval(bubble._typeTimer); }
+    if (_bubble._typeTimer) clearInterval(_bubble._typeTimer);
+    _bubble._typeTimer = setInterval(function(){
+      if (_ti < _msg.length) { _textEl.textContent = _msg.slice(0, ++_ti); }
+      else { clearInterval(_bubble._typeTimer); }
     }, 22);
   }
+  // Render stop map
+  renderStopMap(s, idx);
   setTimeout(()=>{ card.classList.add('visible'); }, 50);
 
   function setText(id, val){ var el=document.getElementById(id); if(el) el.textContent=val; }
@@ -386,6 +389,135 @@ function renderSparkGrid(data, el){
   el.innerHTML='<div class="spark-grid">'+cards+'</div>';
 }
 
+// ── Per-stop restaurant map ──
+var _stopMap = null;
+var _stopMarkersLayer = null;
+
+function renderStopMap(stop, idx) {
+  var el = document.getElementById('stop-map');
+  if (!el) return;
+
+  var centers = {
+    'boxhill':    [-37.8196, 145.1214],
+    'glen':       [-37.8797, 145.1647],
+    'springvale': [-37.9497, 145.1513],
+    'cbd':        [-37.8136, 144.9631]
+  };
+  var radiusMap = {'cbd': 0.025, 'boxhill': 0.035, 'glen': 0.035, 'springvale': 0.035};
+  var center = centers[stop.id] || [-37.85, 145.05];
+  var r = radiusMap[stop.id] || 0.035;
+
+  var CUISINE_COLORS = {
+    'Chinese':'#1d7a68','Japanese':'#e8863a','Vietnamese':'#378add',
+    'Indian':'#7f6ab8','Korean':'#c94030','Malaysian':'#b87c2a',
+    'Thai':'#d4537e','Other Asian':'#888780','Asian (general)':'#888780',
+    'Sri Lankan':'#e8863a','Cambodian':'#e8a030','Taiwanese':'#1d7a68',
+    'Indonesian':'#888780','Nepalese':'#7f6ab8','Burmese':'#888780','Noodle':'#888780'
+  };
+
+  if (!_stopMap) {
+    _stopMap = L.map('stop-map', {zoomControl:true, scrollWheelZoom:false});
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution:'© OpenStreetMap © CARTO', subdomains:'abcd', maxZoom:19
+    }).addTo(_stopMap);
+    _stopMarkersLayer = L.layerGroup().addTo(_stopMap);
+  }
+
+  _stopMarkersLayer.clearLayers();
+  _stopMap.setView(center, 14);
+
+  fetch('https://raw.githubusercontent.com/shsu0002/data2/main/files/02_asian_restaurant_points.json')
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      var nearby = data.filter(function(d){
+        return Math.abs(d.lat - center[0]) < r && Math.abs(d.lon - center[1]) < r;
+      });
+      window._stopRestaurants = nearby;
+      window._stopName = stop.name;
+      window._stopColors = CUISINE_COLORS;
+
+      // Build filter buttons
+      var cuisines = ['All'];
+      nearby.forEach(function(d){
+        if (d.cuisine_label && cuisines.indexOf(d.cuisine_label) === -1) cuisines.push(d.cuisine_label);
+      });
+      var filterEl = document.getElementById('stop-map-filters');
+      if (filterEl) {
+        filterEl.innerHTML = '';
+        cuisines.forEach(function(c){
+          var col = c === 'All' ? '#4a4540' : (CUISINE_COLORS[c] || '#888780');
+          var btn = document.createElement('button');
+          btn.textContent = c;
+          btn.dataset.cuisine = c;
+          btn.style.cssText = 'font-family:var(--sans);font-size:0.62rem;font-weight:500;padding:3px 9px;border-radius:20px;cursor:pointer;border:1.5px solid ' + col + ';margin:2px;background:' + (c === 'All' ? col : 'transparent') + ';color:' + (c === 'All' ? 'white' : col) + ';transition:all 0.15s';
+          btn.addEventListener('click', (function(cuisine){ return function(){ filterStopMap(cuisine); }; })(c));
+          filterEl.appendChild(btn);
+        });
+      }
+
+      renderStopMarkers(nearby, CUISINE_COLORS, 'All');
+    });
+}
+
+function renderStopMarkers(restaurants, colors, filter) {
+  if (!_stopMarkersLayer) return;
+  _stopMarkersLayer.clearLayers();
+  var list = filter === 'All' ? restaurants : restaurants.filter(function(d){ return d.cuisine_label === filter; });
+  list.forEach(function(d){
+    var color = colors[d.cuisine_label] || '#888780';
+    var mk = L.circleMarker([d.lat, d.lon], {radius:6, fillColor:color, color:'white', weight:1, fillOpacity:0.85});
+    mk.bindTooltip(d.name + '<br><em>' + d.cuisine_label + '</em>', {direction:'top'});
+    mk.on('click', function(){ remySayRestaurant(d); });
+    _stopMarkersLayer.addLayer(mk);
+  });
+  var lbl = document.getElementById('stop-map-label');
+  if (lbl) lbl.textContent = list.length + (filter === 'All' ? '' : ' ' + filter) + ' restaurants in ' + (window._stopName || '');
+}
+
+function filterStopMap(cuisine) {
+  var colors = window._stopColors || {};
+  document.querySelectorAll('#stop-map-filters button').forEach(function(btn){
+    var c = btn.dataset.cuisine;
+    var col = c === 'All' ? '#4a4540' : (colors[c] || '#888780');
+    btn.style.background = c === cuisine ? col : 'transparent';
+    btn.style.color = c === cuisine ? 'white' : col;
+  });
+  renderStopMarkers(window._stopRestaurants || [], colors, cuisine);
+}
+
+// ── Remy restaurant commentary ──
+function remySayRestaurant(restaurant) {
+  var bubble = document.getElementById('remy-restaurant-bubble');
+  var textEl = document.getElementById('remy-restaurant-text');
+  if (!bubble || !textEl) return;
+  bubble.style.display = 'flex';
+
+  var cuisine = restaurant.cuisine_label || 'Asian';
+  var quips = {
+    'Chinese':    ["Mmm, Chinese food! This is my kind of place.", "A Chinese gem — I can smell the dumplings already!", "Box Hill's finest — Chinese cuisine at its best!"],
+    'Japanese':   ["Ramen or sushi? Either way, I'm in!", "Oishii! Japanese cuisine done right.", "A Japanese spot — I hope they have tonkotsu!"],
+    'Vietnamese': ["Pho sure, this looks amazing!", "Vietnamese food — fresh, fragrant, fantastic!", "Little Saigon vibes right here!"],
+    'Indian':     ["The spices! My whiskers are tingling!", "Indian cuisine — bold flavours, bolder portions.", "Curry night? Count me in!"],
+    'Korean':     ["Kimchi and Korean BBQ — yes please!", "Korean food is having a moment in Melbourne!", "This Korean spot smells incredible!"],
+    'Malaysian':  ["Laksa! My absolute weakness.", "Malaysian food — the best of many worlds.", "Nasi lemak or char kway teow? Tough choice!"],
+    'Thai':       ["Thai food — sweet, sour, spicy perfection!", "Pad thai? Tom yum? I want everything!", "A Thai gem in Melbourne!"],
+    'Cambodian':  ["Cambodian cuisine — underrated and delicious!", "A rare Cambodian find — I must try this!", "Amok curry? I'm intrigued!"],
+    'Sri Lankan': ["Sri Lankan food — fiery and fantastic!", "Hoppers and curry — the dream combo!", "So underrated, so delicious!"]
+  };
+  var list = quips[cuisine] || ["What a find! I must try this place.", "Ooh, " + cuisine + " food — delicious!"];
+  var quip = list[Math.floor(Math.random() * list.length)];
+  var msg = restaurant.name + ' — ' + cuisine + '. "' + quip + '"';
+
+  textEl.textContent = '';
+  var i = 0;
+  if (bubble._typeTimer) clearInterval(bubble._typeTimer);
+  bubble._typeTimer = setInterval(function(){
+    if (i < msg.length) { textEl.textContent = msg.slice(0, ++i); }
+    else { clearInterval(bubble._typeTimer); }
+  }, 22);
+}
+
+
 buildTrail();
 
 
@@ -449,305 +581,49 @@ const CONFIG = {
   }
 };
 
-// ── Chart 3: Leaflet choropleth — Asian-born % by suburb ──
-(function(){
-  var SUBURB_DATA = {"SPRINGVALE": 56.4, "BOX HILL": 53.6, "CLAYTON": 52.3, "SPRINGVALE SOUTH": 50.0, "MELBOURNE": 48.3, "GLEN WAVERLEY": 47.9, "NOTTING HILL": 44.3, "NOBLE PARK": 44.3, "CLAYTON SOUTH": 44.3, "WILLIAMS LANDING": 44.1, "TRUGANINA": 42.9, "DOCKLANDS": 42.5, "BRAYBROOK": 42.0, "TARNEIT": 42.0, "SUNSHINE NORTH": 39.2, "KEYSBOROUGH": 38.8, "AINTREE": 38.7, "BURWOOD EAST": 37.8, "MANOR LAKES": 37.0, "LAVERTON": 37.0, "ST ALBANS": 36.9, "SOUTHBANK": 36.9, "DONCASTER": 36.5, "LYNDHURST": 36.4, "BOX HILL NORTH": 36.3, "CARLTON": 36.2, "DONCASTER EAST": 34.9, "COBBLEBANK": 34.8, "WEST MELBOURNE": 34.7, "MOUNT WAVERLEY": 34.5, "CAIRNLEA": 34.1, "BURWOOD": 34.1, "KALKALLO": 34.0, "STRATHTULLOH": 33.8, "CLYDE NORTH": 33.7, "BALWYN": 33.5, "SUNSHINE": 33.5, "POINT COOK": 33.5, "WANTIRNA SOUTH": 33.2, "LYNBROOK": 33.0};
-
-  function getColor(pct) {
-    return pct > 50 ? '#1d7a68' :
-           pct > 44 ? '#2d9e88' :
-           pct > 38 ? '#5ab8a0' :
-           pct > 30 ? '#8ecfbf' :
-           pct > 20 ? '#c2e5de' :
-                      '#e8f5f2';
-  }
-
-  function initChoropleth() {
-    var el = document.getElementById('chart-bar-suburbs');
-    if (!el || el._leaflet_id) return;
-
-    var map = L.map('chart-bar-suburbs', {
-      center: [-37.88, 145.05],
-      zoom: 10,
-      zoomControl: true,
-      scrollWheelZoom: false
-    });
-
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '© OpenStreetMap © CARTO',
-      subdomains: 'abcd', maxZoom: 19
-    }).addTo(map);
-
-    // Show loading indicator
-    var loadingDiv = L.DomUtil.create('div');
-    loadingDiv.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,0.85);padding:8px 14px;border-radius:4px;font-size:12px;color:#4a4540;z-index:999;pointer-events:none';
-    loadingDiv.textContent = 'Loading suburb boundaries…';
-    el.appendChild(loadingDiv);
-
-    fetch('https://data.gov.au/geoserver/vic-suburb-locality-boundaries-psma-administrative-boundaries/wfs?request=GetFeature&typeName=ckan_af33dd8c_0534_4e18_9245_fc64440f742e&outputFormat=json')
-      .then(function(r){ return r.json(); })
-      .then(function(geojson){
-        if (loadingDiv.parentNode) loadingDiv.parentNode.removeChild(loadingDiv);
-        L.geoJSON(geojson, {
-          style: function(feature) {
-            var p = feature.properties;
-            var raw = p.vic_loca_2 || p.VIC_LOCA_2 || p.NAME || p.name || p.locality_name || '';
-            var name = raw.toUpperCase();
-            var pct = SUBURB_DATA[name] || 0;
-            return {
-              fillColor: getColor(pct),
-              weight: pct > 0 ? 0.8 : 0.3,
-              color: '#a0b8b0',
-              fillOpacity: pct > 0 ? 0.85 : 0.08
-            };
-          },
-          onEachFeature: function(feature, layer) {
-            var p = feature.properties;
-            var name = p.vic_loca_2 || p.VIC_LOCA_2 || p.NAME || p.name || '';
-            var pct = SUBURB_DATA[name.toUpperCase()];
-            if (pct) {
-              layer.bindTooltip('<strong>' + name + '</strong><br>Asian-born: ' + pct + '%', {direction:'top'});
-              layer.on('mouseover', function(){ this.setStyle({weight:2, color:'#1d7a68'}); });
-              layer.on('mouseout',  function(){ this.setStyle({weight:0.8, color:'#a0b8b0'}); });
-            }
-          }
-        }).addTo(map);
-      })
-      .catch(function(){
-        if (loadingDiv.parentNode) loadingDiv.parentNode.removeChild(loadingDiv);
-      });
-
-    // Legend
-    var legend = L.control({position: 'bottomright'});
-    legend.onAdd = function() {
-      var div = L.DomUtil.create('div');
-      div.style.cssText = 'background:white;padding:8px 10px;border-radius:4px;font-family:DM Sans,sans-serif;font-size:11px;line-height:1.6;box-shadow:0 1px 4px rgba(0,0,0,0.12)';
-      div.innerHTML = '<div style="font-weight:500;margin-bottom:4px;color:#4a4540">Asian-born %</div>' +
-        ['> 50%','44–50%','38–44%','30–38%','20–30%','< 20%'].map(function(label, i){
-          var colors = ['#1d7a68','#2d9e88','#5ab8a0','#8ecfbf','#c2e5de','#e8f5f2'];
-          return '<div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:12px;background:' + colors[i] + ';border-radius:2px"></div>' + label + '</div>';
-        }).join('');
-      return div;
-    };
-    legend.addTo(map);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initChoropleth);
-  } else {
-    setTimeout(initChoropleth, 200);
-  }
-})();
-
-// ── Chart 2: Leaflet dot map — Asian restaurant locations ──
-(function(){
-  var CUISINE_COLORS = {
-    'Chinese':       '#1d7a68',
-    'Japanese':      '#e8863a',
-    'Vietnamese':    '#378add',
-    'Indian':        '#7f6ab8',
-    'Korean':        '#c94030',
-    'Malaysian':     '#b87c2a',
-    'Thai':          '#d4537e',
-    'Other Asian':   '#888780',
-    'Asian (general)':'#888780',
-    'Sri Lankan':    '#e8863a',
-    'Cambodian':     '#e8a030',
-    'Noodle':        '#888780',
-    'Taiwanese':     '#1d7a68',
-    'Indonesian':    '#888780',
-    'Nepalese':      '#7f6ab8',
-    'Burmese':       '#888780',
-    'Pakistani':     '#888780'
-  };
-
-  function initMap() {
-    var el = document.getElementById('chart-donut');
-    if (!el || el._leaflet_id) return;
-
-    var map = L.map('chart-donut', {
-      center: [-37.85, 145.05],
-      zoom: 11,
-      zoomControl: true,
-      scrollWheelZoom: false
-    });
-
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '© OpenStreetMap © CARTO',
-      subdomains: 'abcd',
-      maxZoom: 19
-    }).addTo(map);
-
-    fetch('https://raw.githubusercontent.com/shsu0002/data2/main/files/02_asian_restaurant_points.json')
-      .then(function(r){ return r.json(); })
-      .then(function(data){
-        data.forEach(function(d){
-          var color = CUISINE_COLORS[d.cuisine_label] || '#888780';
-          L.circleMarker([d.lat, d.lon], {
-            radius: 5,
-            fillColor: color,
-            color: 'white',
-            weight: 0.5,
-            opacity: 1,
-            fillOpacity: 0.8
-          }).bindTooltip(d.name + '<br><em>' + d.cuisine_label + '</em>', {direction:'top'})
-            .addTo(map);
-        });
-      });
-  }
-
-  // Init after DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMap);
-  } else {
-    setTimeout(initMap, 100);
-  }
-})();
-
-// ── Chart 5: Scatter — pop vs restaurants ──
-vegaEmbed('#chart-scatter', {
+// ── Chart 3: Vega-Lite choropleth ──
+vegaEmbed('#chart-bar-suburbs', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '04_scatter_pop_vs_restaurant.json'},
+  width: 'container', height: 340,
   config: CONFIG,
-  width: 'container', height: 280,
-  layer: [
-    {
-      mark: {type:'line', strokeDash:[4,3], color: COLORS.muted},
-      transform: [{regression:'pct_asian_restaurants', on:'pct_asian_pop'}],
-      encoding: {
-        x: {field:'pct_asian_pop', type:'quantitative'},
-        y: {field:'pct_asian_restaurants', type:'quantitative'}
-      }
-    },
-    {
-      mark: {type:'point', filled:true, size:80, opacity:0.85},
-      encoding: {
-        x: {field:'pct_asian_pop', type:'quantitative', title:'Asian-born population (%)', axis:{format:'.0f'}},
-        y: {field:'pct_asian_restaurants', type:'quantitative', title:'Asian restaurants (%)', axis:{format:'.0f'}},
-        color: {value: COLORS.teal},
-        tooltip: [
-          {field:'suburb',title:'Suburb'},
-          {field:'pct_asian_pop',title:'Asian-born %',format:'.1f'},
-          {field:'pct_asian_restaurants',title:'Asian restaurants %',format:'.1f'},
-          {field:'total_restaurants',title:'Total restaurants'}
-        ]
-      }
-    },
-    {
-      mark: {type:'text', dy:-10, fontSize:10, color:'#4a4540'},
-      encoding: {
-        x: {field:'pct_asian_pop', type:'quantitative'},
-        y: {field:'pct_asian_restaurants', type:'quantitative'},
-        text: {field:'suburb'}
-      }
-    }
-  ]
-}, {actions:false});
-
-// ── Chart 6: Heatmap ──
-vegaEmbed('#chart-heatmap', {
-  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '10_cuisine_by_cluster.json'},
-  config: CONFIG,
-  width: 'container', height: 280,
-  mark: {type:'rect', cornerRadius:2},
-  encoding: {
-    x: {field:'cluster', type:'nominal', title:null, axis:{labelAngle:-30, labelLimit:80}},
-    y: {field:'cuisine', type:'nominal', title:null},
-    color: {field:'count', type:'quantitative',
-      scale:{scheme:'greens'},
-      legend:{title:'Restaurants', gradientLength:100}},
-    tooltip: [{field:'cluster',title:'Suburb'},{field:'cuisine',title:'Cuisine'},{field:'count',title:'Restaurants'}]
-  }
-}, {actions:false});
-
-// ── Chart 9: Line — total CBD restaurants ──
-vegaEmbed('#chart-line-total', {
-  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '05_clue_yearly_trend.json'},
-  config: CONFIG,
-  width: 'container', height: 200,
-  layer: [
-    {
-      mark: {type:'area', opacity:0.08, color: COLORS.red},
-      encoding: {
-        x: {field:'year', type:'quantitative', title:null, axis:{format:'d', tickCount:6}},
-        y: {field:'restaurant_count', type:'quantitative', title:'Restaurants'}
-      }
-    },
-    {
-      mark: {type:'line', color: COLORS.red, strokeWidth:2},
-      encoding: {
-        x: {field:'year', type:'quantitative'},
-        y: {field:'restaurant_count', type:'quantitative'},
-        tooltip: [{field:'year',title:'Year'},{field:'restaurant_count',title:'Restaurants'},{field:'total_seats',title:'Seats',format:','}]
-      }
-    }
-  ]
-}, {actions:false});
-
-// ── Chart 10: Area — Asian share growing over time ──
-vegaEmbed('#chart-line-asian', {
-  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '07b_asian_pct_trend.json'},
-  config: CONFIG,
-  width: 'container', height: 200,
-  layer: [
-    {
-      mark: {type:'area', opacity:0.15, color: COLORS.teal},
-      encoding: {
-        x: {field:'year', type:'quantitative', title:null, axis:{format:'d', tickCount:6}},
-        y: {field:'pct', type:'quantitative', title:'Asian share (%)', axis:{format:'.1f'}, scale:{domain:[0,20]}}
-      }
-    },
-    {
-      mark: {type:'line', color: COLORS.teal, strokeWidth:2.5},
-      encoding: {
-        x: {field:'year', type:'quantitative'},
-        y: {field:'pct', type:'quantitative'},
-        tooltip: [
-          {field:'year', title:'Year'},
-          {field:'pct', title:'Asian share %', format:'.1f'}
-        ]
-      }
-    }
-  ]
-}, {actions:false});
-
-// ── Chart 11: Stacked area — seats ──
-vegaEmbed('#chart-area-seats', {
-  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '09_clue_seats_trend.json'},
-  config: CONFIG,
-  width: 'container', height: 200,
-  mark: {type:'area', opacity:0.8},
-  encoding: {
-    x: {field:'year', type:'quantitative', title:null, axis:{format:'d', tickCount:6}},
-    y: {field:'total_seats', type:'quantitative', stack:'zero', title:'Seats'},
-    color: {field:'seating_type', type:'nominal',
-      scale:{domain:['Seats - Indoor','Seats - Outdoor'], range:[COLORS.blue, COLORS.gold]},
-      legend:{title:null, labelExpr:"datum.label == 'Seats - Indoor' ? 'Indoor' : 'Outdoor'"}},
-    tooltip: [{field:'year',title:'Year'},{field:'seating_type',title:'Type'},{field:'total_seats',title:'Seats',format:','}]
-  }
-}, {actions:false});
-
-// ── Chart 12: Multi-line — sub-areas ──
-vegaEmbed('#chart-multiline', {
-  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '06_clue_area_trend.json'},
-  config: CONFIG,
-  width: 'container', height: 240,
+  projection: {type: 'mercator'},
+  data: {url: BASE + 'vic_suburbs_real.geojson', format: {type: 'json', property: 'features'}},
   transform: [
-    {filter: "datum.area != 'Unincorporated CBD'"},
-    {filter: "datum.count > 0"}
+    {calculate: 'datum.pct_asian', as: 'pct'},
+    {calculate: 'datum.suburb', as: 'name'},
+    {calculate: 'datum.total_pop', as: 'pop'}
   ],
-  mark: {type:'line', strokeWidth:1.8, point:{filled:true, size:20, opacity:0.7}},
+  mark: {type: 'geoshape', stroke: 'white', strokeWidth: 0.5},
   encoding: {
-    x: {field:'year', type:'quantitative', title:null, axis:{format:'d', tickCount:6}},
-    y: {field:'count', type:'quantitative', title:'Restaurants'},
-    color: {field:'area', type:'nominal',
-      scale:{scheme:'tableau10'},
-      legend:{title:null, columns:2}},
-    tooltip: [{field:'year',title:'Year'},{field:'area',title:'Area'},{field:'count',title:'Restaurants'}]
+    color: {
+      field: 'pct',
+      type: 'quantitative',
+      scale: {domain: [30, 58], range: ['#c2e5de', '#1d7a68']},
+      legend: {title: 'Asian-born %', gradientLength: 100, orient: 'bottom-right'}
+    },
+    tooltip: [
+      {field: 'name', title: 'Suburb'},
+      {field: 'pct', title: 'Asian-born %', format: '.1f'},
+      {field: 'pop', title: 'Population', format: ','}
+    ]
   }
+}, {actions:false});
+
+
+// ── Chart 2: Donut — cuisine breakdown ──
+vegaEmbed('#chart-donut', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  data: {url: BASE + '03_cuisine_breakdown.json'},
+  config: CONFIG,
+  width: 'container', height: 300,
+  layer: [{
+    mark: {type:'arc', innerRadius:65, outerRadius:115, padAngle:0.02, cornerRadius:3},
+    encoding: {
+      theta: {field:'count', type:'quantitative'},
+      color: {field:'cuisine', type:'nominal',
+        scale:{range:['#1d7a68','#c94030','#7f6ab8','#b87c2a','#378add','#e8863a','#d4537e','#485860']},
+        legend:{orient:'right', title:null}},
+      tooltip: [{field:'cuisine',title:'Cuisine'},{field:'count',title:'Restaurants'},{field:'pct',title:'Share %',format:'.1f'}]
+    }
+  }]
 }, {actions:false});
