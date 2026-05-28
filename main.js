@@ -428,25 +428,80 @@ const CONFIG = {
   }
 };
 
-// ── Chart 3: Horizontal bar — top suburbs ──
-vegaEmbed('#chart-bar-suburbs', {
-  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '01_suburb_asian_pct.json'},
-  config: CONFIG,
-  width: 'container', height: 320,
-  transform: [
-    {filter: 'datum.pct_asian > 0'},
-    {window: [{op:'rank', as:'rank'}], sort:[{field:'pct_asian', order:'descending'}]},
-    {filter: 'datum.rank <= 15'}
-  ],
-  mark: {type:'bar', cornerRadiusEnd:3, color: COLORS.teal},
-  encoding: {
-    y: {field:'suburb', type:'nominal', sort:'-x', axis:{labelLimit:120, title:null}},
-    x: {field:'pct_asian', type:'quantitative', title:'Asian-born (%)', axis:{format:'.0f', tickCount:5}},
-    color: {field:'pct_asian', type:'quantitative', scale:{range:['#9fe1cb','#1d7a68']}, legend:null},
-    tooltip: [{field:'suburb',title:'Suburb'},{field:'pct_asian',title:'Asian-born %',format:'.1f'},{field:'total_pop',title:'Population',format:','}]
+// ── Chart 3: Leaflet choropleth — Asian-born % by suburb ──
+(function(){
+  var SUBURB_DATA = {"SPRINGVALE": 56.4, "BOX HILL": 53.6, "CLAYTON": 52.3, "SPRINGVALE SOUTH": 50.0, "MELBOURNE": 48.3, "GLEN WAVERLEY": 47.9, "NOTTING HILL": 44.3, "NOBLE PARK": 44.3, "CLAYTON SOUTH": 44.3, "WILLIAMS LANDING": 44.1, "TRUGANINA": 42.9, "DOCKLANDS": 42.5, "BRAYBROOK": 42.0, "TARNEIT": 42.0, "SUNSHINE NORTH": 39.2, "KEYSBOROUGH": 38.8, "AINTREE": 38.7, "BURWOOD EAST": 37.8, "MANOR LAKES": 37.0, "LAVERTON": 37.0, "ST ALBANS": 36.9, "SOUTHBANK": 36.9, "DONCASTER": 36.5, "LYNDHURST": 36.4, "BOX HILL NORTH": 36.3, "CARLTON": 36.2, "DONCASTER EAST": 34.9, "COBBLEBANK": 34.8, "WEST MELBOURNE": 34.7, "MOUNT WAVERLEY": 34.5, "CAIRNLEA": 34.1, "BURWOOD": 34.1, "KALKALLO": 34.0, "STRATHTULLOH": 33.8, "CLYDE NORTH": 33.7, "BALWYN": 33.5, "SUNSHINE": 33.5, "POINT COOK": 33.5, "WANTIRNA SOUTH": 33.2, "LYNBROOK": 33.0};
+
+  function getColor(pct) {
+    return pct > 50 ? '#1d7a68' :
+           pct > 44 ? '#2d9e88' :
+           pct > 38 ? '#5ab8a0' :
+           pct > 30 ? '#8ecfbf' :
+           pct > 20 ? '#c2e5de' :
+                      '#e8f5f2';
   }
-}, {actions:false});
+
+  function initChoropleth() {
+    var el = document.getElementById('chart-bar-suburbs');
+    if (!el || el._leaflet_id) return;
+
+    var map = L.map('chart-bar-suburbs', {
+      center: [-37.88, 145.05],
+      zoom: 10,
+      zoomControl: true,
+      scrollWheelZoom: false
+    });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '© OpenStreetMap © CARTO',
+      subdomains: 'abcd', maxZoom: 19
+    }).addTo(map);
+
+    fetch('https://data.gov.au/geoserver/vic-suburb-locality-boundaries-psma-administrative-boundaries/wfs?request=GetFeature&typeName=ckan_af33dd8c_0534_4e18_9245_fc64440f742e&outputFormat=json')
+      .then(function(r){ return r.json(); })
+      .then(function(geojson){
+        L.geoJSON(geojson, {
+          style: function(feature) {
+            var name = (feature.properties.vic_loca_2 || feature.properties.NAME || '').toUpperCase();
+            var pct = SUBURB_DATA[name] || 0;
+            return {
+              fillColor: getColor(pct),
+              weight: 0.5,
+              color: '#b0c8c0',
+              fillOpacity: pct > 0 ? 0.85 : 0.1
+            };
+          },
+          onEachFeature: function(feature, layer) {
+            var name = feature.properties.vic_loca_2 || feature.properties.NAME || '';
+            var pct = SUBURB_DATA[name.toUpperCase()];
+            if (pct) {
+              layer.bindTooltip('<strong>' + name + '</strong><br>Asian-born: ' + pct + '%', {direction:'top'});
+            }
+          }
+        }).addTo(map);
+      });
+
+    // Legend
+    var legend = L.control({position: 'bottomright'});
+    legend.onAdd = function() {
+      var div = L.DomUtil.create('div');
+      div.style.cssText = 'background:white;padding:8px 10px;border-radius:4px;font-family:DM Sans,sans-serif;font-size:11px;line-height:1.6;box-shadow:0 1px 4px rgba(0,0,0,0.12)';
+      div.innerHTML = '<div style="font-weight:500;margin-bottom:4px;color:#4a4540">Asian-born %</div>' +
+        ['> 50%','44–50%','38–44%','30–38%','20–30%','< 20%'].map(function(label, i){
+          var colors = ['#1d7a68','#2d9e88','#5ab8a0','#8ecfbf','#c2e5de','#e8f5f2'];
+          return '<div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:12px;background:' + colors[i] + ';border-radius:2px"></div>' + label + '</div>';
+        }).join('');
+      return div;
+    };
+    legend.addTo(map);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initChoropleth);
+  } else {
+    setTimeout(initChoropleth, 200);
+  }
+})();
 
 // ── Chart 2: Leaflet dot map — Asian restaurant locations ──
 (function(){
