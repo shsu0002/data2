@@ -322,6 +322,8 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
   animation: arrowBounce 1.4s ease-in-out 3.2s infinite;
 }
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="main.js" defer></script>
 </head>
 <body>
@@ -707,7 +709,7 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
         <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart 2 · OpenStreetMap 2025</div>
         <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.4rem">1,864 Asian restaurants across Melbourne</div>
         <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem">Each dot is one restaurant. Clusters reveal where communities have put down roots.</div>
-        <div id="chart-donut" style="width:100%"></div>
+        <div id="chart-donut" style="width:100%;height:340px;border-radius:4px;overflow:hidden"></div>
       </div>
     </div>
   </div>
