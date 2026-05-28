@@ -1,39 +1,4 @@
-// ── Remy restaurant commentary ──
-function remySayRestaurant(restaurant) {
-  var el = document.getElementById('remy-restaurant-bubble');
-  if (!el) return;
-
-  var lines = {'Chinese': ['Mmm, 中文菜！This is my kind of place.', 'A Chinese gem! I can smell the dumplings already.', 'Chinese cuisine — the backbone of Asian Melbourne!'], 'Japanese': ["Ramen or sushi? Either way, I'm in!", 'Oishii! Japanese cuisine at its finest.', 'A Japanese spot! I hope they have tonkotsu...'], 'Vietnamese': ['Phở sure, this looks amazing!', 'Vietnamese food — fresh, fragrant, fantastic!', 'Little Saigon vibes right here!'], 'Indian': ['The spices! My whiskers are tingling!', 'Indian cuisine — bold flavours, bolder portions.', 'Curry night? Count me in!'], 'Korean': ['Kimchi and Korean BBQ — yes please!', 'Korean food is having a moment in Melbourne!', 'This Korean spot smells incredible!'], 'Malaysian': ['Laksa! My absolute weakness.', 'Malaysian food — the best of many worlds.', 'Nasi lemak or char kway teow? Tough choice!'], 'Thai': ['Thai food — the perfect balance of sweet, sour, spicy!', 'Pad thai? Tom yum? I want everything!', 'A Thai gem in Melbourne!'], 'Cambodian': ['Cambodian cuisine — underrated and delicious!', "Amok curry from this spot? I'm intrigued!", 'A rare Cambodian find!'], 'Sri Lankan': ['Sri Lankan food — fiery and fantastic!', 'Hoppers and curry — the dream combo!', 'A Sri Lankan spot! So underrated.']};
-  var cuisine = restaurant.cuisine_label || 'Asian';
-  var quips = lines[cuisine] || ['What a find! I must try this place.', 'Ooh, ' + cuisine + ' food — delicious!'];
-  var quip = quips[Math.floor(Math.random() * quips.length)];
-
-  var msg = '<strong>' + restaurant.name + '</strong><br>' +
-            '<em style="color:var(--ink-muted);font-size:0.8rem">' + cuisine + '</em><br><br>' +
-            '<span style="font-style:italic;color:var(--ink-mid)">"' + quip + '"</span>';
-
-  el.style.display = 'flex';
-
-  // Typewriter effect on the quip part
-  var nameHtml = '<strong>' + restaurant.name + '</strong><br><em style="color:var(--ink-muted);font-size:0.8rem">' + cuisine + '</em><br><br><span style="font-style:italic;color:var(--ink-mid)">"';
-  var textEl = document.getElementById('remy-restaurant-text');
-  if (!textEl) return;
-  textEl.innerHTML = nameHtml;
-
-  var i = 0;
-  var endHtml = '"</span>';
-  if (el._typeTimer) clearInterval(el._typeTimer);
-  el._typeTimer = setInterval(function(){
-    if (i < quip.length) {
-      textEl.innerHTML = nameHtml + quip.slice(0, ++i) + '"</span>';
-    } else {
-      clearInterval(el._typeTimer);
-    }
-  }, 28);
-}
-
 // ── Journey stops + interactivity ──
-
 
 const STOPS = [
   {
@@ -148,36 +113,6 @@ const STOPS = [
 
 let current = -1;
 
-function renderStopMarkers(restaurants, colors, filter) {
-  if (!_stopMap || !_stopMarkersLayer) return;
-  _stopMarkersLayer.clearLayers();
-  var list = filter === 'All' ? restaurants : restaurants.filter(function(d){ return d.cuisine_label === filter; });
-  list.forEach(function(d){
-    var color = colors[d.cuisine_label] || '#888780';
-    var mk = L.circleMarker([d.lat, d.lon], {radius:6, fillColor:color, color:'white', weight:1, fillOpacity:0.85});
-    mk.bindTooltip(d.name + '<br><em>' + d.cuisine_label + '</em>', {direction:'top'});
-    mk.on('click', function(){ remySayRestaurant(d); });
-    _stopMarkersLayer.addLayer(mk);
-  });
-  var lbl = document.getElementById('stop-map-label');
-  if (lbl) lbl.textContent = list.length + (filter === 'All' ? '' : ' ' + filter) + ' restaurants in ' + (window._stopName || '');
-}
-
-function filterStopMap(cuisine) {
-  var colors = window._stopCUISSINE_COLORS || {};
-  // Update button styles
-  var btns = document.querySelectorAll('#stop-map-filters button');
-  btns.forEach(function(btn){
-    var c = btn.dataset.cuisine;
-    var col = c === 'All' ? '#4a4540' : (colors[c] || '#888780');
-    var active = c === cuisine;
-    btn.style.background = active ? col : 'transparent';
-    btn.style.color = active ? 'white' : col;
-  });
-  renderStopMarkers(window._stopRestaurants || [], colors, cuisine);
-}
-
-
 function buildTrail() {
   const t = document.getElementById('trail');
   STOPS.forEach((s,i) => {
@@ -272,28 +207,23 @@ function goToStop(idx) {
   if(strip) strip.style.display = 'block';
   var mapSec = document.getElementById('stop-map-section');
   if(mapSec) mapSec.style.display = 'block';
-
-  // Show initial Remy welcome message
   var bubble = document.getElementById('remy-restaurant-bubble');
   var textEl = document.getElementById('remy-restaurant-text');
   if (bubble && textEl) {
     bubble.style.display = 'flex';
-    var welcomes = {
-      'boxhill':    'Welcome to Box Hill! 🐭 Tap any dot on the map to discover a restaurant — Chinese BBQ, dim sum, bubble tea... I know them all!',
-      'glen':       'Glen Waverley has something for everyone! 🐭 Click a dot and I'll tell you what's cooking — from Chinese hotpot to Indian curry!',
-      'springvale': 'Little Saigon is calling! 🐭 Tap a dot and I'll introduce you to the best Vietnamese, Cambodian and Southeast Asian eats in town.',
-      'cbd':        'The CBD is a food lover's paradise! 🐭 442 Asian restaurants — click any dot and I'll be your guide!'
+    var _welcomes = {
+      'boxhill':    "Welcome to Box Hill! Tap any dot to discover a restaurant. Chinese BBQ, dim sum, bubble tea... I know them all!",
+      'glen':       "Glen Waverley has something for everyone! Click a dot and I'll tell you what's cooking.",
+      'springvale': "Little Saigon is calling! Tap a dot and I'll introduce you to the best Vietnamese and Cambodian eats in town.",
+      'cbd':        "The CBD is a food lover's paradise! 442 Asian restaurants — click any dot and I'll be your guide!"
     };
-    var msg = welcomes[s.id] || 'Tap any dot on the map to discover a restaurant! 🐭';
-    textEl.innerHTML = '';
-    var i = 0;
+    var _msg = _welcomes[s.id] || "Tap any dot on the map to discover a restaurant!";
+    textEl.textContent = '';
+    var _ti = 0;
     if (bubble._typeTimer) clearInterval(bubble._typeTimer);
     bubble._typeTimer = setInterval(function(){
-      if (i < msg.length) {
-        textEl.textContent = msg.slice(0, ++i);
-      } else {
-        clearInterval(bubble._typeTimer);
-      }
+      if (_ti < _msg.length) { textEl.textContent = _msg.slice(0, ++_ti); }
+      else { clearInterval(bubble._typeTimer); }
     }, 22);
   }
   setTimeout(()=>{ card.classList.add('visible'); }, 50);
@@ -309,7 +239,6 @@ function goToStop(idx) {
   renderChart2(s);
   renderBars(s.bars);
   renderFoods(s.foods);
-  renderStopMap(s, idx);
 
   var bprev = document.getElementById('btn-prev');
   var bnext = document.getElementById('btn-next');
@@ -327,12 +256,55 @@ function prevStop() {
   if(current > 0) goToStop(current-1);
 }
 
+
 function renderChart2(stop){
   var container = document.getElementById('chart2-content'); if(!container) return;
   var ct = document.getElementById('chart2-title'); if(ct) ct.textContent = stop.chart2Title || '';
   container.innerHTML = '';
   if(!stop.chart2Type) return;
+  if(stop.chart2Type === 'hbar') renderHBar(stop.chart2Data, container);
+  if(stop.chart2Type === 'donut')     renderDonut(stop.chart2Data, container);
   if(stop.chart2Type === 'lollipop')  renderLollipop(stop.chart2Data, container);
+  if(stop.chart2Type === 'grouped')   renderGrouped(stop.chart2Data, container);
+  if(stop.chart2Type === 'radial')    renderRadial(stop.chart2Data, container);
+  if(stop.chart2Type === 'sparkgrid') renderSparkGrid(stop.chart2Data, container);
+}
+
+function renderHBar(data, el){
+  var max = Math.max.apply(null, data.map(function(d){return d.val;}));
+  var html = '';
+  data.forEach(function(d){
+    var w = Math.round(d.val / max * 100);
+    html += '<div class="pop-bar-row">' +
+      '<div class="pop-bar-label" style="color:var(--ink-mid)">' + d.label + '</div>' +
+      '<div class="pop-bar-track">' +
+        '<div class="pop-bar-fill" style="width:0%;background:' + d.color + '" data-target="' + w + '"></div>' +
+      '</div>' +
+      '<div class="pop-bar-pct" style="color:' + d.color + ';font-weight:500">' + d.val + '</div>' +
+      '</div>';
+  });
+  el.innerHTML = html;
+  setTimeout(function(){
+    el.querySelectorAll('.pop-bar-fill').forEach(function(bar){
+      bar.style.width = bar.dataset.target + '%';
+    });
+  }, 50);
+}
+
+function renderDonut(data, el){
+  var r=40,cx=46,cy=46,sw=12,circ=2*Math.PI*r;
+  var arc=circ*(data.asian/100);
+  el.innerHTML='<div class="donut-wrap"><svg width="92" height="92" viewBox="0 0 92 92">'+
+    '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#e8e0d4" stroke-width="'+sw+'"/>'+
+    '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#c94030" stroke-width="'+sw+'"'+
+    ' stroke-dasharray="'+arc+' '+circ+'" stroke-dashoffset="'+(circ/4)+'" style="transition:stroke-dasharray 0.8s ease"/>'+
+    '<text x="'+cx+'" y="'+(cy-3)+'" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#1a1714">'+data.asian+'%</text>'+
+    '<text x="'+cx+'" y="'+(cy+10)+'" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#8a837a">Asian-born</text>'+
+    '</svg>'+
+    '<div class="donut-legend">'+
+    '<div class="donut-legend-item"><div class="donut-swatch" style="background:#c94030"></div>Asian-born: '+data.asian+'%</div>'+
+    '<div class="donut-legend-item"><div class="donut-swatch" style="background:#e8e0d4"></div>Other: '+data.nonAsian+'%</div>'+
+    '</div></div>';
 }
 
 function renderLollipop(data, el){
@@ -356,192 +328,426 @@ function renderLollipop(data, el){
   },60);
 }
 
-buildTrail();
-
-// ── Typewriter animation ──
-(function(){
-  var line1 = `"Bonjour! I'm Remy."`;
-  var line2 = `I've sniffed out something extraordinary about this city — follow me and I'll show you how migration shaped the way Melbourne eats.`;
-  var el1 = document.getElementById('typewriter-line1');
-  var el2 = document.getElementById('typewriter-line2');
-  if(!el1 || !el2) return;
-  var i = 0, j = 0;
+function renderGrouped(data, el){
+  var maxVal=7571;
+  var ec='#1d7a68',sc='#7f6ab8';
+  var rows='';
+  data.eastAsia.forEach(function(e,i){
+    var s=data.southAsia[i];
+    var ew=Math.round(e.val/maxVal*100);
+    var sw=Math.round(s.val/maxVal*100);
+    rows+='<div class="grouped-bar-group">'+
+      '<div class="grouped-bar-glabel">'+e.label+' / '+s.label+'</div>'+
+      '<div class="grouped-bar-pair"><div class="grouped-bar-mini" style="width:0%;background:'+ec+'" data-w="'+ew+'"></div><span style="font-size:0.6rem;color:var(--ink-muted);margin-left:3px">'+e.val.toLocaleString()+'</span></div>'+
+      '<div class="grouped-bar-pair"><div class="grouped-bar-mini" style="width:0%;background:'+sc+'" data-w="'+sw+'"></div><span style="font-size:0.6rem;color:var(--ink-muted);margin-left:3px">'+s.val.toLocaleString()+'</span></div>'+
+      '</div>';
+  });
+  el.innerHTML='<div class="grouped-bar-legend">'+
+    '<div class="donut-legend-item"><div class="donut-swatch" style="background:'+ec+'"></div>East/SE Asian</div>'+
+    '<div class="donut-legend-item"><div class="donut-swatch" style="background:'+sc+'"></div>South Asian</div>'+
+    '</div><div class="grouped-bar-wrap">'+rows+'</div>';
   setTimeout(function(){
-    var t1 = setInterval(function(){
-      if(i < line1.length){ el1.textContent += line1[i++]; }
-      else {
-        clearInterval(t1);
-        setTimeout(function(){
-          var t2 = setInterval(function(){
-            if(j < line2.length){ el2.textContent += line2[j++]; }
-            else { clearInterval(t2); }
-          }, 18);
-        }, 300);
-      }
-    }, 45);
-  }, 1100);
-})();
-
-// ── Typewriter animation ──
-(function(){
-  var line1 = `"Bonjour! I'm Remy."`;
-  var line2 = `I've sniffed out something extraordinary about this city — follow me and I'll show you how migration shaped the way Melbourne eats.`;
-  var el1 = document.getElementById('typewriter-line1');
-  var el2 = document.getElementById('typewriter-line2');
-  if(!el1 || !el2) return;
-  var i = 0, j = 0;
-  setTimeout(function(){
-    var t1 = setInterval(function(){
-      if(i < line1.length){ el1.textContent += line1[i++]; }
-      else {
-        clearInterval(t1);
-        setTimeout(function(){
-          var t2 = setInterval(function(){
-            if(j < line2.length){ el2.textContent += line2[j++]; }
-            else { clearInterval(t2); }
-          }, 18);
-        }, 300);
-      }
-    }, 45);
-  }, 1100);
-})();
-
-// ── Per-stop restaurant map ──
-var _stopMap = null;
-var _stopMarkersLayer = null;
-
-function renderStopMap(stop, idx) {
-  var el = document.getElementById('stop-map');
-  if (!el) return;
-
-  var centers = {
-    'boxhill':    [-37.8196, 145.1214],
-    'glen':       [-37.8797, 145.1647],
-    'springvale': [-37.9497, 145.1513],
-    'cbd':        [-37.8136, 144.9631]
-  };
-  var zoom = {'cbd': 14, 'boxhill': 14, 'glen': 14, 'springvale': 14};
-  var radius = {'cbd': 0.025, 'boxhill': 0.035, 'glen': 0.035, 'springvale': 0.035};
-
-  var center = centers[stop.id] || [-37.85, 145.05];
-
-  var CUISINE_COLORS = {
-    'Chinese':'#1d7a68','Japanese':'#e8863a','Vietnamese':'#378add',
-    'Indian':'#7f6ab8','Korean':'#c94030','Malaysian':'#b87c2a',
-    'Thai':'#d4537e','Other Asian':'#888780','Asian (general)':'#888780',
-    'Sri Lankan':'#e8863a','Cambodian':'#e8a030','Taiwanese':'#1d7a68',
-    'Indonesian':'#888780','Nepalese':'#7f6ab8','Burmese':'#888780','Noodle':'#888780'
-  };
-
-  if (!_stopMap) {
-    _stopMap = L.map('stop-map', {zoomControl:true, scrollWheelZoom:false});
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution:'© OpenStreetMap © CARTO', subdomains:'abcd', maxZoom:19
-    }).addTo(_stopMap);
-    _stopMarkersLayer = L.layerGroup().addTo(_stopMap);
-  }
-
-  _stopMarkersLayer.clearLayers();
-  _stopMap.setView(center, zoom[stop.id] || 14);
-
-  var r = radius[stop.id] || 0.035;
-  fetch('https://raw.githubusercontent.com/shsu0002/data2/main/files/02_asian_restaurant_points.json')
-    .then(function(res){ return res.json(); })
-    .then(function(data){
-      var nearby = data.filter(function(d){
-        return Math.abs(d.lat - center[0]) < r && Math.abs(d.lon - center[1]) < r;
-      });
-      window._stopRestaurants = nearby;
-      window._stopName = stop.name;
-      window._stopCUISSINE_COLORS = CUISINE_COLORS;
-
-      // Build filter buttons
-      var cuisines = ['All'];
-      nearby.forEach(function(d){
-        if (d.cuisine_label && cuisines.indexOf(d.cuisine_label) === -1) cuisines.push(d.cuisine_label);
-      });
-      var filterEl = document.getElementById('stop-map-filters');
-      if (filterEl) {
-        filterEl.innerHTML = '';
-        cuisines.forEach(function(c){
-          var col = c === 'All' ? '#4a4540' : (CUISINE_COLORS[c] || '#888780');
-          var btn = document.createElement('button');
-          btn.textContent = c;
-          btn.dataset.cuisine = c;
-          btn.style.cssText = 'font-family:var(--sans);font-size:0.62rem;font-weight:500;padding:3px 9px;border-radius:20px;cursor:pointer;border:1.5px solid ' + col + ';margin:2px;background:' + (c === 'All' ? col : 'transparent') + ';color:' + (c === 'All' ? 'white' : col) + ';transition:all 0.15s';
-          btn.addEventListener('click', (function(cuisine){ return function(){ filterStopMap(cuisine); }; })(c));
-          filterEl.appendChild(btn);
-        });
-      }
-
-      // Render all markers initially
-      renderStopMarkers(nearby, CUISINE_COLORS, 'All');
-    });
+    el.querySelectorAll('.grouped-bar-mini').forEach(function(e){e.style.width=e.dataset.w+'%';});
+  },60);
 }
 
+function renderRadial(data, el){
+  var sz=50;
+  var items=data.map(function(d){
+    var pct=d.val/d.max;
+    var r=18,cx=sz/2,cy=sz/2,circ=2*Math.PI*r,arc=circ*pct;
+    return '<div class="radial-item">'+
+      '<svg width="'+sz+'" height="'+sz+'" viewBox="0 0 '+sz+' '+sz+'">'+
+      '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#e8e0d4" stroke-width="6"/>'+
+      '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="'+d.color+'" stroke-width="6"'+
+      ' stroke-dasharray="'+arc+' '+circ+'" stroke-dashoffset="'+(circ/4)+'" style="transition:stroke-dasharray 0.7s ease"/>'+
+      '<text x="'+cx+'" y="'+(cy+4)+'" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" font-weight="500" fill="#1a1714">'+(d.val/1000).toFixed(1)+'k</text>'+
+      '</svg>'+
+      '<div class="radial-label" style="color:'+d.color+';font-weight:500">'+d.label+'</div>'+
+      '</div>';
+  }).join('');
+  el.innerHTML='<div class="radial-wrap">'+items+'</div>';
+}
+
+function renderSparkGrid(data, el){
+  var cards=data.map(function(d){
+    var mx=Math.max.apply(null,d.spark);
+    var bars=d.spark.map(function(v,i){
+      var h=Math.round(v/mx*32);
+      var op=(0.4+0.6*(i/(d.spark.length-1))).toFixed(2);
+      return '<div class="spark-bar" style="height:'+h+'px;background:'+d.color+';opacity:'+op+';flex:1"></div>';
+    }).join('');
+    return '<div class="spark-card">'+
+      '<div class="spark-title">'+d.label+'</div>'+
+      '<div class="spark-bars">'+bars+'</div>'+
+      '<div class="spark-num" style="color:'+d.color+'">'+d.val+'</div>'+
+      '</div>';
+  }).join('');
+  el.innerHTML='<div class="spark-grid">'+cards+'</div>';
+}
+
+buildTrail();
+
+
+// ── Typewriter animation ──
+
+(function(){
+  var line1 = `“Bonjour! I’m Remy.”`;
+  var line2 = `I’ve sniffed out something extraordinary about this city — follow me and I’ll show you how migration shaped the way Melbourne eats.`;
+  var el1 = document.getElementById('typewriter-line1');
+  var el2 = document.getElementById('typewriter-line2');
+  if(!el1 || !el2) return;
+  var i = 0, j = 0;
+  // Start typing line1 after remy drop animation (~1.1s)
+  setTimeout(function(){
+    var t1 = setInterval(function(){
+      if(i < line1.length){
+        el1.textContent += line1[i++];
+      } else {
+        clearInterval(t1);
+        // Start line2 after short pause
+        setTimeout(function(){
+          var t2 = setInterval(function(){
+            if(j < line2.length){
+              el2.textContent += line2[j++];
+            } else {
+              clearInterval(t2);
+            }
+          }, 18);
+        }, 300);
+      }
+    }, 45);
+  }, 1100);
+})();
+
+
 // ── Vega-Lite charts ──
+
 const BASE = 'https://raw.githubusercontent.com/shsu0002/data2/main/files/';
 
 const COLORS = {
-  red:'#c94030', teal:'#1d7a68', gold:'#b87c2a',
-  blue:'#378add', purple:'#7f6ab8', orange:'#e8863a',
-  muted:'#d3d1c7', paper:'#f2ede5'
+  red:  '#c94030', teal: '#1d7a68', gold: '#b87c2a',
+  blue: '#378add', purple: '#7f6ab8', orange: '#e8863a',
+  muted: '#d3d1c7', paper: '#f2ede5'
 };
 
+// Vega-Lite shared config
 const CONFIG = {
   font: 'DM Sans',
   background: 'transparent',
   view: {stroke: null},
   axis: {
-    labelFont:'DM Sans', titleFont:'DM Sans',
-    labelColor:'#8a837a', titleColor:'#4a4540',
-    gridColor:'#e8e0d4', domainColor:'#d3d1c7',
-    labelFontSize:11, titleFontSize:11
+    labelFont: 'DM Sans', titleFont: 'DM Sans',
+    labelColor: '#8a837a', titleColor: '#4a4540',
+    gridColor: '#e8e0d4', domainColor: '#d3d1c7',
+    labelFontSize: 11, titleFontSize: 11
   },
   legend: {
-    labelFont:'DM Sans', titleFont:'DM Sans',
-    labelColor:'#4a4540', titleColor:'#8a837a',
-    labelFontSize:11
+    labelFont: 'DM Sans', titleFont: 'DM Sans',
+    labelColor: '#4a4540', titleColor: '#8a837a',
+    labelFontSize: 11
   }
 };
 
-// ── Chart 3: Vega-Lite choropleth ──
-vegaEmbed('#chart-bar-suburbs', {
+// ── Chart 3: Leaflet choropleth — Asian-born % by suburb ──
+(function(){
+  var SUBURB_DATA = {"SPRINGVALE": 56.4, "BOX HILL": 53.6, "CLAYTON": 52.3, "SPRINGVALE SOUTH": 50.0, "MELBOURNE": 48.3, "GLEN WAVERLEY": 47.9, "NOTTING HILL": 44.3, "NOBLE PARK": 44.3, "CLAYTON SOUTH": 44.3, "WILLIAMS LANDING": 44.1, "TRUGANINA": 42.9, "DOCKLANDS": 42.5, "BRAYBROOK": 42.0, "TARNEIT": 42.0, "SUNSHINE NORTH": 39.2, "KEYSBOROUGH": 38.8, "AINTREE": 38.7, "BURWOOD EAST": 37.8, "MANOR LAKES": 37.0, "LAVERTON": 37.0, "ST ALBANS": 36.9, "SOUTHBANK": 36.9, "DONCASTER": 36.5, "LYNDHURST": 36.4, "BOX HILL NORTH": 36.3, "CARLTON": 36.2, "DONCASTER EAST": 34.9, "COBBLEBANK": 34.8, "WEST MELBOURNE": 34.7, "MOUNT WAVERLEY": 34.5, "CAIRNLEA": 34.1, "BURWOOD": 34.1, "KALKALLO": 34.0, "STRATHTULLOH": 33.8, "CLYDE NORTH": 33.7, "BALWYN": 33.5, "SUNSHINE": 33.5, "POINT COOK": 33.5, "WANTIRNA SOUTH": 33.2, "LYNBROOK": 33.0};
+
+  function getColor(pct) {
+    return pct > 50 ? '#1d7a68' :
+           pct > 44 ? '#2d9e88' :
+           pct > 38 ? '#5ab8a0' :
+           pct > 30 ? '#8ecfbf' :
+           pct > 20 ? '#c2e5de' :
+                      '#e8f5f2';
+  }
+
+  function initChoropleth() {
+    var el = document.getElementById('chart-bar-suburbs');
+    if (!el || el._leaflet_id) return;
+
+    var map = L.map('chart-bar-suburbs', {
+      center: [-37.88, 145.05],
+      zoom: 10,
+      zoomControl: true,
+      scrollWheelZoom: false
+    });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '© OpenStreetMap © CARTO',
+      subdomains: 'abcd', maxZoom: 19
+    }).addTo(map);
+
+    // Show loading indicator
+    var loadingDiv = L.DomUtil.create('div');
+    loadingDiv.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,0.85);padding:8px 14px;border-radius:4px;font-size:12px;color:#4a4540;z-index:999;pointer-events:none';
+    loadingDiv.textContent = 'Loading suburb boundaries…';
+    el.appendChild(loadingDiv);
+
+    fetch('https://data.gov.au/geoserver/vic-suburb-locality-boundaries-psma-administrative-boundaries/wfs?request=GetFeature&typeName=ckan_af33dd8c_0534_4e18_9245_fc64440f742e&outputFormat=json')
+      .then(function(r){ return r.json(); })
+      .then(function(geojson){
+        if (loadingDiv.parentNode) loadingDiv.parentNode.removeChild(loadingDiv);
+        L.geoJSON(geojson, {
+          style: function(feature) {
+            var p = feature.properties;
+            var raw = p.vic_loca_2 || p.VIC_LOCA_2 || p.NAME || p.name || p.locality_name || '';
+            var name = raw.toUpperCase();
+            var pct = SUBURB_DATA[name] || 0;
+            return {
+              fillColor: getColor(pct),
+              weight: pct > 0 ? 0.8 : 0.3,
+              color: '#a0b8b0',
+              fillOpacity: pct > 0 ? 0.85 : 0.08
+            };
+          },
+          onEachFeature: function(feature, layer) {
+            var p = feature.properties;
+            var name = p.vic_loca_2 || p.VIC_LOCA_2 || p.NAME || p.name || '';
+            var pct = SUBURB_DATA[name.toUpperCase()];
+            if (pct) {
+              layer.bindTooltip('<strong>' + name + '</strong><br>Asian-born: ' + pct + '%', {direction:'top'});
+              layer.on('mouseover', function(){ this.setStyle({weight:2, color:'#1d7a68'}); });
+              layer.on('mouseout',  function(){ this.setStyle({weight:0.8, color:'#a0b8b0'}); });
+            }
+          }
+        }).addTo(map);
+      })
+      .catch(function(){
+        if (loadingDiv.parentNode) loadingDiv.parentNode.removeChild(loadingDiv);
+      });
+
+    // Legend
+    var legend = L.control({position: 'bottomright'});
+    legend.onAdd = function() {
+      var div = L.DomUtil.create('div');
+      div.style.cssText = 'background:white;padding:8px 10px;border-radius:4px;font-family:DM Sans,sans-serif;font-size:11px;line-height:1.6;box-shadow:0 1px 4px rgba(0,0,0,0.12)';
+      div.innerHTML = '<div style="font-weight:500;margin-bottom:4px;color:#4a4540">Asian-born %</div>' +
+        ['> 50%','44–50%','38–44%','30–38%','20–30%','< 20%'].map(function(label, i){
+          var colors = ['#1d7a68','#2d9e88','#5ab8a0','#8ecfbf','#c2e5de','#e8f5f2'];
+          return '<div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:12px;background:' + colors[i] + ';border-radius:2px"></div>' + label + '</div>';
+        }).join('');
+      return div;
+    };
+    legend.addTo(map);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initChoropleth);
+  } else {
+    setTimeout(initChoropleth, 200);
+  }
+})();
+
+// ── Chart 2: Leaflet dot map — Asian restaurant locations ──
+(function(){
+  var CUISINE_COLORS = {
+    'Chinese':       '#1d7a68',
+    'Japanese':      '#e8863a',
+    'Vietnamese':    '#378add',
+    'Indian':        '#7f6ab8',
+    'Korean':        '#c94030',
+    'Malaysian':     '#b87c2a',
+    'Thai':          '#d4537e',
+    'Other Asian':   '#888780',
+    'Asian (general)':'#888780',
+    'Sri Lankan':    '#e8863a',
+    'Cambodian':     '#e8a030',
+    'Noodle':        '#888780',
+    'Taiwanese':     '#1d7a68',
+    'Indonesian':    '#888780',
+    'Nepalese':      '#7f6ab8',
+    'Burmese':       '#888780',
+    'Pakistani':     '#888780'
+  };
+
+  function initMap() {
+    var el = document.getElementById('chart-donut');
+    if (!el || el._leaflet_id) return;
+
+    var map = L.map('chart-donut', {
+      center: [-37.85, 145.05],
+      zoom: 11,
+      zoomControl: true,
+      scrollWheelZoom: false
+    });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '© OpenStreetMap © CARTO',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(map);
+
+    fetch('https://raw.githubusercontent.com/shsu0002/data2/main/files/02_asian_restaurant_points.json')
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        data.forEach(function(d){
+          var color = CUISINE_COLORS[d.cuisine_label] || '#888780';
+          L.circleMarker([d.lat, d.lon], {
+            radius: 5,
+            fillColor: color,
+            color: 'white',
+            weight: 0.5,
+            opacity: 1,
+            fillOpacity: 0.8
+          }).bindTooltip(d.name + '<br><em>' + d.cuisine_label + '</em>', {direction:'top'})
+            .addTo(map);
+        });
+      });
+  }
+
+  // Init after DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMap);
+  } else {
+    setTimeout(initMap, 100);
+  }
+})();
+
+// ── Chart 5: Scatter — pop vs restaurants ──
+vegaEmbed('#chart-scatter', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  width: 'container', height: 340,
+  data: {url: BASE + '04_scatter_pop_vs_restaurant.json'},
   config: CONFIG,
-  projection: {type: 'mercator'},
-  data: {url: BASE + 'vic_suburbs_real.geojson', format: {type: 'json', property: 'features'}},
-  mark: {type: 'geoshape', stroke: '#ccc', strokeWidth: 0.3},
-  encoding: {
-    color: {
-      field: 'pct_asian',
-      type: 'quantitative',
-      scale: {domain: [30, 58], range: ['#c2e5de', '#1d7a68'], unknown: '#f0ece8'},
-      legend: {title: 'Asian-born %', gradientLength: 100, orient: 'bottom-right'}
+  width: 'container', height: 280,
+  layer: [
+    {
+      mark: {type:'line', strokeDash:[4,3], color: COLORS.muted},
+      transform: [{regression:'pct_asian_restaurants', on:'pct_asian_pop'}],
+      encoding: {
+        x: {field:'pct_asian_pop', type:'quantitative'},
+        y: {field:'pct_asian_restaurants', type:'quantitative'}
+      }
     },
-    tooltip: [
-      {field: 'suburb', title: 'Suburb'},
-      {field: 'pct_asian', title: 'Asian-born %', format: '.1f'},
-      {field: 'total_pop', title: 'Population', format: ','}
-    ]
+    {
+      mark: {type:'point', filled:true, size:80, opacity:0.85},
+      encoding: {
+        x: {field:'pct_asian_pop', type:'quantitative', title:'Asian-born population (%)', axis:{format:'.0f'}},
+        y: {field:'pct_asian_restaurants', type:'quantitative', title:'Asian restaurants (%)', axis:{format:'.0f'}},
+        color: {value: COLORS.teal},
+        tooltip: [
+          {field:'suburb',title:'Suburb'},
+          {field:'pct_asian_pop',title:'Asian-born %',format:'.1f'},
+          {field:'pct_asian_restaurants',title:'Asian restaurants %',format:'.1f'},
+          {field:'total_restaurants',title:'Total restaurants'}
+        ]
+      }
+    },
+    {
+      mark: {type:'text', dy:-10, fontSize:10, color:'#4a4540'},
+      encoding: {
+        x: {field:'pct_asian_pop', type:'quantitative'},
+        y: {field:'pct_asian_restaurants', type:'quantitative'},
+        text: {field:'suburb'}
+      }
+    }
+  ]
+}, {actions:false});
+
+// ── Chart 6: Heatmap ──
+vegaEmbed('#chart-heatmap', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  data: {url: BASE + '10_cuisine_by_cluster.json'},
+  config: CONFIG,
+  width: 'container', height: 280,
+  mark: {type:'rect', cornerRadius:2},
+  encoding: {
+    x: {field:'cluster', type:'nominal', title:null, axis:{labelAngle:-30, labelLimit:80}},
+    y: {field:'cuisine', type:'nominal', title:null},
+    color: {field:'count', type:'quantitative',
+      scale:{scheme:'greens'},
+      legend:{title:'Restaurants', gradientLength:100}},
+    tooltip: [{field:'cluster',title:'Suburb'},{field:'cuisine',title:'Cuisine'},{field:'count',title:'Restaurants'}]
   }
 }, {actions:false});
 
-// ── Chart 2: Donut — cuisine breakdown ──
-vegaEmbed('#chart-donut', {
+// ── Chart 9: Line — total CBD restaurants ──
+vegaEmbed('#chart-line-total', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '03_cuisine_breakdown.json'},
+  data: {url: BASE + '05_clue_yearly_trend.json'},
   config: CONFIG,
-  width: 'container', height: 300,
-  layer: [{
-    mark: {type:'arc', innerRadius:70, outerRadius:120, padAngle:0.02, cornerRadius:3},
-    encoding: {
-      theta: {field:'count', type:'quantitative'},
-      color: {field:'cuisine', type:'nominal',
-        scale:{range:['#1d7a68','#c94030','#7f6ab8','#b87c2a','#378add','#e8863a','#d4537e','#485860']},
-        legend:{orient:'right', title:null}},
-      tooltip: [{field:'cuisine',title:'Cuisine'},{field:'count',title:'Restaurants'},{field:'pct',title:'Share %',format:'.1f'}]
+  width: 'container', height: 200,
+  layer: [
+    {
+      mark: {type:'area', opacity:0.08, color: COLORS.red},
+      encoding: {
+        x: {field:'year', type:'quantitative', title:null, axis:{format:'d', tickCount:6}},
+        y: {field:'restaurant_count', type:'quantitative', title:'Restaurants'}
+      }
+    },
+    {
+      mark: {type:'line', color: COLORS.red, strokeWidth:2},
+      encoding: {
+        x: {field:'year', type:'quantitative'},
+        y: {field:'restaurant_count', type:'quantitative'},
+        tooltip: [{field:'year',title:'Year'},{field:'restaurant_count',title:'Restaurants'},{field:'total_seats',title:'Seats',format:','}]
+      }
     }
-  }]
+  ]
+}, {actions:false});
+
+// ── Chart 10: Area — Asian share growing over time ──
+vegaEmbed('#chart-line-asian', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  data: {url: BASE + '07b_asian_pct_trend.json'},
+  config: CONFIG,
+  width: 'container', height: 200,
+  layer: [
+    {
+      mark: {type:'area', opacity:0.15, color: COLORS.teal},
+      encoding: {
+        x: {field:'year', type:'quantitative', title:null, axis:{format:'d', tickCount:6}},
+        y: {field:'pct', type:'quantitative', title:'Asian share (%)', axis:{format:'.1f'}, scale:{domain:[0,20]}}
+      }
+    },
+    {
+      mark: {type:'line', color: COLORS.teal, strokeWidth:2.5},
+      encoding: {
+        x: {field:'year', type:'quantitative'},
+        y: {field:'pct', type:'quantitative'},
+        tooltip: [
+          {field:'year', title:'Year'},
+          {field:'pct', title:'Asian share %', format:'.1f'}
+        ]
+      }
+    }
+  ]
+}, {actions:false});
+
+// ── Chart 11: Stacked area — seats ──
+vegaEmbed('#chart-area-seats', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  data: {url: BASE + '09_clue_seats_trend.json'},
+  config: CONFIG,
+  width: 'container', height: 200,
+  mark: {type:'area', opacity:0.8},
+  encoding: {
+    x: {field:'year', type:'quantitative', title:null, axis:{format:'d', tickCount:6}},
+    y: {field:'total_seats', type:'quantitative', stack:'zero', title:'Seats'},
+    color: {field:'seating_type', type:'nominal',
+      scale:{domain:['Seats - Indoor','Seats - Outdoor'], range:[COLORS.blue, COLORS.gold]},
+      legend:{title:null, labelExpr:"datum.label == 'Seats - Indoor' ? 'Indoor' : 'Outdoor'"}},
+    tooltip: [{field:'year',title:'Year'},{field:'seating_type',title:'Type'},{field:'total_seats',title:'Seats',format:','}]
+  }
+}, {actions:false});
+
+// ── Chart 12: Multi-line — sub-areas ──
+vegaEmbed('#chart-multiline', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  data: {url: BASE + '06_clue_area_trend.json'},
+  config: CONFIG,
+  width: 'container', height: 240,
+  transform: [
+    {filter: "datum.area != 'Unincorporated CBD'"},
+    {filter: "datum.count > 0"}
+  ],
+  mark: {type:'line', strokeWidth:1.8, point:{filled:true, size:20, opacity:0.7}},
+  encoding: {
+    x: {field:'year', type:'quantitative', title:null, axis:{format:'d', tickCount:6}},
+    y: {field:'count', type:'quantitative', title:'Restaurants'},
+    color: {field:'area', type:'nominal',
+      scale:{scheme:'tableau10'},
+      legend:{title:null, columns:2}},
+    tooltip: [{field:'year',title:'Year'},{field:'area',title:'Area'},{field:'count',title:'Restaurants'}]
+  }
 }, {actions:false});
