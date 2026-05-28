@@ -149,15 +149,15 @@ const STOPS = [
 let current = -1;
 
 function renderStopMarkers(restaurants, colors, filter) {
-  if (!_stopMap) return;
-  _stopMap.eachLayer(function(l){ if (l instanceof L.CircleMarker) _stopMap.removeLayer(l); });
+  if (!_stopMap || !_stopMarkersLayer) return;
+  _stopMarkersLayer.clearLayers();
   var list = filter === 'All' ? restaurants : restaurants.filter(function(d){ return d.cuisine_label === filter; });
   list.forEach(function(d){
     var color = colors[d.cuisine_label] || '#888780';
     var mk = L.circleMarker([d.lat, d.lon], {radius:6, fillColor:color, color:'white', weight:1, fillOpacity:0.85});
     mk.bindTooltip(d.name + '<br><em>' + d.cuisine_label + '</em>', {direction:'top'});
     mk.on('click', function(){ remySayRestaurant(d); });
-    mk.addTo(_stopMap);
+    _stopMarkersLayer.addLayer(mk);
   });
   var lbl = document.getElementById('stop-map-label');
   if (lbl) lbl.textContent = list.length + (filter === 'All' ? '' : ' ' + filter) + ' restaurants in ' + (window._stopName || '');
@@ -355,8 +355,6 @@ buildTrail();
     }, 45);
   }, 1100);
 })();
-
-buildTrail();
 
 // ── Typewriter animation ──
 (function(){
