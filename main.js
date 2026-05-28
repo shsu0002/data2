@@ -14,7 +14,7 @@ const STOPS = [
       {country:'India',     pct:4.5,  color:'#7f6ab8'},
       {country:'Hong Kong', pct:2.5,  color:'#b87c2a'},
       {country:'Vietnam',   pct:1.9,  color:'#378add'},
-    ], 
+    ],
     rest: '58', chart2Type:'lollipop',
     chart2Data:[
       {label:'Chinese',   val:36, color:'#1d7a68'},
@@ -740,7 +740,7 @@ vegaEmbed('#chart-cuisine-choropleth', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
   width: 'container', height: 340,
   config: CONFIG,
-  projection: {type: 'mercator', center: [145.07, -37.86], scale: 70000},
+  projection: {type: 'mercator', center: [145.069, -37.881], scale: 76000},
   layer: [
     {
       data: {url: BASE + '13_cuisine_choropleth.geojson', format: {type: 'json', property: 'features'}},
