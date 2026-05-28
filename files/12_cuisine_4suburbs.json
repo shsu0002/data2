@@ -1,0 +1,164 @@
+[
+  {
+    "cluster": "Box Hill",
+    "cuisine": "Chinese",
+    "count": 36,
+    "pct": 62.1
+  },
+  {
+    "cluster": "Box Hill",
+    "cuisine": "Japanese",
+    "count": 6,
+    "pct": 10.3
+  },
+  {
+    "cluster": "Box Hill",
+    "cuisine": "Korean",
+    "count": 8,
+    "pct": 13.8
+  },
+  {
+    "cluster": "Box Hill",
+    "cuisine": "Other Asian",
+    "count": 4,
+    "pct": 6.9
+  },
+  {
+    "cluster": "Box Hill",
+    "cuisine": "Thai",
+    "count": 1,
+    "pct": 1.7
+  },
+  {
+    "cluster": "Box Hill",
+    "cuisine": "Vietnamese",
+    "count": 3,
+    "pct": 5.2
+  },
+  {
+    "cluster": "Melbourne CBD",
+    "cuisine": "Chinese",
+    "count": 114,
+    "pct": 25.8
+  },
+  {
+    "cluster": "Melbourne CBD",
+    "cuisine": "Indian",
+    "count": 37,
+    "pct": 8.4
+  },
+  {
+    "cluster": "Melbourne CBD",
+    "cuisine": "Japanese",
+    "count": 129,
+    "pct": 29.2
+  },
+  {
+    "cluster": "Melbourne CBD",
+    "cuisine": "Korean",
+    "count": 38,
+    "pct": 8.6
+  },
+  {
+    "cluster": "Melbourne CBD",
+    "cuisine": "Malaysian",
+    "count": 16,
+    "pct": 3.6
+  },
+  {
+    "cluster": "Melbourne CBD",
+    "cuisine": "Other Asian",
+    "count": 45,
+    "pct": 10.2
+  },
+  {
+    "cluster": "Melbourne CBD",
+    "cuisine": "Thai",
+    "count": 33,
+    "pct": 7.5
+  },
+  {
+    "cluster": "Melbourne CBD",
+    "cuisine": "Vietnamese",
+    "count": 30,
+    "pct": 6.8
+  },
+  {
+    "cluster": "Glen Waverley",
+    "cuisine": "Chinese",
+    "count": 4,
+    "pct": 16.7
+  },
+  {
+    "cluster": "Glen Waverley",
+    "cuisine": "Japanese",
+    "count": 9,
+    "pct": 37.5
+  },
+  {
+    "cluster": "Glen Waverley",
+    "cuisine": "Korean",
+    "count": 5,
+    "pct": 20.8
+  },
+  {
+    "cluster": "Glen Waverley",
+    "cuisine": "Malaysian",
+    "count": 1,
+    "pct": 4.2
+  },
+  {
+    "cluster": "Glen Waverley",
+    "cuisine": "Other Asian",
+    "count": 3,
+    "pct": 12.5
+  },
+  {
+    "cluster": "Glen Waverley",
+    "cuisine": "Thai",
+    "count": 1,
+    "pct": 4.2
+  },
+  {
+    "cluster": "Glen Waverley",
+    "cuisine": "Vietnamese",
+    "count": 1,
+    "pct": 4.2
+  },
+  {
+    "cluster": "Springvale",
+    "cuisine": "Chinese",
+    "count": 7,
+    "pct": 20.6
+  },
+  {
+    "cluster": "Springvale",
+    "cuisine": "Indian",
+    "count": 4,
+    "pct": 11.8
+  },
+  {
+    "cluster": "Springvale",
+    "cuisine": "Korean",
+    "count": 1,
+    "pct": 2.9
+  },
+  {
+    "cluster": "Springvale",
+    "cuisine": "Other Asian",
+    "count": 5,
+    "pct": 14.7
+  },
+  {
+    "cluster": "Springvale",
+    "cuisine": "Thai",
+    "count": 4,
+    "pct": 11.8
+  },
+  {
+    "cluster": "Springvale",
+    "cuisine": "Vietnamese",
+    "count": 13,
+    "pct": 38.2
+  }
+]
