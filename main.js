@@ -744,7 +744,7 @@ vegaEmbed('#chart-cuisine-choropleth', {
   layer: [
     {
       data: {url: BASE + '13_cuisine_choropleth.geojson', format: {type: 'json', property: 'features'}},
-      mark: {type: 'geoshape', stroke: 'white', strokeWidth: 2},
+      mark: {type: 'geoshape', stroke: 'white', strokeWidth: 2.5},
       encoding: {
         color: {
           field: 'dominant_cuisine', type: 'nominal',
@@ -763,19 +763,13 @@ vegaEmbed('#chart-cuisine-choropleth', {
     },
     {
       data: {url: BASE + '13_cuisine_choropleth.geojson', format: {type: 'json', property: 'features'}},
-      mark: {type: 'text', fontSize: 11, fontWeight: 600, dy: -6, color: 'white',
-             stroke: 'rgba(0,0,0,0.3)', strokeWidth: 2},
+      mark: {type: 'text', fontSize: 11, fontWeight: 600, color: 'white',
+             stroke: '#333', strokeWidth: 2.5, strokeOpacity: 0.5},
       encoding: {
-        longitude: {field: 'geometry.coordinates[0][0][0]', type: 'quantitative'},
-        latitude:  {field: 'geometry.coordinates[0][0][1]', type: 'quantitative'},
+        longitude: {field: 'centroid_lng', type: 'quantitative'},
+        latitude:  {field: 'centroid_lat', type: 'quantitative'},
         text: {field: 'suburb_label'}
       }
     }
   ]
-}, {actions: false})
-.then(() => {
-  // fallback: add suburb labels as SVG overlays if vega-lite text layer doesn't render correctly
-})
-.catch(() => {
-  // silent fail — labels optional
-});
+}, {actions: false});
