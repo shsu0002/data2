@@ -463,14 +463,14 @@ const CONFIG = {
     loadingDiv.textContent = 'Loading suburb boundaries…';
     el.appendChild(loadingDiv);
 
-    fetch('https://data.gov.au/geoserver/vic-suburb-locality-boundaries-psma-administrative-boundaries/wfs?request=GetFeature&typeName=ckan_af33dd8c_0534_4e18_9245_fc64440f742e&outputFormat=json')
+    fetch('https://geo.abs.gov.au/arcgis/rest/services/ASGS2021/SAL/MapServer/0/query?where=STATE_CODE_2021+%3D+%272%27&outFields=SAL_NAME_2021&returnGeometry=true&geometryPrecision=4&f=geojson')
       .then(function(r){ return r.json(); })
       .then(function(geojson){
         if (loadingDiv.parentNode) loadingDiv.parentNode.removeChild(loadingDiv);
-        L.geoJSON(geojson, {
+L.geoJSON(geojson, {
           style: function(feature) {
             var p = feature.properties;
-            var raw = p.vic_loca_2 || p.VIC_LOCA_2 || p.NAME || p.name || p.locality_name || '';
+            var raw = p.SAL_NAME_2021 || p.vic_loca_2 || p.NAME || '';
             var name = raw.toUpperCase();
             var pct = SUBURB_DATA[name] || 0;
             return {
@@ -482,7 +482,7 @@ const CONFIG = {
           },
           onEachFeature: function(feature, layer) {
             var p = feature.properties;
-            var name = p.vic_loca_2 || p.VIC_LOCA_2 || p.NAME || p.name || '';
+            var name = p.SAL_NAME_2021 || p.vic_loca_2 || p.NAME || '';
             var pct = SUBURB_DATA[name.toUpperCase()];
             if (pct) {
               layer.bindTooltip('<strong>' + name + '</strong><br>Asian-born: ' + pct + '%', {direction:'top'});
