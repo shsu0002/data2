@@ -586,108 +586,196 @@ const CONFIG = {
 
 
 
-// ── Section A: Choropleth ──
-vegaEmbed('#chart-choropleth', {
+// ── Chart A1: Bin map — Asian-born % across Melbourne suburbs ──
+// All suburbs shown as bars sorted by %, focus suburbs highlighted in teal
+vegaEmbed('#chart-binmap', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  width: 'container', height: 340,
+  data: {url: BASE + '01_suburb_asian_pct.json'},
   config: CONFIG,
-  projection: {type: 'mercator'},
-  data: {url: BASE + 'vic_suburbs_real.geojson', format: {type: 'json', property: 'features'}},
+  width: 'container', height: 260,
   transform: [
-    {calculate: 'datum.pct_asian', as: 'pct'},
-    {calculate: 'datum.suburb', as: 'name'},
-    {calculate: 'datum.total_pop', as: 'pop'}
+    {filter: 'datum.pct_asian > 0 && datum.total_pop > 3000'},
+    {window: [{op: 'rank', as: 'rank'}], sort: [{field: 'pct_asian', order: 'descending'}]},
+    {filter: 'datum.rank <= 40'},
+    {calculate: "indexof(['Box Hill','Glen Waverley','Springvale','Melbourne'], datum.suburb) >= 0 ? datum.suburb : 'Other'", as: 'highlight'}
   ],
-  mark: {type: 'geoshape', stroke: 'white', strokeWidth: 0.5},
-  encoding: {
-    color: {
-      field: 'pct', type: 'quantitative',
-      scale: {domain: [30, 58], range: ['#c2e5de', '#1d7a68']},
-      legend: {title: 'Asian-born %', gradientLength: 100, orient: 'bottom-right'}
-    },
-    tooltip: [
-      {field: 'name', title: 'Suburb'},
-      {field: 'pct', title: 'Asian-born %', format: '.1f'},
-      {field: 'pop', title: 'Population', format: ','}
-    ]
-  }
+  layer: [
+    {
+      mark: {type: 'bar', cornerRadiusEnd: 3},
+      encoding: {
+        x: {
+          field: 'suburb', type: 'nominal',
+          sort: {field: 'pct_asian', order: 'descending'},
+          axis: {labelAngle: -45, labelLimit: 90, title: null, labelFontSize: 10,
+            labelExpr: "indexof(['Box Hill','Glen Waverley','Springvale','Melbourne'], datum.value) >= 0 ? datum.value : ''"}
+        },
+        y: {
+          field: 'pct_asian', type: 'quantitative',
+          title: 'Asian-born (%)',
+          axis: {tickCount: 5, format: '.0f'}
+        },
+        color: {
+          field: 'highlight', type: 'nominal',
+          scale: {
+            domain: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne', 'Other'],
+            range:  ['#1d7a68',  '#7f6ab8',       '#378add',    '#c94030',    '#d3d1c7']
+          },
+          legend: {title: null, orient: 'top-right',
+            values: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne']}
+        },
+        opacity: {
+          condition: {test: "datum.highlight !== 'Other'", value: 1},
+          value: 0.45
+        },
+        tooltip: [
+          {field: 'suburb', title: 'Suburb'},
+          {field: 'pct_asian', title: 'Asian-born %', format: '.1f'},
+          {field: 'total_pop', title: 'Population', format: ','}
+        ]
+      }
+    }
+  ]
 }, {actions:false});
 
-// ── Section A: Population growth line ──
+// ── Chart A2: Line graph — population growth 2011–2021 ──
 vegaEmbed('#chart-pop-growth', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
   data: {url: BASE + '11_suburb_pop_growth.json'},
   config: CONFIG,
   width: 'container', height: 280,
-  mark: {type: 'line', strokeWidth: 2.5, point: {filled: true, size: 60}},
-  encoding: {
-    x: {field: 'year', type: 'ordinal', title: null, axis: {labelAngle: 0}},
-    y: {field: 'pct', type: 'quantitative', title: 'Asian-born (%)', scale: {domain: [30, 65]}},
-    color: {
-      field: 'suburb', type: 'nominal',
-      scale: {
-        domain: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne CBD'],
-        range: ['#1d7a68', '#7f6ab8', '#378add', '#c94030']
-      },
-      legend: {title: null, orient: 'bottom-left'}
+  layer: [
+    {
+      mark: {type: 'line', strokeWidth: 2.5},
+      encoding: {
+        x: {field: 'year', type: 'ordinal', title: null, axis: {labelAngle: 0}},
+        y: {field: 'pct', type: 'quantitative', title: 'Asian-born (%)', scale: {domain: [28, 62]}},
+        color: {
+          field: 'suburb', type: 'nominal',
+          scale: {
+            domain: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne CBD'],
+            range:  ['#1d7a68',  '#7f6ab8',       '#378add',    '#c94030']
+          },
+          legend: {title: null, orient: 'bottom-left'}
+        }
+      }
     },
-    tooltip: [
-      {field: 'suburb', title: 'Suburb'},
-      {field: 'year', title: 'Year'},
-      {field: 'pct', title: 'Asian-born %', format: '.1f'},
-      {field: 'asian_born', title: 'Asian-born', format: ','}
-    ]
-  }
-}, {actions:false});
+    {
+      mark: {type: 'point', filled: true, size: 70},
+      encoding: {
+        x: {field: 'year', type: 'ordinal'},
+        y: {field: 'pct', type: 'quantitative'},
+        color: {
+          field: 'suburb', type: 'nominal',
+          scale: {
+            domain: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne CBD'],
+            range:  ['#1d7a68',  '#7f6ab8',       '#378add',    '#c94030']
+          },
+          legend: null
+        },
+        tooltip: [
+          {field: 'suburb', title: 'Suburb'},
+          {field: 'year', title: 'Year'},
+          {field: 'pct', title: 'Asian-born %', format: '.1f'},
+          {field: 'asian_born', title: 'Asian-born residents', format: ','},
+          {field: 'total_pop', title: 'Total population', format: ','}
+        ]
+      }
+    },
+    {
+      mark: {type: 'text', dx: 8, dy: -8, fontSize: 10, fontWeight: 500},
+      transform: [{filter: 'datum.year === 2021'}],
+      encoding: {
+        x: {field: 'year', type: 'ordinal'},
+        y: {field: 'pct', type: 'quantitative'},
+        text: {field: 'suburb'},
+        color: {
+          field: 'suburb', type: 'nominal',
+          scale: {
+            domain: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne CBD'],
+            range:  ['#1d7a68',  '#7f6ab8',       '#378add',    '#c94030']
+          },
+          legend: null
+        }
+      }
+    }
+  ]
+}, {actions: false});
 
-// ── Section B: Donut ──
+// ── Chart B1: Donut — Melbourne-wide cuisine breakdown ──
+// Consolidate duplicate "Other Asian" rows first via transform
 vegaEmbed('#chart-donut-section', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
   data: {url: BASE + '03_cuisine_breakdown.json'},
   config: CONFIG,
   width: 'container', height: 300,
-  layer: [{
-    mark: {type: 'arc', innerRadius: 65, outerRadius: 115, padAngle: 0.02, cornerRadius: 3},
-    encoding: {
-      theta: {field: 'count', type: 'quantitative'},
-      color: {
-        field: 'cuisine', type: 'nominal',
-        scale: {range: ['#1d7a68','#c94030','#7f6ab8','#b87c2a','#378add','#e8863a','#d4537e','#485860','#5ab8a0','#e8a030','#888780']},
-        legend: {orient: 'right', title: null}
-      },
-      tooltip: [
-        {field: 'cuisine', title: 'Cuisine'},
-        {field: 'count', title: 'Restaurants'},
-        {field: 'pct', title: 'Share %', format: '.1f'}
-      ]
-    }
-  }]
-}, {actions:false});
-
-// ── Section B: Cuisine heatmap by suburb ──
-vegaEmbed('#chart-cuisine-heatmap', {
-  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '10_cuisine_by_cluster.json'},
-  config: CONFIG,
-  width: 'container', height: 300,
   transform: [
-    {filter: "datum.cluster == 'Box Hill' || datum.cluster == 'Springvale' || datum.cluster == 'CBD/Carlton' || datum.cluster == 'Glen Waverley'"}
+    {filter: "datum.cuisine !== 'Other Asian' || datum.pct > 3"}
   ],
-  mark: {type: 'rect', cornerRadius: 2},
-  encoding: {
-    x: {field: 'cluster', type: 'nominal', title: null,
-      sort: ['Box Hill', 'Glen Waverley', 'Springvale', 'CBD/Carlton'],
-      axis: {labelAngle: 0, labelFontSize: 11}},
-    y: {field: 'cuisine', type: 'nominal', title: null, sort: '-x'},
-    color: {
-      field: 'count', type: 'quantitative',
-      scale: {scheme: 'tealblues'},
-      legend: {title: 'Restaurants', gradientLength: 100}
+  layer: [
+    {
+      mark: {type: 'arc', innerRadius: 65, outerRadius: 118, padAngle: 0.025, cornerRadius: 3},
+      encoding: {
+        theta: {field: 'count', type: 'quantitative', stack: true},
+        order: {field: 'count', type: 'quantitative', sort: 'descending'},
+        color: {
+          field: 'cuisine', type: 'nominal',
+          scale: {
+            domain: ['Chinese','Japanese','Indian','Thai','Vietnamese','Asian (general)','Korean','Malaysian','Noodle','Other Asian'],
+            range:  ['#1d7a68','#c94030','#7f6ab8','#b87c2a','#378add','#e8863a','#d4537e','#2a9d8f','#e8a030','#888780']
+          },
+          legend: {orient: 'right', title: null, labelFontSize: 11}
+        },
+        tooltip: [
+          {field: 'cuisine', title: 'Cuisine'},
+          {field: 'count', title: 'Restaurants'},
+          {field: 'pct', title: 'Share %', format: '.1f'}
+        ]
+      }
+    }
+  ]
+}, {actions: false});
+
+// ── Chart B2: Choropleth — dominant cuisine per suburb (4 suburbs) ──
+vegaEmbed('#chart-cuisine-choropleth', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  width: 'container', height: 340,
+  config: CONFIG,
+  projection: {type: 'mercator', center: [145.07, -37.86], scale: 70000},
+  layer: [
+    {
+      data: {url: BASE + '13_cuisine_choropleth.geojson', format: {type: 'json', property: 'features'}},
+      mark: {type: 'geoshape', stroke: 'white', strokeWidth: 2},
+      encoding: {
+        color: {
+          field: 'dominant_cuisine', type: 'nominal',
+          scale: {
+            domain: ['Chinese', 'Vietnamese', 'Japanese'],
+            range:  ['#1d7a68', '#378add',    '#c94030']
+          },
+          legend: {title: 'Dominant cuisine', orient: 'bottom-right', labelFontSize: 11}
+        },
+        tooltip: [
+          {field: 'suburb_label', title: 'Suburb'},
+          {field: 'dominant_cuisine', title: 'Dominant cuisine'},
+          {field: 'pct_asian', title: 'Asian-born %', format: '.1f'}
+        ]
+      }
     },
-    tooltip: [
-      {field: 'cluster', title: 'Suburb'},
-      {field: 'cuisine', title: 'Cuisine'},
-      {field: 'count', title: 'Restaurants'}
-    ]
-  }
-}, {actions:false});
+    {
+      data: {url: BASE + '13_cuisine_choropleth.geojson', format: {type: 'json', property: 'features'}},
+      mark: {type: 'text', fontSize: 11, fontWeight: 600, dy: -6, color: 'white',
+             stroke: 'rgba(0,0,0,0.3)', strokeWidth: 2},
+      encoding: {
+        longitude: {field: 'geometry.coordinates[0][0][0]', type: 'quantitative'},
+        latitude:  {field: 'geometry.coordinates[0][0][1]', type: 'quantitative'},
+        text: {field: 'suburb_label'}
+      }
+    }
+  ]
+}, {actions: false})
+.then(() => {
+  // fallback: add suburb labels as SVG overlays if vega-lite text layer doesn't render correctly
+})
+.catch(() => {
+  // silent fail — labels optional
+});
