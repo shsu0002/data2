@@ -438,15 +438,16 @@ function renderStopMap(stop, idx) {
       });
       var filterEl = document.getElementById('stop-map-filters');
       if (filterEl) {
-        filterEl.innerHTML = cuisines.map(function(c){
+        filterEl.innerHTML = '';
+        cuisines.forEach(function(c){
           var col = c === 'All' ? '#4a4540' : (CUISINE_COLORS[c] || '#888780');
-          var active = c === 'All';
-          return '<button onclick="filterStopMap('' + c + '')" data-cuisine="' + c + '" style="' +
-            'font-family:var(--sans);font-size:0.62rem;font-weight:500;padding:3px 9px;' +
-            'border-radius:20px;cursor:pointer;border:1.5px solid ' + col + ';margin:2px;' +
-            'background:' + (active ? col : 'transparent') + ';' +
-            'color:' + (active ? 'white' : col) + ';transition:all 0.15s">' + c + '</button>';
-        }).join('');
+          var btn = document.createElement('button');
+          btn.textContent = c;
+          btn.dataset.cuisine = c;
+          btn.style.cssText = 'font-family:var(--sans);font-size:0.62rem;font-weight:500;padding:3px 9px;border-radius:20px;cursor:pointer;border:1.5px solid ' + col + ';margin:2px;background:' + (c === 'All' ? col : 'transparent') + ';color:' + (c === 'All' ? 'white' : col) + ';transition:all 0.15s';
+          btn.addEventListener('click', (function(cuisine){ return function(){ filterStopMap(cuisine); }; })(c));
+          filterEl.appendChild(btn);
+        });
       }
 
       // Render all markers initially
