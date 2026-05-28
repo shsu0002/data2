@@ -15,7 +15,7 @@ html,body{margin:0;padding:0;width:100%;overflow-x:hidden;}
   --ink:#1a1714;--ink-mid:#4a4540;--ink-muted:#8a837a;
   --paper:#faf8f4;--paper-warm:#f2ede5;--paper-dark:#e8e0d4;
   --red:#c94030;--red-light:#f5e8e6;
-  --teal:#1d7a68;--teal-light:#ddf0eb; 
+  --teal:#1d7a68;--teal-light:#ddf0eb;
   --gold:#b87c2a;--gold-light:#faf0dc;
   --rule:rgba(26,23,20,0.1);
   --serif:'Playfair Display',Georgia,serif;
@@ -688,6 +688,54 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
     </div>
   </div>
 
+  <!-- Stop restaurant map -->
+  <div id="stop-map-section" style="display:none;margin-top:1.5rem;background:white;border:1px solid var(--rule);border-radius:6px;overflow:hidden">
+    <div style="padding:1.25rem 1.5rem 0.75rem">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;flex-wrap:wrap;gap:0.4rem">
+        <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted)" id="stop-map-label">Asian restaurants nearby</div>
+      </div>
+      <div id="stop-map-filters" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:0.75rem"></div>
+      <div id="stop-map" style="width:100%;height:280px;border-radius:4px;overflow:hidden;border:1px solid var(--rule)"></div>
+    </div>
+    <!-- Remy restaurant bubble -->
+    <div id="remy-restaurant-bubble" style="display:none;align-items:flex-start;gap:1rem;padding:1rem 1.5rem 1.25rem;border-top:1px solid var(--rule)">
+      <div style="flex-shrink:0">
+        <svg viewBox="-18 0 156 120" width="52" height="42" style="display:block">
+          <ellipse cx="60" cy="95" rx="32" ry="40" fill="#c8bdb0"/>
+          <ellipse cx="60" cy="108" rx="20" ry="26" fill="#e8ddd4"/>
+          <path d="M36 88 Q16 96 14 110" fill="none" stroke="#b8a898" stroke-width="8" stroke-linecap="round"/>
+          <ellipse cx="13" cy="113" rx="6" ry="6" fill="#a89888"/>
+          <path d="M84 86 Q100 94 102 108" fill="none" stroke="#b8a898" stroke-width="8" stroke-linecap="round"/>
+          <ellipse cx="103" cy="111" rx="6" ry="6" fill="#a89888"/>
+          <rect x="46" y="68" width="28" height="10" rx="3" fill="#c94030"/>
+          <polygon points="52,78 68,78 60,90" fill="#c94030"/>
+          <ellipse cx="60" cy="54" rx="30" ry="28" fill="#c8bdb0"/>
+          <ellipse cx="33" cy="34" rx="15" ry="15" fill="#c8bdb0"/>
+          <ellipse cx="33" cy="34" rx="10" ry="10" fill="#e8c4be"/>
+          <ellipse cx="87" cy="34" rx="15" ry="15" fill="#c8bdb0"/>
+          <ellipse cx="87" cy="34" rx="10" ry="10" fill="#e8c4be"/>
+          <rect x="35" y="30" width="50" height="8" rx="4" fill="white" stroke="#e0d8d0" stroke-width=".8"/>
+          <rect x="42" y="4" width="36" height="28" rx="6" fill="white" stroke="#e0d8d0" stroke-width=".8"/>
+          <ellipse cx="60" cy="6" rx="20" ry="12" fill="white" stroke="#e0d8d0" stroke-width=".8"/>
+          <ellipse cx="50" cy="54" rx="7" ry="8" fill="white"/>
+          <ellipse cx="70" cy="54" rx="7" ry="8" fill="white"/>
+          <ellipse cx="51.5" cy="55" rx="5" ry="6" fill="#2c2420"/>
+          <ellipse cx="71.5" cy="55" rx="5" ry="6" fill="#2c2420"/>
+          <circle cx="53" cy="52" r="1.8" fill="white"/>
+          <circle cx="73" cy="52" r="1.8" fill="white"/>
+          <ellipse cx="60" cy="66" rx="5" ry="4" fill="#e88888"/>
+          <path d="M52 73 Q60 80 68 73" fill="none" stroke="#a87060" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div style="position:relative;flex:1">
+        <div style="position:absolute;left:-8px;top:12px;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-right:8px solid var(--paper-warm)"></div>
+        <div style="background:var(--paper-warm);border:1px solid var(--rule);border-radius:10px;padding:0.75rem 1rem;font-size:0.82rem;line-height:1.6;color:var(--ink)">
+          <span id="remy-restaurant-text">Click a dot on the map to hear what Remy thinks!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div><!-- end page-journey -->
 
 <!-- ══ VEGA-LITE CHARTS ══ -->
@@ -764,5 +812,6 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
   </div>
 
 </div><!-- end vega charts -->
+
 </body>
 </html>
