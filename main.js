@@ -451,46 +451,29 @@ vegaEmbed('#chart-bar-suburbs', {
 // ── Chart 2: Dot map — Asian restaurant locations ──
 vegaEmbed('#chart-donut', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  config: CONFIG,
+  data: {url: BASE + '02_asian_restaurant_points.json'},
+  config: {...CONFIG, background: '#eef4f8'},
   width: 'container', height: 340,
-  layer: [
-    {
-      data: {values: [{}]},
-      mark: {type: 'rect', fill: '#eef4f8', stroke: null}
+  transform: [
+    {filter: 'datum.lat > -38.2 && datum.lat < -37.5 && datum.lon > 144.6 && datum.lon < 145.6'}
+  ],
+  mark: {type: 'point', filled: true, size: 18, opacity: 0.75, strokeWidth: 0},
+  encoding: {
+    x: {field: 'lon', type: 'quantitative', scale: {domain: [144.6, 145.6]}, axis: null},
+    y: {field: 'lat', type: 'quantitative', scale: {domain: [-38.2, -37.5]}, axis: null, sort: 'descending'},
+    color: {
+      field: 'cuisine_label', type: 'nominal',
+      scale: {
+        domain: ['Chinese','Japanese','Vietnamese','Indian','Korean','Malaysian','Thai','Other Asian'],
+        range:  ['#1d7a68','#e8863a','#378add','#7f6ab8','#c94030','#b87c2a','#d4537e','#888780']
+      },
+      legend: {title: null, columns: 2, symbolSize: 80, labelFontSize: 11}
     },
-    {
-      data: {url: BASE + '02_asian_restaurant_points.json'},
-      transform: [
-        {filter: 'datum.lat > -38.2 && datum.lat < -37.5 && datum.lon > 144.6 && datum.lon < 145.6'}
-      ],
-      mark: {type: 'point', filled: true, size: 16, opacity: 0.75, strokeWidth: 0},
-      encoding: {
-        x: {
-          field: 'lon', type: 'quantitative',
-          scale: {domain: [144.6, 145.6]},
-          axis: null
-        },
-        y: {
-          field: 'lat', type: 'quantitative',
-          scale: {domain: [-38.2, -37.5]},
-          axis: null,
-          sort: 'descending'
-        },
-        color: {
-          field: 'cuisine_label', type: 'nominal',
-          scale: {
-            domain: ['Chinese','Japanese','Vietnamese','Indian','Korean','Malaysian','Thai','Other Asian'],
-            range:  ['#1d7a68','#e8863a','#378add','#7f6ab8','#c94030','#b87c2a','#d4537e','#888780']
-          },
-          legend: {title: null, columns: 2, symbolSize: 80, labelFontSize: 11}
-        },
-        tooltip: [
-          {field: 'name', title: 'Restaurant'},
-          {field: 'cuisine_label', title: 'Cuisine'}
-        ]
-      }
-    }
-  ]
+    tooltip: [
+      {field: 'name', title: 'Restaurant'},
+      {field: 'cuisine_label', title: 'Cuisine'}
+    ]
+  }
 }, {actions:false});
 
 // ── Chart 5: Scatter — pop vs restaurants ──
