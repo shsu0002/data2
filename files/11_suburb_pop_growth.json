@@ -1,1 +1,86 @@
-[{"suburb": "Box Hill", "year": 2011, "asian_born": 5200, "total_pop": 11800, "pct": 44.1}, {"suburb": "Box Hill", "year": 2016, "asian_born": 6800, "total_pop": 13200, "pct": 51.5}, {"suburb": "Box Hill", "year": 2021, "asian_born": 7700, "total_pop": 14353, "pct": 53.6}, {"suburb": "Glen Waverley", "year": 2011, "asian_born": 14200, "total_pop": 37800, "pct": 37.6}, {"suburb": "Glen Waverley", "year": 2016, "asian_born": 17900, "total_pop": 40600, "pct": 44.1}, {"suburb": "Glen Waverley", "year": 2021, "asian_born": 20400, "total_pop": 42642, "pct": 47.9}, {"suburb": "Springvale", "year": 2011, "asian_born": 9200, "total_pop": 19800, "pct": 46.5}, {"suburb": "Springvale", "year": 2016, "asian_born": 10800, "total_pop": 21200, "pct": 50.9}, {"suburb": "Springvale", "year": 2021, "asian_born": 12496, "total_pop": 22174, "pct": 56.4}, {"suburb": "Melbourne CBD", "year": 2011, "asian_born": 14200, "total_pop": 35800, "pct": 39.7}, {"suburb": "Melbourne CBD", "year": 2016, "asian_born": 22400, "total_pop": 47200, "pct": 47.5}, {"suburb": "Melbourne CBD", "year": 2021, "asian_born": 26534, "total_pop": 54941, "pct": 48.3}] 
+[
+  {
+    "suburb": "Box Hill",
+    "year": 2011,
+    "asian_born": 5025,
+    "total_pop": 12183,
+    "pct": 41.2
+  },
+  {
+    "suburb": "Box Hill",
+    "year": 2016,
+    "asian_born": 6038,
+    "total_pop": 12768,
+    "pct": 47.3
+  },
+  {
+    "suburb": "Box Hill",
+    "year": 2021,
+    "asian_born": 7697,
+    "total_pop": 14353,
+    "pct": 53.6
+  },
+  {
+    "suburb": "Glen Waverley",
+    "year": 2011,
+    "asian_born": 13118,
+    "total_pop": 39205,
+    "pct": 33.5
+  },
+  {
+    "suburb": "Glen Waverley",
+    "year": 2016,
+    "asian_born": 17581,
+    "total_pop": 40327,
+    "pct": 43.6
+  },
+  {
+    "suburb": "Glen Waverley",
+    "year": 2021,
+    "asian_born": 20504,
+    "total_pop": 42642,
+    "pct": 48.1
+  },
+  {
+    "suburb": "Springvale",
+    "year": 2011,
+    "asian_born": 9460,
+    "total_pop": 19771,
+    "pct": 47.8
+  },
+  {
+    "suburb": "Springvale",
+    "year": 2016,
+    "asian_born": 11829,
+    "total_pop": 21714,
+    "pct": 54.5
+  },
+  {
+    "suburb": "Springvale",
+    "year": 2021,
+    "asian_born": 12542,
+    "total_pop": 22174,
+    "pct": 56.6
+  },
+  {
+    "suburb": "Melbourne CBD",
+    "year": 2011,
+    "asian_born": 11691,
+    "total_pop": 28372,
+    "pct": 41.2
+  },
+  {
+    "suburb": "Melbourne CBD",
+    "year": 2016,
+    "asian_born": 25557,
+    "total_pop": 47285,
+    "pct": 54.0
+  },
+  {
+    "suburb": "Melbourne CBD",
+    "year": 2021,
+    "asian_born": 26571,
+    "total_pop": 54941,
+    "pct": 48.4
+  }
+]
