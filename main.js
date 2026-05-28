@@ -148,6 +148,36 @@ const STOPS = [
 
 let current = -1;
 
+function renderStopMarkers(restaurants, colors, filter) {
+  if (!_stopMap) return;
+  _stopMap.eachLayer(function(l){ if (l instanceof L.CircleMarker) _stopMap.removeLayer(l); });
+  var list = filter === 'All' ? restaurants : restaurants.filter(function(d){ return d.cuisine_label === filter; });
+  list.forEach(function(d){
+    var color = colors[d.cuisine_label] || '#888780';
+    var mk = L.circleMarker([d.lat, d.lon], {radius:6, fillColor:color, color:'white', weight:1, fillOpacity:0.85});
+    mk.bindTooltip(d.name + '<br><em>' + d.cuisine_label + '</em>', {direction:'top'});
+    mk.on('click', function(){ remySayRestaurant(d); });
+    mk.addTo(_stopMap);
+  });
+  var lbl = document.getElementById('stop-map-label');
+  if (lbl) lbl.textContent = list.length + (filter === 'All' ? '' : ' ' + filter) + ' restaurants in ' + (window._stopName || '');
+}
+
+function filterStopMap(cuisine) {
+  var colors = window._stopCUISSINE_COLORS || {};
+  // Update button styles
+  var btns = document.querySelectorAll('#stop-map-filters button');
+  btns.forEach(function(btn){
+    var c = btn.dataset.cuisine;
+    var col = c === 'All' ? '#4a4540' : (colors[c] || '#888780');
+    var active = c === cuisine;
+    btn.style.background = active ? col : 'transparent';
+    btn.style.color = active ? 'white' : col;
+  });
+  renderStopMarkers(window._stopRestaurants || [], colors, cuisine);
+}
+
+
 function buildTrail() {
   const t = document.getElementById('trail');
   STOPS.forEach((s,i) => {
@@ -397,18 +427,30 @@ function renderStopMap(stop, idx) {
       var nearby = data.filter(function(d){
         return Math.abs(d.lat - center[0]) < r && Math.abs(d.lon - center[1]) < r;
       });
+      window._stopRestaurants = nearby;
+      window._stopName = stop.name;
+      window._stopCUISSINE_COLORS = CUISINE_COLORS;
+
+      // Build filter buttons
+      var cuisines = ['All'];
       nearby.forEach(function(d){
-        var color = CUISINE_COLORS[d.cuisine_label] || '#888780';
-        var mk = L.circleMarker([d.lat, d.lon], {
-          radius:6, fillColor:color, color:'white',
-          weight:1, fillOpacity:0.85
-        });
-        mk.bindTooltip(d.name + '<br><em>' + d.cuisine_label + '</em>', {direction:'top'});
-        mk.on('click', function(){ remySayRestaurant(d); });
-        mk.addTo(_stopMarkersLayer);
+        if (d.cuisine_label && cuisines.indexOf(d.cuisine_label) === -1) cuisines.push(d.cuisine_label);
       });
-      var lbl = document.getElementById('stop-map-label');
-      if (lbl) lbl.textContent = nearby.length + ' Asian restaurants in ' + stop.name;
+      var filterEl = document.getElementById('stop-map-filters');
+      if (filterEl) {
+        filterEl.innerHTML = cuisines.map(function(c){
+          var col = c === 'All' ? '#4a4540' : (CUISINE_COLORS[c] || '#888780');
+          var active = c === 'All';
+          return '<button onclick="filterStopMap('' + c + '')" data-cuisine="' + c + '" style="' +
+            'font-family:var(--sans);font-size:0.62rem;font-weight:500;padding:3px 9px;' +
+            'border-radius:20px;cursor:pointer;border:1.5px solid ' + col + ';margin:2px;' +
+            'background:' + (active ? col : 'transparent') + ';' +
+            'color:' + (active ? 'white' : col) + ';transition:all 0.15s">' + c + '</button>';
+        }).join('');
+      }
+
+      // Render all markers initially
+      renderStopMarkers(nearby, CUISINE_COLORS, 'All');
     });
 }
 
