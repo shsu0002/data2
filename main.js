@@ -1,4 +1,39 @@
+// ── Remy restaurant commentary ──
+function remySayRestaurant(restaurant) {
+  var el = document.getElementById('remy-restaurant-bubble');
+  if (!el) return;
+
+  var lines = {'Chinese': ['Mmm, 中文菜！This is my kind of place.', 'A Chinese gem! I can smell the dumplings already.', 'Chinese cuisine — the backbone of Asian Melbourne!'], 'Japanese': ["Ramen or sushi? Either way, I'm in!", 'Oishii! Japanese cuisine at its finest.', 'A Japanese spot! I hope they have tonkotsu...'], 'Vietnamese': ['Phở sure, this looks amazing!', 'Vietnamese food — fresh, fragrant, fantastic!', 'Little Saigon vibes right here!'], 'Indian': ['The spices! My whiskers are tingling!', 'Indian cuisine — bold flavours, bolder portions.', 'Curry night? Count me in!'], 'Korean': ['Kimchi and Korean BBQ — yes please!', 'Korean food is having a moment in Melbourne!', 'This Korean spot smells incredible!'], 'Malaysian': ['Laksa! My absolute weakness.', 'Malaysian food — the best of many worlds.', 'Nasi lemak or char kway teow? Tough choice!'], 'Thai': ['Thai food — the perfect balance of sweet, sour, spicy!', 'Pad thai? Tom yum? I want everything!', 'A Thai gem in Melbourne!'], 'Cambodian': ['Cambodian cuisine — underrated and delicious!', "Amok curry from this spot? I'm intrigued!", 'A rare Cambodian find!'], 'Sri Lankan': ['Sri Lankan food — fiery and fantastic!', 'Hoppers and curry — the dream combo!', 'A Sri Lankan spot! So underrated.']};
+  var cuisine = restaurant.cuisine_label || 'Asian';
+  var quips = lines[cuisine] || ['What a find! I must try this place.', 'Ooh, ' + cuisine + ' food — delicious!'];
+  var quip = quips[Math.floor(Math.random() * quips.length)];
+
+  var msg = '<strong>' + restaurant.name + '</strong><br>' +
+            '<em style="color:var(--ink-muted);font-size:0.8rem">' + cuisine + '</em><br><br>' +
+            '<span style="font-style:italic;color:var(--ink-mid)">"' + quip + '"</span>';
+
+  el.style.display = 'flex';
+
+  // Typewriter effect on the quip part
+  var nameHtml = '<strong>' + restaurant.name + '</strong><br><em style="color:var(--ink-muted);font-size:0.8rem">' + cuisine + '</em><br><br><span style="font-style:italic;color:var(--ink-mid)">"';
+  var textEl = document.getElementById('remy-restaurant-text');
+  if (!textEl) return;
+  textEl.innerHTML = nameHtml;
+
+  var i = 0;
+  var endHtml = '"</span>';
+  if (el._typeTimer) clearInterval(el._typeTimer);
+  el._typeTimer = setInterval(function(){
+    if (i < quip.length) {
+      textEl.innerHTML = nameHtml + quip.slice(0, ++i) + '"</span>';
+    } else {
+      clearInterval(el._typeTimer);
+    }
+  }, 28);
+}
+
 // ── Journey stops + interactivity ──
+
 
 const STOPS = [
   {
@@ -264,6 +299,32 @@ function renderLollipop(data, el){
     el.querySelectorAll('.lollipop-dot').forEach(function(e){e.style.left=e.dataset.w+'%';});
   },60);
 }
+
+buildTrail();
+
+// ── Typewriter animation ──
+(function(){
+  var line1 = `"Bonjour! I'm Remy."`;
+  var line2 = `I've sniffed out something extraordinary about this city — follow me and I'll show you how migration shaped the way Melbourne eats.`;
+  var el1 = document.getElementById('typewriter-line1');
+  var el2 = document.getElementById('typewriter-line2');
+  if(!el1 || !el2) return;
+  var i = 0, j = 0;
+  setTimeout(function(){
+    var t1 = setInterval(function(){
+      if(i < line1.length){ el1.textContent += line1[i++]; }
+      else {
+        clearInterval(t1);
+        setTimeout(function(){
+          var t2 = setInterval(function(){
+            if(j < line2.length){ el2.textContent += line2[j++]; }
+            else { clearInterval(t2); }
+          }, 18);
+        }, 300);
+      }
+    }, 45);
+  }, 1100);
+})();
 
 buildTrail();
 
