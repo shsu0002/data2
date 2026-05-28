@@ -578,13 +578,9 @@ vegaEmbed('#chart-line-total', {
 // ── Chart 10: Area — Asian share growing over time ──
 vegaEmbed('#chart-line-asian', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '07_clue_asian_trend.json'},
+  data: {url: BASE + '07b_asian_pct_trend.json'},
   config: CONFIG,
   width: 'container', height: 200,
-  transform: [
-    {pivot: 'type', value: 'count', groupby: ['year']},
-    {calculate: 'datum["Asian-identified"] / (datum["Asian-identified"] + datum["Other"]) * 100', as: 'pct'}
-  ],
   layer: [
     {
       mark: {type:'area', opacity:0.15, color: COLORS.teal},
