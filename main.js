@@ -435,7 +435,7 @@ vegaEmbed('#chart-bar-suburbs', {
   config: CONFIG,
   projection: {type: 'mercator'},
   data: {
-    url: BASE + 'vic_suburbs_simple.geojson',
+    url: BASE + 'vic_suburbs_real.geojson',
     format: {type: 'json', property: 'features'}
   },
   mark: {type: 'geoshape', stroke: 'white', strokeWidth: 1},
