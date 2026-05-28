@@ -399,11 +399,13 @@ function renderStopMap(stop, idx) {
       });
       nearby.forEach(function(d){
         var color = CUISINE_COLORS[d.cuisine_label] || '#888780';
-        L.circleMarker([d.lat, d.lon], {
+        var mk = L.circleMarker([d.lat, d.lon], {
           radius:6, fillColor:color, color:'white',
           weight:1, fillOpacity:0.85
-        }).bindTooltip(d.name + '<br><em>' + d.cuisine_label + '</em>', {direction:'top'})
-          .addTo(_stopMarkersLayer);
+        });
+        mk.bindTooltip(d.name + '<br><em>' + d.cuisine_label + '</em>', {direction:'top'});
+        mk.on('click', function(){ remySayRestaurant(d); });
+        mk.addTo(_stopMarkersLayer);
       });
       var lbl = document.getElementById('stop-map-label');
       if (lbl) lbl.textContent = nearby.length + ' Asian restaurants in ' + stop.name;
