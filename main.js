@@ -581,52 +581,10 @@ const CONFIG = {
   }
 };
 
-// ── Chart 3: Vega-Lite choropleth ──
-vegaEmbed('#chart-bar-suburbs', {
-  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  width: 'container', height: 340,
-  config: CONFIG,
-  projection: {type: 'mercator'},
-  data: {url: BASE + 'vic_suburbs_real.geojson', format: {type: 'json', property: 'features'}},
-  transform: [
-    {calculate: 'datum.pct_asian', as: 'pct'},
-    {calculate: 'datum.suburb', as: 'name'},
-    {calculate: 'datum.total_pop', as: 'pop'}
-  ],
-  mark: {type: 'geoshape', stroke: 'white', strokeWidth: 0.5},
-  encoding: {
-    color: {
-      field: 'pct',
-      type: 'quantitative',
-      scale: {domain: [30, 58], range: ['#c2e5de', '#1d7a68']},
-      legend: {title: 'Asian-born %', gradientLength: 100, orient: 'bottom-right'}
-    },
-    tooltip: [
-      {field: 'name', title: 'Suburb'},
-      {field: 'pct', title: 'Asian-born %', format: '.1f'},
-      {field: 'pop', title: 'Population', format: ','}
-    ]
-  }
-}, {actions:false});
 
 
-// ── Chart 2: Donut — cuisine breakdown ──
-vegaEmbed('#chart-donut', {
-  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '03_cuisine_breakdown.json'},
-  config: CONFIG,
-  width: 'container', height: 300,
-  layer: [{
-    mark: {type:'arc', innerRadius:65, outerRadius:115, padAngle:0.02, cornerRadius:3},
-    encoding: {
-      theta: {field:'count', type:'quantitative'},
-      color: {field:'cuisine', type:'nominal',
-        scale:{range:['#1d7a68','#c94030','#7f6ab8','#b87c2a','#378add','#e8863a','#d4537e','#485860']},
-        legend:{orient:'right', title:null}},
-      tooltip: [{field:'cuisine',title:'Cuisine'},{field:'count',title:'Restaurants'},{field:'pct',title:'Share %',format:'.1f'}]
-    }
-  }]
-}, {actions:false});
+
+
 
 // ── Section A: Choropleth ──
 vegaEmbed('#chart-choropleth', {
