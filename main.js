@@ -272,6 +272,30 @@ function goToStop(idx) {
   if(strip) strip.style.display = 'block';
   var mapSec = document.getElementById('stop-map-section');
   if(mapSec) mapSec.style.display = 'block';
+
+  // Show initial Remy welcome message
+  var bubble = document.getElementById('remy-restaurant-bubble');
+  var textEl = document.getElementById('remy-restaurant-text');
+  if (bubble && textEl) {
+    bubble.style.display = 'flex';
+    var welcomes = {
+      'boxhill':    'Welcome to Box Hill! 🐭 Tap any dot on the map to discover a restaurant — Chinese BBQ, dim sum, bubble tea... I know them all!',
+      'glen':       'Glen Waverley has something for everyone! 🐭 Click a dot and I'll tell you what's cooking — from Chinese hotpot to Indian curry!',
+      'springvale': 'Little Saigon is calling! 🐭 Tap a dot and I'll introduce you to the best Vietnamese, Cambodian and Southeast Asian eats in town.',
+      'cbd':        'The CBD is a food lover's paradise! 🐭 442 Asian restaurants — click any dot and I'll be your guide!'
+    };
+    var msg = welcomes[s.id] || 'Tap any dot on the map to discover a restaurant! 🐭';
+    textEl.innerHTML = '';
+    var i = 0;
+    if (bubble._typeTimer) clearInterval(bubble._typeTimer);
+    bubble._typeTimer = setInterval(function(){
+      if (i < msg.length) {
+        textEl.textContent = msg.slice(0, ++i);
+      } else {
+        clearInterval(bubble._typeTimer);
+      }
+    }, 22);
+  }
   setTimeout(()=>{ card.classList.add('visible'); }, 50);
 
   function setText(id, val){ var el=document.getElementById(id); if(el) el.textContent=val; }
