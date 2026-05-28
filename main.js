@@ -11,7 +11,7 @@ const STOPS = [
     bars: [
       {country:'China',     pct:29.5, color:'#1d7a68'},
       {country:'Malaysia',  pct:6.4,  color:'#c94030'},
-      {country:'India',     pct:4.5,  color:'#7f6ab8'}, 
+      {country:'India',     pct:4.5,  color:'#7f6ab8'},
       {country:'Hong Kong', pct:2.5,  color:'#b87c2a'},
       {country:'Vietnam',   pct:1.9,  color:'#378add'},
     ],
@@ -438,12 +438,12 @@ vegaEmbed('#chart-bar-suburbs', {
     url: BASE + 'vic_suburbs_real.geojson',
     format: {type: 'json', property: 'features'}
   },
-  mark: {type: 'geoshape', stroke: 'white', strokeWidth: 1},
+  mark: {type: 'geoshape', stroke: '#ccc', strokeWidth: 0.3},
   encoding: {
     color: {
       field: 'pct_asian',
       type: 'quantitative',
-      scale: {domain: [30, 58], range: ['#c2e5de', '#1d7a68']},
+      scale: {domain: [30, 58], range: ['#c2e5de', '#1d7a68'], unknown: '#f0ece8'},
       legend: {title: 'Asian-born %', gradientLength: 100, orient: 'bottom-right'}
     },
     tooltip: [
