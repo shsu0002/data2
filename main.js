@@ -578,15 +578,19 @@ vegaEmbed('#chart-line-total', {
 // ── Chart 10: Area — Asian share growing over time ──
 vegaEmbed('#chart-line-asian', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '07b_asian_pct_trend.json'},
+  data: {url: BASE + '07_clue_asian_trend.json'},
   config: CONFIG,
   width: 'container', height: 200,
+  transform: [
+    {pivot: 'type', value: 'count', groupby: ['year']},
+    {calculate: 'datum["Asian-identified"] / (datum["Asian-identified"] + datum["Other"]) * 100', as: 'pct'}
+  ],
   layer: [
     {
       mark: {type:'area', opacity:0.15, color: COLORS.teal},
       encoding: {
         x: {field:'year', type:'quantitative', title:null, axis:{format:'d', tickCount:6}},
-        y: {field:'pct', type:'quantitative', title:'Asian share (%)', axis:{format:'.0f'}}
+        y: {field:'pct', type:'quantitative', title:'Asian share (%)', axis:{format:'.1f'}, scale:{domain:[0,20]}}
       }
     },
     {
@@ -596,19 +600,8 @@ vegaEmbed('#chart-line-asian', {
         y: {field:'pct', type:'quantitative'},
         tooltip: [
           {field:'year', title:'Year'},
-          {field:'pct', title:'Asian share %', format:'.1f'},
-          {field:'asian_count', title:'Asian restaurants'},
-          {field:'total', title:'Total restaurants'}
+          {field:'pct', title:'Asian share %', format:'.1f'}
         ]
-      }
-    },
-    {
-      mark: {type:'text', align:'left', dx:5, dy:-8, fontSize:10, color: COLORS.teal, fontWeight:'500'},
-      transform: [{filter: 'datum.year == 2024'}],
-      encoding: {
-        x: {field:'year', type:'quantitative'},
-        y: {field:'pct', type:'quantitative'},
-        text: {field:'pct', format:'.1f', type:'quantitative'}
       }
     }
   ]
