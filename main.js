@@ -34,7 +34,7 @@ const STOPS = [
     tagline: 'Where east Asia meets South Asia',
     region: 'region-glen',
     remyLeft: '65.0%', remyTop: '48.4%',
-    pop: '42,642', pct: '47.9%',
+    pop: '42,642', pct: '48.1%',
     bars: [
       {country:'China',     pct:17.8, color:'#1d7a68'},
       {country:'India',     pct:8.0,  color:'#7f6ab8'},
@@ -61,12 +61,12 @@ const STOPS = [
     tagline: 'Melbourne\'s Vietnamese heartland',
     region: 'region-springvale',
     remyLeft: '53.8%', remyTop: '66.0%',
-    pop: '22,174', pct: '56.4%',
+    pop: '22,174', pct: '56.6%',
     bars: [
       {country:'Vietnam',  pct:20.9, color:'#378add'},
       {country:'India',    pct:7.4,  color:'#7f6ab8'},
       {country:'Cambodia', pct:5.6,  color:'#e8a030'},
-      {country:'China',    pct:5.3,  color:'#1d7a68'},
+      {country:'China',    pct:5.4,  color:'#1d7a68'},
       {country:'Malaysia', pct:4.6,  color:'#c94030'},
     ],
     rest: '34', chart2Type:'lollipop',
@@ -88,7 +88,7 @@ const STOPS = [
     tagline: 'All roads lead to the city',
     region: 'region-cbd',
     remyLeft: '30.3%', remyTop: '31.4%',
-    pop: '54,941', pct: '48.3%',
+    pop: '54,941', pct: '48.4%',
     bars: [
       {country:'China',    pct:15.1, color:'#1d7a68'},
       {country:'India',    pct:7.0,  color:'#7f6ab8'},
