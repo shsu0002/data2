@@ -452,7 +452,7 @@ vegaEmbed('#chart-bar-suburbs', {
 vegaEmbed('#chart-donut', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
   data: {url: BASE + '02_asian_restaurant_points.json'},
-  config: {...CONFIG, background: '#eef4f8'},
+  background: '#eef4f8',
   width: 'container', height: 340,
   transform: [
     {filter: 'datum.lat > -38.2 && datum.lat < -37.5 && datum.lon > 144.6 && datum.lon < 145.6'}
