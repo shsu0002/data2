@@ -741,53 +741,55 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
 <!-- ══ VEGA-LITE CHARTS ══ -->
 <div style="max-width:1100px;margin:0 auto;padding:4rem 2rem 5rem">
 
-  <!-- ── SECTION A: Population ── -->
-  <div style="margin-bottom:1rem">
+  <!-- ── SECTION A: Population map ── -->
+  <div style="margin-bottom:1.5rem">
     <div style="font-size:0.68rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem">
       <span style="display:inline-block;width:1.5rem;height:1px;background:var(--red)"></span>Section A — Who Lives Here
     </div>
-    <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:400;margin-bottom:0.5rem">Melbourne's Asian communities, mapped</h2>
-    <p style="font-size:0.9rem;color:var(--ink-mid);max-width:60ch;line-height:1.7;margin-bottom:2rem">Decades of migration have reshaped the east and south-east of Melbourne. These four suburbs tell that story best.</p>
+    <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:400;margin-bottom:0.5rem">Where Asia settled in Melbourne</h2>
+    <p style="font-size:0.9rem;color:var(--ink-mid);max-width:65ch;line-height:1.7;margin-bottom:0">Decades of migration have reshaped Melbourne's east and south-east. The four suburbs explored in Remy's journey all sit in the top tier of Asian-born residents — but each drew a different community.</p>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:4rem">
-    <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;min-width:0">
-      <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart A1 · ABS Census 2021</div>
-      <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.4rem">Asian-born population across Melbourne</div>
-      <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem">Darker = higher share. Box Hill and Springvale lead the city.</div>
-      <div id="chart-choropleth" style="width:100%"></div>
-    </div>
-    <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;min-width:0">
-      <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart A2 · ABS Census 2011–2021</div>
-      <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.4rem">Asian-born share growing in all four suburbs</div>
-      <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem">From 2011 to 2021, every suburb saw significant growth.</div>
-      <div id="chart-pop-growth" style="width:100%"></div>
-    </div>
+  <!-- A: bin map full-width -->
+  <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;margin-bottom:1.5rem">
+    <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart A1 · ABS Census 2021</div>
+    <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.3rem">Asian-born population across Melbourne suburbs</div>
+    <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem;max-width:60ch">Each bar is a suburb. Our four focus suburbs are highlighted. Hover to explore.</div>
+    <div id="chart-binmap" style="width:100%"></div>
+  </div>
+
+  <!-- A: line graph full-width -->
+  <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;margin-bottom:4rem">
+    <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart A2 · ABS Census 2011–2021</div>
+    <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.3rem">Asian-born share has grown in every suburb over ten years</div>
+    <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem;max-width:60ch">Springvale already led in 2011 — Box Hill overtook Glen Waverley by 2016. The CBD's surge reflects a wave of international students and young professionals.</div>
+    <div id="chart-pop-growth" style="width:100%"></div>
   </div>
 
   <hr style="border:none;border-top:1px solid var(--rule);margin:0 0 4rem">
 
-  <!-- ── SECTION B: Food ── -->
-  <div style="margin-bottom:1rem">
+  <!-- ── SECTION B: Cuisine ── -->
+  <div style="margin-bottom:1.5rem">
     <div style="font-size:0.68rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem">
       <span style="display:inline-block;width:1.5rem;height:1px;background:var(--red)"></span>Section B — What They Cook
     </div>
-    <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:400;margin-bottom:0.5rem">Each suburb has its own flavour</h2>
-    <p style="font-size:0.9rem;color:var(--ink-mid);max-width:60ch;line-height:1.7;margin-bottom:2rem">The community shapes the cuisine. Box Hill is Chinese. Springvale is Vietnamese. The CBD mixes everything.</p>
+    <h2 style="font-family:var(--serif);font-size:1.8rem;font-weight:400;margin-bottom:0.5rem">The community shapes the cuisine</h2>
+    <p style="font-size:0.9rem;color:var(--ink-mid);max-width:65ch;line-height:1.7;margin-bottom:0">Across Melbourne, Chinese and Japanese restaurants dominate. But zoom into each suburb and a distinct flavour emerges — driven by the origins of its residents.</p>
   </div>
 
+  <!-- B: donut + choropleth side by side -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:4rem">
     <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;min-width:0">
       <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart B1 · OpenStreetMap 2025</div>
-      <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.4rem">Melbourne's Asian cuisine mix</div>
-      <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem">Chinese leads, but the variety is striking — 11 distinct Asian cuisines.</div>
+      <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.3rem">Melbourne-wide Asian cuisine breakdown</div>
+      <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem">Chinese (22%) and Japanese (20%) lead the city. Eleven distinct cuisines compete for the table.</div>
       <div id="chart-donut-section" style="width:100%"></div>
     </div>
     <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;min-width:0">
       <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart B2 · OpenStreetMap 2025</div>
-      <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.4rem">Dominant cuisines by suburb</div>
-      <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem">Box Hill = Chinese. Springvale = Vietnamese. CBD = Japanese. Glen Waverley = diverse.</div>
-      <div id="chart-cuisine-heatmap" style="width:100%"></div>
+      <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.3rem">Dominant cuisine in each of the four suburbs</div>
+      <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem">Box Hill = Chinese. Springvale = Vietnamese. CBD and Glen Waverley = Japanese. Colour shows the leading cuisine type.</div>
+      <div id="chart-cuisine-choropleth" style="width:100%"></div>
     </div>
   </div>
 
