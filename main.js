@@ -436,15 +436,15 @@ vegaEmbed('#chart-bar-suburbs', {
   width: 'container', height: 320,
   transform: [
     {filter: 'datum.pct_asian > 0'},
-    {window: [{op:'rank', as:'rank'}], sort:[{field:'pct', order:'descending'}]},
+    {window: [{op:'rank', as:'rank'}], sort:[{field:'pct_asian', order:'descending'}]},
     {filter: 'datum.rank <= 15'}
   ],
   mark: {type:'bar', cornerRadiusEnd:3, color: COLORS.teal},
   encoding: {
     y: {field:'suburb', type:'nominal', sort:'-x', axis:{labelLimit:120, title:null}},
-    x: {field:'pct', type:'quantitative', title:'Asian-born (%)', axis:{format:'.0f', tickCount:5}},
-    color: {field:'pct', type:'quantitative', scale:{range:['#9fe1cb','#1d7a68']}, legend:null},
-    tooltip: [{field:'suburb',title:'Suburb'},{field:'pct',title:'Asian-born %',format:'.1f'},{field:'total_pop',title:'Population',format:','}]
+    x: {field:'pct_asian', type:'quantitative', title:'Asian-born (%)', axis:{format:'.0f', tickCount:5}},
+    color: {field:'pct_asian', type:'quantitative', scale:{range:['#9fe1cb','#1d7a68']}, legend:null},
+    tooltip: [{field:'suburb',title:'Suburb'},{field:'pct_asian',title:'Asian-born %',format:'.1f'},{field:'total_pop',title:'Population',format:','}]
   }
 }, {actions:false});
 
