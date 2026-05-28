@@ -457,46 +457,44 @@ const CONFIG = {
       subdomains: 'abcd', maxZoom: 19
     }).addTo(map);
 
-    // Suburb centroids for circle markers
-    var SUBURB_COORDS = {
-      'SPRINGVALE': [-37.9497, 145.1513], 'BOX HILL': [-37.8196, 145.1214],
-      'CLAYTON': [-37.9169, 145.1228], 'SPRINGVALE SOUTH': [-37.9667, 145.1500],
-      'MELBOURNE': [-37.8136, 144.9631], 'GLEN WAVERLEY': [-37.8797, 145.1647],
-      'NOTTING HILL': [-37.9050, 145.1317], 'NOBLE PARK': [-37.9681, 145.1762],
-      'CLAYTON SOUTH': [-37.9383, 145.1283], 'WILLIAMS LANDING': [-37.8667, 144.7500],
-      'TRUGANINA': [-37.8650, 144.7317], 'DOCKLANDS': [-37.8183, 144.9450],
-      'BRAYBROOK': [-37.7917, 144.8617], 'TARNEIT': [-37.8500, 144.6833],
-      'SUNSHINE NORTH': [-37.7717, 144.8317], 'KEYSBOROUGH': [-37.9883, 145.1733],
-      'AINTREE': [-37.6583, 144.7383], 'BURWOOD EAST': [-37.8533, 145.1283],
-      'MANOR LAKES': [-37.9383, 144.6967], 'LAVERTON': [-37.8617, 144.7750],
-      'ST ALBANS': [-37.7467, 144.8017], 'SOUTHBANK': [-37.8250, 144.9633],
-      'DONCASTER': [-37.7833, 145.1267], 'LYNDHURST': [-38.0583, 145.2167],
-      'BOX HILL NORTH': [-37.8000, 145.1183], 'CARLTON': [-37.7992, 144.9669],
-      'DONCASTER EAST': [-37.7833, 145.1567], 'COBBLEBANK': [-37.6667, 144.5333],
-      'WEST MELBOURNE': [-37.8050, 144.9417], 'MOUNT WAVERLEY': [-37.8783, 145.1317],
-      'CAIRNLEA': [-37.7717, 144.8383], 'BURWOOD': [-37.8467, 145.1050],
-      'KALKALLO': [-37.5533, 144.9600], 'STRATHTULLOH': [-37.6683, 144.5467],
-      'CLYDE NORTH': [-38.1050, 145.3433], 'BALWYN': [-37.8100, 145.0833],
-      'SUNSHINE': [-37.7900, 144.8283], 'POINT COOK': [-37.9017, 144.7417],
-      'WANTIRNA SOUTH': [-37.8700, 145.2333], 'LYNBROOK': [-38.0417, 145.2333]
-    };
+    // Show loading indicator
+    var loadingDiv = L.DomUtil.create('div');
+    loadingDiv.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,0.85);padding:8px 14px;border-radius:4px;font-size:12px;color:#4a4540;z-index:999;pointer-events:none';
+    loadingDiv.textContent = 'Loading suburb boundaries…';
+    el.appendChild(loadingDiv);
 
-    Object.entries(SUBURB_DATA).forEach(function(entry) {
-      var name = entry[0];
-      var pct = entry[1];
-      var coords = SUBURB_COORDS[name];
-      if (!coords) return;
-      var titleCase = name.split(' ').map(function(w){ return w[0] + w.slice(1).toLowerCase(); }).join(' ');
-      L.circleMarker(coords, {
-        radius: 18,
-        fillColor: getColor(pct),
-        color: '#fff',
-        weight: 2,
-        opacity: 1,
-        fillOpacity: 0.9
-      }).bindTooltip('<strong>' + titleCase + '</strong><br>Asian-born: ' + pct + '%', {direction:'top', permanent: false})
-        .addTo(map);
-    });
+    fetch('https://data.gov.au/geoserver/vic-suburb-locality-boundaries-psma-administrative-boundaries/wfs?request=GetFeature&typeName=ckan_af33dd8c_0534_4e18_9245_fc64440f742e&outputFormat=json')
+      .then(function(r){ return r.json(); })
+      .then(function(geojson){
+        if (loadingDiv.parentNode) loadingDiv.parentNode.removeChild(loadingDiv);
+        L.geoJSON(geojson, {
+          style: function(feature) {
+            var p = feature.properties;
+            var raw = p.vic_loca_2 || p.VIC_LOCA_2 || p.NAME || p.name || p.locality_name || '';
+            var name = raw.toUpperCase();
+            var pct = SUBURB_DATA[name] || 0;
+            return {
+              fillColor: getColor(pct),
+              weight: pct > 0 ? 0.8 : 0.3,
+              color: '#a0b8b0',
+              fillOpacity: pct > 0 ? 0.85 : 0.08
+            };
+          },
+          onEachFeature: function(feature, layer) {
+            var p = feature.properties;
+            var name = p.vic_loca_2 || p.VIC_LOCA_2 || p.NAME || p.name || '';
+            var pct = SUBURB_DATA[name.toUpperCase()];
+            if (pct) {
+              layer.bindTooltip('<strong>' + name + '</strong><br>Asian-born: ' + pct + '%', {direction:'top'});
+              layer.on('mouseover', function(){ this.setStyle({weight:2, color:'#1d7a68'}); });
+              layer.on('mouseout',  function(){ this.setStyle({weight:0.8, color:'#a0b8b0'}); });
+            }
+          }
+        }).addTo(map);
+      })
+      .catch(function(){
+        if (loadingDiv.parentNode) loadingDiv.parentNode.removeChild(loadingDiv);
+      });
 
     // Legend
     var legend = L.control({position: 'bottomright'});
