@@ -428,32 +428,31 @@ const CONFIG = {
   }
 };
 
-// ── Chart 3: Vega-Lite bar — top suburbs by Asian-born share ──
+// ── Chart 3: Vega-Lite choropleth — Asian-born % by suburb ──
 vegaEmbed('#chart-bar-suburbs', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '01_suburb_asian_pct.json'},
-  config: CONFIG,
   width: 'container', height: 340,
-  transform: [
-    {filter: 'datum.pct_asian > 0'},
-    {window: [{op:'rank', as:'rank'}], sort:[{field:'pct_asian', order:'descending'}]},
-    {filter: 'datum.rank <= 15'}
-  ],
-  mark: {type:'bar', cornerRadiusEnd:3},
-  encoding: {
-    y: {field:'suburb', type:'nominal', sort:'-x', axis:{labelLimit:130, title:null}},
-    x: {field:'pct_asian', type:'quantitative', title:'Asian-born (%)', axis:{format:'.0f', tickCount:5}},
-    color: {
-      field:'pct_asian', type:'quantitative',
-      scale:{domain:[30,60], range:['#c2e5de','#1d7a68']},
-      legend:{title:'Asian-born %', gradientLength:80, orient:'top-right'}
-    },
-    tooltip: [
-      {field:'suburb', title:'Suburb'},
-      {field:'pct_asian', title:'Asian-born %', format:'.1f'},
-      {field:'total_pop', title:'Population', format:','}
-    ]
-  }
+  config: CONFIG,
+  projection: {type: 'mercator'},
+  layer: [
+    {
+      data: {url: BASE + 'vic_suburbs_simple.geojson', format: {type: 'json', property: 'features'}},
+      mark: {type: 'geoshape', stroke: 'white', strokeWidth: 0.8},
+      encoding: {
+        color: {
+          field: 'properties.pct_asian',
+          type: 'quantitative',
+          scale: {domain: [30, 58], range: ['#c2e5de', '#1d7a68']},
+          legend: {title: 'Asian-born %', gradientLength: 100, orient: 'top-right'}
+        },
+        tooltip: [
+          {field: 'properties.suburb', title: 'Suburb'},
+          {field: 'properties.pct_asian', title: 'Asian-born %', format: '.1f'},
+          {field: 'properties.total_pop', title: 'Population', format: ','}
+        ]
+      }
+    }
+  ]
 }, {actions:false});
 
 // ── Chart 2: Leaflet dot map — Asian restaurant locations ──
