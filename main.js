@@ -438,23 +438,18 @@ vegaEmbed('#chart-bar-suburbs', {
     url: BASE + 'vic_suburbs_simple.geojson',
     format: {type: 'json', property: 'features'}
   },
-  transform: [
-    {calculate: 'datum.properties.pct_asian', as: 'pct'},
-    {calculate: 'datum.properties.suburb', as: 'name'},
-    {calculate: 'datum.properties.total_pop', as: 'pop'}
-  ],
   mark: {type: 'geoshape', stroke: 'white', strokeWidth: 1},
   encoding: {
     color: {
-      field: 'pct',
+      field: 'pct_asian',
       type: 'quantitative',
       scale: {domain: [30, 58], range: ['#c2e5de', '#1d7a68']},
       legend: {title: 'Asian-born %', gradientLength: 100, orient: 'bottom-right'}
     },
     tooltip: [
-      {field: 'name', title: 'Suburb'},
-      {field: 'pct', title: 'Asian-born %', format: '.1f'},
-      {field: 'pop', title: 'Population', format: ','}
+      {field: 'suburb', title: 'Suburb'},
+      {field: 'pct_asian', title: 'Asian-born %', format: '.1f'},
+      {field: 'total_pop', title: 'Population', format: ','}
     ]
   }
 }, {actions:false});
