@@ -270,6 +270,8 @@ function goToStop(idx) {
   card.classList.remove('visible');
   var strip = document.getElementById('story-strip');
   if(strip) strip.style.display = 'block';
+  var mapSec = document.getElementById('stop-map-section');
+  if(mapSec) mapSec.style.display = 'block';
   setTimeout(()=>{ card.classList.add('visible'); }, 50);
 
   function setText(id, val){ var el=document.getElementById(id); if(el) el.textContent=val; }
