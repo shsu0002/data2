@@ -681,9 +681,12 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
     <div style="padding:1.5rem">
       <div class="stop-story" id="stop-story" style="font-size:0.9rem;color:var(--ink-mid);line-height:1.75;border-left:3px solid #f0e0dd;padding-left:1rem"></div>
     </div>
-    <div style="padding:0 1.5rem 0.5rem">
-      <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.5rem" id="stop-map-label">Asian restaurants nearby</div>
-      <div id="stop-map" style="width:100%;height:280px;border-radius:4px;overflow:hidden;border:1px solid var(--rule)"></div>
+    <div id="stop-map-section" style="display:none;padding:0 1.5rem 0.5rem">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;flex-wrap:wrap;gap:0.4rem">
+        <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted)" id="stop-map-label">Asian restaurants nearby</div>
+      </div>
+      <div id="stop-map-filters" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:0.6rem"></div>
+      <div id="stop-map" style="width:100%;height:260px;border-radius:4px;overflow:hidden;border:1px solid var(--rule)"></div>
     </div>
 
     <!-- Remy restaurant bubble -->
