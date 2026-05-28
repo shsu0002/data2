@@ -448,33 +448,70 @@ vegaEmbed('#chart-bar-suburbs', {
   }
 }, {actions:false});
 
-// ── Chart 2: Dot map — Asian restaurant locations ──
-vegaEmbed('#chart-donut', {
-  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '02_asian_restaurant_points.json'},
-  background: '#eef4f8',
-  width: 'container', height: 340,
-  transform: [
-    {filter: 'datum.lat > -38.2 && datum.lat < -37.5 && datum.lon > 144.6 && datum.lon < 145.6'}
-  ],
-  mark: {type: 'point', filled: true, size: 18, opacity: 0.75, strokeWidth: 0},
-  encoding: {
-    x: {field: 'lon', type: 'quantitative', scale: {domain: [144.6, 145.6]}, axis: null},
-    y: {field: 'lat', type: 'quantitative', scale: {domain: [-38.2, -37.5]}, axis: null, sort: 'descending'},
-    color: {
-      field: 'cuisine_label', type: 'nominal',
-      scale: {
-        domain: ['Chinese','Japanese','Vietnamese','Indian','Korean','Malaysian','Thai','Other Asian'],
-        range:  ['#1d7a68','#e8863a','#378add','#7f6ab8','#c94030','#b87c2a','#d4537e','#888780']
-      },
-      legend: {title: null, columns: 2, symbolSize: 80, labelFontSize: 11}
-    },
-    tooltip: [
-      {field: 'name', title: 'Restaurant'},
-      {field: 'cuisine_label', title: 'Cuisine'}
-    ]
+// ── Chart 2: Leaflet dot map — Asian restaurant locations ──
+(function(){
+  var CUISINE_COLORS = {
+    'Chinese':       '#1d7a68',
+    'Japanese':      '#e8863a',
+    'Vietnamese':    '#378add',
+    'Indian':        '#7f6ab8',
+    'Korean':        '#c94030',
+    'Malaysian':     '#b87c2a',
+    'Thai':          '#d4537e',
+    'Other Asian':   '#888780',
+    'Asian (general)':'#888780',
+    'Sri Lankan':    '#e8863a',
+    'Cambodian':     '#e8a030',
+    'Noodle':        '#888780',
+    'Taiwanese':     '#1d7a68',
+    'Indonesian':    '#888780',
+    'Nepalese':      '#7f6ab8',
+    'Burmese':       '#888780',
+    'Pakistani':     '#888780'
+  };
+
+  function initMap() {
+    var el = document.getElementById('chart-donut');
+    if (!el || el._leaflet_id) return;
+
+    var map = L.map('chart-donut', {
+      center: [-37.85, 145.05],
+      zoom: 11,
+      zoomControl: true,
+      scrollWheelZoom: false
+    });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '© OpenStreetMap © CARTO',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(map);
+
+    fetch('https://raw.githubusercontent.com/shsu0002/data2/main/files/02_asian_restaurant_points.json')
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        data.forEach(function(d){
+          var color = CUISINE_COLORS[d.cuisine_label] || '#888780';
+          L.circleMarker([d.lat, d.lon], {
+            radius: 5,
+            fillColor: color,
+            color: 'white',
+            weight: 0.5,
+            opacity: 1,
+            fillOpacity: 0.8
+          }).bindTooltip(d.name + '<br><em>' + d.cuisine_label + '</em>', {direction:'top'})
+            .addTo(map);
+        });
+      });
   }
-}, {actions:false});
+
+  // Init after DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMap);
+  } else {
+    setTimeout(initMap, 100);
+  }
+})();
 
 // ── Chart 5: Scatter — pop vs restaurants ──
 vegaEmbed('#chart-scatter', {
