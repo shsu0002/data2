@@ -134,7 +134,7 @@ function buildTrail() {
 function updateTrail(idx) {
   STOPS.forEach((_,i) => {
     const el = document.getElementById('trail-'+i);
-    el.className = 'trail-stop' + (i===idx?' active':i<idx?' done':'');
+    el.className = 'trail-stop' + (i===idx?' active':i<idx?' done':''); 
     if(i < STOPS.length-1) {
       const line = document.getElementById('trail-line-'+i);
       line.className = 'trail-line' + (i<idx?' done':'');
