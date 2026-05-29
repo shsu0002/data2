@@ -743,15 +743,6 @@ vegaEmbed('#chart-scatter', {
   width: 'container', height: 380,
   layer: [
     {
-      mark: {type: 'line', strokeDash: [4, 3], color: '#d3d1c7', strokeWidth: 1.5},
-      transform: [{regression: 'pct_asian_restaurants', on: 'pct_asian_pop',
-                   extent: [0, 65]}],
-      encoding: {
-        x: {field: 'pct_asian_pop', type: 'quantitative'},
-        y: {field: 'pct_asian_restaurants', type: 'quantitative'}
-      }
-    },
-    {
       mark: {type: 'point', filled: true, opacity: 0.82, stroke: 'white', strokeWidth: 1.5},
       encoding: {
         x: {field: 'pct_asian_pop', type: 'quantitative',
