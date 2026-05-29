@@ -1,0 +1,58 @@
+[
+  {
+    "state": "VIC",
+    "state_name": "Victoria",
+    "total_pop": 6503491,
+    "asian_born": 1038042,
+    "pct_asian": 16.0
+  },
+  {
+    "state": "NSW",
+    "state_name": "New South Wales",
+    "total_pop": 8072163,
+    "asian_born": 1222565,
+    "pct_asian": 15.1
+  },
+  {
+    "state": "QLD",
+    "state_name": "Queensland",
+    "total_pop": 5185905,
+    "asian_born": 504873,
+    "pct_asian": 9.7
+  },
+  {
+    "state": "SA",
+    "state_name": "South Australia",
+    "total_pop": 1820495,
+    "asian_born": 175386,
+    "pct_asian": 9.6
+  },
+  {
+    "state": "WA",
+    "state_name": "Western Australia",
+    "total_pop": 2660088,
+    "asian_born": 347026,
+    "pct_asian": 13.0
+  },
+  {
+    "state": "TAS",
+    "state_name": "Tasmania",
+    "total_pop": 541479,
+    "asian_born": 27698,
+    "pct_asian": 5.1
+  },
+  {
+    "state": "NT",
+    "state_name": "Northern Territory",
+    "total_pop": 250230,
+    "asian_born": 21945,
+    "pct_asian": 8.8
+  },
+  {
+    "state": "ACT",
+    "state_name": "Australian Capital Territory",
+    "total_pop": 453557,
+    "asian_born": 74020,
+    "pct_asian": 16.3
+  }
+]
