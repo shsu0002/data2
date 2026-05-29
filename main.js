@@ -905,7 +905,7 @@ vegaEmbed('#chart-multiline', {
   config: CONFIG,
   width: 'container', height: 240,
   transform: [
-    {filter: "datum.area != 'Unincorporated CBD'"},
+    {filter: "datum.area != 'Unincorporated CBD' && datum.area != 'Melbourne (CBD)'"},
     {filter: 'datum.count > 0'}
   ],
   mark: {type: 'line', strokeWidth: 1.8, point: {filled: true, size: 20, opacity: 0.7}},
