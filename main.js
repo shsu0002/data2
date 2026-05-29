@@ -744,6 +744,7 @@ vegaEmbed('#chart-scatter', {
   layer: [
     {
       mark: {type: 'point', filled: true, size: 90, stroke: 'white', strokeWidth: 1.2},
+      transform: [{calculate: "datum.suburb === 'Box Hill' || datum.suburb === 'Glen Waverley' || datum.suburb === 'Springvale' || datum.suburb === 'Melbourne CBD' ? datum.suburb : 'other'", as: 'focus'}],
       encoding: {
         x: {field: 'pct_asian_pop', type: 'quantitative',
             title: 'Asian-born population (%)',
@@ -754,16 +755,16 @@ vegaEmbed('#chart-scatter', {
             axis: {format: '.0f', tickCount: 6},
             scale: {domain: [0, 100]}},
         color: {
-          field: 'suburb', type: 'nominal',
+          field: 'focus', type: 'nominal',
           scale: {
-            domain: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne CBD'],
-            range:  ['#1d7a68',  '#7f6ab8',        '#378add',    '#c94030']
+            domain: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne CBD', 'other'],
+            range:  ['#1d7a68',  '#7f6ab8',        '#378add',    '#c94030',       '#c0b8b0']
           },
           legend: null
         },
         opacity: {
-          condition: {test: "datum.suburb === 'Box Hill' || datum.suburb === 'Glen Waverley' || datum.suburb === 'Springvale' || datum.suburb === 'Melbourne CBD'", value: 1},
-          value: 0.25
+          condition: {test: "datum.focus !== 'other'", value: 1},
+          value: 0.5
         },
         tooltip: [
           {field: 'suburb',                title: 'Suburb'},
