@@ -735,7 +735,79 @@ vegaEmbed('#chart-donut-section', {
   ]
 }, {actions: false});
 
-// ── Chart B2: Choropleth — dominant cuisine per suburb (4 suburbs) ──
+// ── Chart C1: Bubble scatter — Asian pop % vs Asian restaurant % ──
+vegaEmbed('#chart-scatter', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  data: {url: BASE + '04_scatter_pop_vs_restaurant.json'},
+  config: CONFIG,
+  width: 'container', height: 380,
+  layer: [
+    {
+      mark: {type: 'line', strokeDash: [4, 3], color: '#d3d1c7', strokeWidth: 1.5},
+      transform: [{regression: 'pct_asian_restaurants', on: 'pct_asian_pop',
+                   extent: [0, 65]}],
+      encoding: {
+        x: {field: 'pct_asian_pop', type: 'quantitative'},
+        y: {field: 'pct_asian_restaurants', type: 'quantitative'}
+      }
+    },
+    {
+      mark: {type: 'point', filled: true, opacity: 0.82, stroke: 'white', strokeWidth: 1.5},
+      encoding: {
+        x: {field: 'pct_asian_pop', type: 'quantitative',
+            title: 'Asian-born population (%)',
+            axis: {format: '.0f', tickCount: 6},
+            scale: {domain: [0, 70]}},
+        y: {field: 'pct_asian_restaurants', type: 'quantitative',
+            title: 'Asian restaurants (%)',
+            axis: {format: '.0f', tickCount: 6},
+            scale: {domain: [0, 100]}},
+        size: {field: 'total_restaurants', type: 'quantitative',
+               title: 'Total restaurants',
+               scale: {range: [60, 900]},
+               legend: {orient: 'bottom-right', title: 'Total restaurants'}},
+        color: {
+          field: 'suburb', type: 'nominal',
+          condition: [
+            {test: "datum.suburb === 'Box Hill'",      value: '#1d7a68'},
+            {test: "datum.suburb === 'Glen Waverley'", value: '#7f6ab8'},
+            {test: "datum.suburb === 'Springvale'",    value: '#378add'},
+            {test: "datum.suburb === 'Melbourne CBD'", value: '#c94030'}
+          ],
+          value: '#c8c4bc',
+          legend: null
+        },
+        tooltip: [
+          {field: 'suburb',                  title: 'Suburb'},
+          {field: 'pct_asian_pop',           title: 'Asian-born %',        format: '.1f'},
+          {field: 'pct_asian_restaurants',   title: 'Asian restaurants %', format: '.1f'},
+          {field: 'total_restaurants',       title: 'Total restaurants'},
+          {field: 'population',              title: 'Population',          format: ','}
+        ]
+      }
+    },
+    {
+      mark: {type: 'text', dy: -14, fontSize: 11, fontWeight: 600},
+      transform: [{filter: "datum.suburb === 'Box Hill' || datum.suburb === 'Glen Waverley' || datum.suburb === 'Springvale' || datum.suburb === 'Melbourne CBD'"}],
+      encoding: {
+        x: {field: 'pct_asian_pop', type: 'quantitative'},
+        y: {field: 'pct_asian_restaurants', type: 'quantitative'},
+        text: {field: 'suburb'},
+        color: {
+          field: 'suburb', type: 'nominal',
+          condition: [
+            {test: "datum.suburb === 'Box Hill'",      value: '#1d7a68'},
+            {test: "datum.suburb === 'Glen Waverley'", value: '#7f6ab8'},
+            {test: "datum.suburb === 'Springvale'",    value: '#378add'},
+            {test: "datum.suburb === 'Melbourne CBD'", value: '#c94030'}
+          ],
+          value: '#4a4540',
+          legend: null
+        }
+      }
+    }
+  ]
+}, {actions: false});
 vegaEmbed('#chart-cuisine-choropleth', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
   width: 'container', height: 340,
