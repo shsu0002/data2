@@ -586,56 +586,38 @@ const CONFIG = {
 
 
 
-// ── Chart A1: Bin map — Asian-born % across Melbourne suburbs ──
-// All suburbs shown as bars sorted by %, focus suburbs highlighted in teal
+// ── Chart A1: Choropleth — Asian-born % across Melbourne suburbs ──
 vegaEmbed('#chart-binmap', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '01_suburb_asian_pct.json'},
+  width: 'container', height: 420,
   config: CONFIG,
-  width: 'container', height: 260,
-  transform: [
-    {filter: 'datum.pct_asian > 0 && datum.total_pop > 3000'},
-    {window: [{op: 'rank', as: 'rank'}], sort: [{field: 'pct_asian', order: 'descending'}]},
-    {filter: 'datum.rank <= 40'},
-    {calculate: "indexof(['Box Hill','Glen Waverley','Springvale','Melbourne'], datum.suburb) >= 0 ? datum.suburb : 'Other'", as: 'highlight'}
-  ],
+  projection: {type: 'mercator', center: [144.945, -37.829], scale: 28000},
   layer: [
     {
-      mark: {type: 'bar', cornerRadiusEnd: 3},
+      data: {url: BASE + 'vic_suburbs_simple.geojson', format: {type: 'json', property: 'features'}},
+      mark: {type: 'geoshape', stroke: 'white', strokeWidth: 0.8},
       encoding: {
-        x: {
-          field: 'suburb', type: 'nominal',
-          sort: {field: 'pct_asian', order: 'descending'},
-          axis: {labelAngle: -45, labelLimit: 90, title: null, labelFontSize: 10,
-            labelExpr: "indexof(['Box Hill','Glen Waverley','Springvale','Melbourne'], datum.value) >= 0 ? datum.value : ''"}
-        },
-        y: {
-          field: 'pct_asian', type: 'quantitative',
-          title: 'Asian-born (%)',
-          axis: {tickCount: 5, format: '.0f'}
-        },
         color: {
-          field: 'highlight', type: 'nominal',
-          scale: {
-            domain: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne', 'Other'],
-            range:  ['#1d7a68',  '#7f6ab8',       '#378add',    '#c94030',    '#d3d1c7']
-          },
-          legend: {title: null, orient: 'top-right',
-            values: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne']}
-        },
-        opacity: {
-          condition: {test: "datum.highlight !== 'Other'", value: 1},
-          value: 0.45
+          field: 'pct_asian', type: 'quantitative',
+          title: 'Asian-born %',
+          scale: {domain: [0, 60], range: ['#e8e0d4', '#1d7a68']},
+          legend: {orient: 'bottom-right', gradientLength: 120, title: 'Asian-born %'}
         },
         tooltip: [
-          {field: 'suburb', title: 'Suburb'},
+          {field: 'suburb',    title: 'Suburb'},
           {field: 'pct_asian', title: 'Asian-born %', format: '.1f'},
-          {field: 'total_pop', title: 'Population', format: ','}
+          {field: 'total_pop', title: 'Population',   format: ','}
         ]
       }
+    },
+    {
+      data: {url: BASE + 'vic_suburbs_simple.geojson', format: {type: 'json', property: 'features'}},
+      transform: [{filter: "datum.focus !== 'other'"}],
+      mark: {type: 'geoshape', filled: false, stroke: '#c94030', strokeWidth: 2.5},
+      encoding: {}
     }
   ]
-}, {actions:false});
+}, {actions: false});
 
 // ── Chart A2: Line graph — population growth 2011–2021 ──
 vegaEmbed('#chart-pop-growth', {
