@@ -777,3 +777,146 @@ vegaEmbed('#chart-scatter', {
     }
   ]
 }, {actions: false});
+
+// ── Chart A1 (Map): Australia bubble map ──
+vegaEmbed('#chart-binmap', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  width: 'container', height: 380,
+  config: CONFIG,
+  layer: [
+    {
+      data: {url: 'https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json', format: {type: 'topojson', feature: 'countries'}},
+      projection: {type: 'mercator', center: [134.0, -28.0], scale: 750},
+      mark: {type: 'geoshape', fill: '#e8e0d4', stroke: 'white', strokeWidth: 0.5}
+    },
+    {
+      data: {values: [{"state": "VIC", "state_name": "Victoria", "total_pop": 6503491, "asian_born": 1038042, "pct_asian": 16.0, "lat": -37.0, "lon": 144.5}, {"state": "NSW", "state_name": "New South Wales", "total_pop": 8072163, "asian_born": 1222565, "pct_asian": 15.1, "lat": -32.0, "lon": 147.0}, {"state": "QLD", "state_name": "Queensland", "total_pop": 5185905, "asian_born": 504873, "pct_asian": 9.7, "lat": -22.0, "lon": 144.0}, {"state": "SA", "state_name": "South Australia", "total_pop": 1820495, "asian_born": 175386, "pct_asian": 9.6, "lat": -30.0, "lon": 135.0}, {"state": "WA", "state_name": "Western Australia", "total_pop": 2660088, "asian_born": 347026, "pct_asian": 13.0, "lat": -25.0, "lon": 121.0}, {"state": "TAS", "state_name": "Tasmania", "total_pop": 541479, "asian_born": 27698, "pct_asian": 5.1, "lat": -42.0, "lon": 146.5}, {"state": "NT", "state_name": "Northern Territory", "total_pop": 250230, "asian_born": 21945, "pct_asian": 8.8, "lat": -19.0, "lon": 133.0}, {"state": "ACT", "state_name": "Australian Capital Territory", "total_pop": 453557, "asian_born": 74020, "pct_asian": 16.3, "lat": -35.5, "lon": 149.0}]},
+      projection: {type: 'mercator', center: [134.0, -28.0], scale: 750},
+      mark: {type: 'circle', stroke: 'white', strokeWidth: 1.5},
+      encoding: {
+        longitude: {field: 'lon', type: 'quantitative'},
+        latitude:  {field: 'lat', type: 'quantitative'},
+        size: {
+          field: 'total_pop', type: 'quantitative',
+          scale: {range: [300, 4000]},
+          legend: null
+        },
+        color: {
+          field: 'pct_asian', type: 'quantitative',
+          scale: {domain: [0, 18], range: ['#dcd7ce', '#1d7a68']},
+          legend: {orient: 'bottom-right', gradientLength: 100, title: 'Asian-born %'}
+        },
+        stroke: {
+          condition: {test: "datum.state === 'VIC'", value: '#c94030'},
+          value: 'white'
+        },
+        strokeWidth: {
+          condition: {test: "datum.state === 'VIC'", value: 3},
+          value: 1.5
+        },
+        tooltip: [
+          {field: 'state_name', title: 'State'},
+          {field: 'pct_asian', title: 'Asian-born %', format: '.1f'},
+          {field: 'asian_born', title: 'Asian-born', format: ','},
+          {field: 'total_pop', title: 'Population', format: ','}
+        ]
+      }
+    },
+    {
+      data: {values: [{"state": "VIC", "state_name": "Victoria", "total_pop": 6503491, "asian_born": 1038042, "pct_asian": 16.0, "lat": -37.0, "lon": 144.5}, {"state": "NSW", "state_name": "New South Wales", "total_pop": 8072163, "asian_born": 1222565, "pct_asian": 15.1, "lat": -32.0, "lon": 147.0}, {"state": "QLD", "state_name": "Queensland", "total_pop": 5185905, "asian_born": 504873, "pct_asian": 9.7, "lat": -22.0, "lon": 144.0}, {"state": "WA", "state_name": "Western Australia", "total_pop": 2660088, "asian_born": 347026, "pct_asian": 13.0, "lat": -25.0, "lon": 121.0}, {"state": "TAS", "state_name": "Tasmania", "total_pop": 541479, "asian_born": 27698, "pct_asian": 5.1, "lat": -42.0, "lon": 146.5}]},
+      projection: {type: 'mercator', center: [134.0, -28.0], scale: 750},
+      mark: {type: 'text', dy: -16, fontSize: 10, fontWeight: 500, color: '#4a4540'},
+      encoding: {
+        longitude: {field: 'lon', type: 'quantitative'},
+        latitude:  {field: 'lat', type: 'quantitative'},
+        text: {field: 'state_name'}
+      }
+    }
+  ]
+}, {actions: false});
+
+// ── Chart D1: Line — total CBD restaurants ──
+vegaEmbed('#chart-line-total', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  data: {url: BASE + '05_clue_yearly_trend.json'},
+  config: CONFIG,
+  width: 'container', height: 220,
+  layer: [
+    {
+      mark: {type: 'area', opacity: 0.1, color: COLORS.red},
+      encoding: {
+        x: {field: 'year', type: 'quantitative', title: null, axis: {format: 'd', tickCount: 6}},
+        y: {field: 'restaurant_count', type: 'quantitative', title: 'Restaurants'}
+      }
+    },
+    {
+      mark: {type: 'line', color: COLORS.red, strokeWidth: 2.5},
+      encoding: {
+        x: {field: 'year', type: 'quantitative'},
+        y: {field: 'restaurant_count', type: 'quantitative'},
+        tooltip: [{field:'year',title:'Year'},{field:'restaurant_count',title:'Restaurants'},{field:'total_seats',title:'Seats',format:','}]
+      }
+    }
+  ]
+}, {actions: false});
+
+// ── Chart D2: Line — Asian vs Other ──
+vegaEmbed('#chart-line-asian', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  data: {url: BASE + '07_clue_asian_trend.json'},
+  config: CONFIG,
+  width: 'container', height: 220,
+  mark: {type: 'line', strokeWidth: 2.5},
+  encoding: {
+    x: {field: 'year', type: 'quantitative', title: null, axis: {format: 'd', tickCount: 6}},
+    y: {field: 'count', type: 'quantitative', title: 'Restaurants'},
+    color: {
+      field: 'type', type: 'nominal',
+      scale: {domain: ['Asian-identified','Other'], range: [COLORS.teal, COLORS.muted]},
+      legend: {title: null}
+    },
+    tooltip: [{field:'year',title:'Year'},{field:'type',title:'Type'},{field:'count',title:'Count'}]
+  }
+}, {actions: false});
+
+// ── Chart D3: Stacked area — seats ──
+vegaEmbed('#chart-area-seats', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  data: {url: BASE + '09_clue_seats_trend.json'},
+  config: CONFIG,
+  width: 'container', height: 220,
+  mark: {type: 'area', opacity: 0.85},
+  encoding: {
+    x: {field: 'year', type: 'quantitative', title: null, axis: {format: 'd', tickCount: 6}},
+    y: {field: 'total_seats', type: 'quantitative', stack: 'zero', title: 'Seats'},
+    color: {
+      field: 'seating_type', type: 'nominal',
+      scale: {domain: ['Seats - Indoor','Seats - Outdoor'], range: [COLORS.blue, COLORS.gold]},
+      legend: {title: null, labelExpr: "datum.label == 'Seats - Indoor' ? 'Indoor' : 'Outdoor'"}
+    },
+    tooltip: [{field:'year',title:'Year'},{field:'seating_type',title:'Type'},{field:'total_seats',title:'Seats',format:','}]
+  }
+}, {actions: false});
+
+// ── Chart D4: Multi-line — sub-areas ──
+vegaEmbed('#chart-multiline', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  data: {url: BASE + '06_clue_area_trend.json'},
+  config: CONFIG,
+  width: 'container', height: 240,
+  transform: [
+    {filter: "datum.area != 'Unincorporated CBD'"},
+    {filter: 'datum.count > 0'}
+  ],
+  mark: {type: 'line', strokeWidth: 1.8, point: {filled: true, size: 20, opacity: 0.7}},
+  encoding: {
+    x: {field: 'year', type: 'quantitative', title: null, axis: {format: 'd', tickCount: 6}},
+    y: {field: 'count', type: 'quantitative', title: 'Restaurants'},
+    color: {
+      field: 'area', type: 'nominal',
+      scale: {scheme: 'tableau10'},
+      legend: {title: null, columns: 2}
+    },
+    tooltip: [{field:'year',title:'Year'},{field:'area',title:'Area'},{field:'count',title:'Restaurants'}]
+  }
+}, {actions: false});
