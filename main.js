@@ -735,28 +735,24 @@ vegaEmbed('#chart-donut-section', {
   ]
 }, {actions: false});
 
-// ── Chart C1: Bubble scatter — Asian pop % vs Asian restaurant % ──
+// ── Chart C1: Dot plot — Asian pop % vs Asian restaurant % ──
 vegaEmbed('#chart-scatter', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
   data: {url: BASE + '04_scatter_pop_vs_restaurant.json'},
   config: CONFIG,
-  width: 'container', height: 380,
+  width: 'container', height: 360,
   layer: [
     {
-      mark: {type: 'point', filled: true, opacity: 0.82, stroke: 'white', strokeWidth: 1.5},
+      mark: {type: 'point', filled: true, size: 90, stroke: 'white', strokeWidth: 1.2},
       encoding: {
         x: {field: 'pct_asian_pop', type: 'quantitative',
             title: 'Asian-born population (%)',
-            axis: {format: '.0f', tickCount: 6},
+            axis: {format: '.0f', tickCount: 7},
             scale: {domain: [0, 70]}},
         y: {field: 'pct_asian_restaurants', type: 'quantitative',
             title: 'Asian restaurants (%)',
             axis: {format: '.0f', tickCount: 6},
             scale: {domain: [0, 100]}},
-        size: {field: 'total_restaurants', type: 'quantitative',
-               title: 'Total restaurants',
-               scale: {range: [60, 900]},
-               legend: {orient: 'bottom-right', title: 'Total restaurants'}},
         color: {
           field: 'suburb', type: 'nominal',
           scale: {
@@ -766,20 +762,20 @@ vegaEmbed('#chart-scatter', {
           legend: null
         },
         opacity: {
-          condition: {test: "datum.suburb === 'Box Hill' || datum.suburb === 'Glen Waverley' || datum.suburb === 'Springvale' || datum.suburb === 'Melbourne CBD'", value: 0.9},
-          value: 0.35
+          condition: {test: "datum.suburb === 'Box Hill' || datum.suburb === 'Glen Waverley' || datum.suburb === 'Springvale' || datum.suburb === 'Melbourne CBD'", value: 1},
+          value: 0.25
         },
         tooltip: [
-          {field: 'suburb',                  title: 'Suburb'},
-          {field: 'pct_asian_pop',           title: 'Asian-born %',        format: '.1f'},
-          {field: 'pct_asian_restaurants',   title: 'Asian restaurants %', format: '.1f'},
-          {field: 'total_restaurants',       title: 'Total restaurants'},
-          {field: 'population',              title: 'Population',          format: ','}
+          {field: 'suburb',                title: 'Suburb'},
+          {field: 'pct_asian_pop',         title: 'Asian-born %',        format: '.1f'},
+          {field: 'pct_asian_restaurants', title: 'Asian restaurants %', format: '.1f'},
+          {field: 'total_restaurants',     title: 'Total restaurants'},
+          {field: 'population',            title: 'Population',          format: ','}
         ]
       }
     },
     {
-      mark: {type: 'text', dy: -14, fontSize: 11, fontWeight: 600},
+      mark: {type: 'text', dy: -13, fontSize: 11, fontWeight: 600},
       transform: [{filter: "datum.suburb === 'Box Hill' || datum.suburb === 'Springvale'"}],
       encoding: {
         x: {field: 'pct_asian_pop', type: 'quantitative'},
@@ -787,10 +783,7 @@ vegaEmbed('#chart-scatter', {
         text: {field: 'suburb'},
         color: {
           field: 'suburb', type: 'nominal',
-          scale: {
-            domain: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne CBD'],
-            range:  ['#1d7a68',  '#7f6ab8',        '#378add',    '#c94030']
-          },
+          scale: {domain: ['Box Hill','Springvale'], range: ['#1d7a68','#378add']},
           legend: null
         }
       }
@@ -806,7 +799,7 @@ vegaEmbed('#chart-scatter', {
       }
     },
     {
-      mark: {type: 'text', dy: -14, dx: -14, fontSize: 11, fontWeight: 600},
+      mark: {type: 'text', dy: -13, dx: -50, fontSize: 11, fontWeight: 600},
       transform: [{filter: "datum.suburb === 'Melbourne CBD'"}],
       encoding: {
         x: {field: 'pct_asian_pop', type: 'quantitative'},
