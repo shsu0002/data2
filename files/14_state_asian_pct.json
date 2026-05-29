@@ -1,7 +1,7 @@
 [
   {
     "state": "VIC",
-    "state_name": "Victoria",
+    "state_name": "Victoria", 
     "total_pop": 6503491,
     "asian_born": 1038042,
     "pct_asian": 16.0
