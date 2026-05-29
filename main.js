@@ -594,7 +594,7 @@ vegaEmbed('#chart-binmap', {
   projection: {type: 'mercator', center: [144.945, -37.829], scale: 28000},
   layer: [
     {
-      data: {url: BASE + 'vic_suburbs_simple.geojson', format: {type: 'json', property: 'features'}},
+      data: {url: BASE + 'vic_suburbs_real.geojson', format: {type: 'json', property: 'features'}},
       mark: {type: 'geoshape', stroke: 'white', strokeWidth: 0.8},
       encoding: {
         color: {
@@ -611,7 +611,7 @@ vegaEmbed('#chart-binmap', {
       }
     },
     {
-      data: {url: BASE + 'vic_suburbs_simple.geojson', format: {type: 'json', property: 'features'}},
+      data: {url: BASE + 'vic_suburbs_real.geojson', format: {type: 'json', property: 'features'}},
       transform: [{filter: "datum.focus !== 'other'"}],
       mark: {type: 'geoshape', filled: false, stroke: '#c94030', strokeWidth: 2.5},
       encoding: {
