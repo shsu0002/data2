@@ -586,39 +586,40 @@ const CONFIG = {
 
 
 
-// ── Chart A1: Choropleth — Asian-born % across Melbourne suburbs ──
+// ── Chart A1: Australia choropleth — Asian-born % by state, Melbourne highlighted ──
 vegaEmbed('#chart-binmap', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  width: 'container', height: 420,
+  width: 'container', height: 400,
   config: CONFIG,
-  projection: {type: 'mercator', center: [144.977, -37.910], scale: 32000},
+  projection: {type: 'mercator', center: [134.0, -28.0], scale: 750},
   layer: [
     {
-      data: {url: BASE + 'vic_suburbs_real.geojson', format: {type: 'json', property: 'features'}},
-      mark: {type: 'geoshape', stroke: '#ccc8c0', strokeWidth: 0.4},
+      data: {url: BASE + '14_australia_states.geojson', format: {type: 'json', property: 'features'}},
+      mark: {type: 'geoshape', stroke: 'white', strokeWidth: 1.2},
       encoding: {
         color: {
           field: 'pct_asian', type: 'quantitative',
           title: 'Asian-born %',
-          scale: {domain: [0, 60], range: ['#dcd7ce', '#1d7a68'], null: '#ede9e3'},
+          scale: {domain: [0, 18], range: ['#e8e0d4', '#1d7a68']},
           legend: {orient: 'bottom-right', gradientLength: 120, title: 'Asian-born %'}
         },
         tooltip: [
-          {field: 'suburb',    title: 'Suburb'},
-          {field: 'pct_asian', title: 'Asian-born %', format: '.1f'},
-          {field: 'total_pop', title: 'Population',   format: ','}
+          {field: 'state_name', title: 'State'},
+          {field: 'pct_asian',  title: 'Asian-born %', format: '.1f'},
+          {field: 'asian_born', title: 'Asian-born',   format: ','},
+          {field: 'total_pop',  title: 'Population',   format: ','}
         ]
       }
     },
     {
-      data: {url: BASE + 'vic_suburbs_real.geojson', format: {type: 'json', property: 'features'}},
-      transform: [{filter: "datum.focus !== 'other' && datum.focus !== null"}],
-      mark: {type: 'geoshape', filled: false, stroke: '#c94030', strokeWidth: 2.2},
+      data: {url: BASE + '14_australia_states.geojson', format: {type: 'json', property: 'features'}},
+      transform: [{filter: "datum.state === 'VIC'"}],
+      mark: {type: 'geoshape', filled: false, stroke: '#c94030', strokeWidth: 3},
       encoding: {
         tooltip: [
-          {field: 'suburb',    title: 'Suburb'},
-          {field: 'pct_asian', title: 'Asian-born %', format: '.1f'},
-          {field: 'total_pop', title: 'Population',   format: ','}
+          {field: 'state_name', title: 'State'},
+          {field: 'pct_asian',  title: 'Asian-born %', format: '.1f'},
+          {field: 'asian_born', title: 'Asian-born',   format: ','}
         ]
       }
     }
