@@ -775,11 +775,15 @@ vegaEmbed('#chart-scatter', {
       }
     },
     {
-      mark: {type: 'text', dy: -14, fontSize: 11, fontWeight: 600},
-      transform: [{filter: "datum.suburb === 'Box Hill' || datum.suburb === 'Glen Waverley' || datum.suburb === 'Springvale' || datum.suburb === 'Melbourne CBD'"}],
+      mark: {type: 'text', fontSize: 11, fontWeight: 600},
+      transform: [{filter: "datum.suburb === 'Box Hill' || datum.suburb === 'Glen Waverley' || datum.suburb === 'Springvale' || datum.suburb === 'Melbourne CBD'"},
+                  {calculate: "datum.suburb === 'Box Hill' ? -16 : datum.suburb === 'Melbourne CBD' ? -14 : datum.suburb === 'Glen Waverley' ? 16 : -16", as: 'label_dy'},
+                  {calculate: "datum.suburb === 'Melbourne CBD' ? -8 : datum.suburb === 'Glen Waverley' ? 0 : 0", as: 'label_dx'}],
       encoding: {
         x: {field: 'pct_asian_pop', type: 'quantitative'},
         y: {field: 'pct_asian_restaurants', type: 'quantitative'},
+        dx: {field: 'label_dx', type: 'quantitative'},
+        dy: {field: 'label_dy', type: 'quantitative'},
         text: {field: 'suburb'},
         color: {
           field: 'suburb', type: 'nominal',
