@@ -591,10 +591,10 @@ vegaEmbed('#chart-binmap', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
   width: 'container', height: 400,
   config: CONFIG,
-  projection: {type: 'mercator', center: [134.0, -28.0], scale: 750},
   layer: [
     {
       data: {url: BASE + '14_australia_states.geojson', format: {type: 'json', property: 'features'}},
+      projection: {type: 'mercator', center: [134.0, -28.0], scale: 750},
       mark: {type: 'geoshape', stroke: 'white', strokeWidth: 1.2},
       encoding: {
         color: {
@@ -613,6 +613,7 @@ vegaEmbed('#chart-binmap', {
     },
     {
       data: {url: BASE + '14_australia_states.geojson', format: {type: 'json', property: 'features'}},
+      projection: {type: 'mercator', center: [134.0, -28.0], scale: 750},
       transform: [{filter: "datum.state === 'VIC'"}],
       mark: {type: 'geoshape', filled: false, stroke: '#c94030', strokeWidth: 3},
       encoding: {
