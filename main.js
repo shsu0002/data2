@@ -591,16 +591,16 @@ vegaEmbed('#chart-binmap', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
   width: 'container', height: 420,
   config: CONFIG,
-  projection: {type: 'mercator', center: [144.945, -37.829], scale: 28000},
+  projection: {type: 'mercator', center: [144.977, -37.910], scale: 32000},
   layer: [
     {
       data: {url: BASE + 'vic_suburbs_real.geojson', format: {type: 'json', property: 'features'}},
-      mark: {type: 'geoshape', stroke: 'white', strokeWidth: 0.8},
+      mark: {type: 'geoshape', stroke: 'white', strokeWidth: 0.5},
       encoding: {
         color: {
           field: 'pct_asian', type: 'quantitative',
           title: 'Asian-born %',
-          scale: {domain: [0, 60], range: ['#e8e0d4', '#1d7a68']},
+          scale: {domain: [0, 60], range: ['#e8e0d4', '#1d7a68'], null: '#f0ece4'},
           legend: {orient: 'bottom-right', gradientLength: 120, title: 'Asian-born %'}
         },
         tooltip: [
