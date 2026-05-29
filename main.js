@@ -898,24 +898,27 @@ vegaEmbed('#chart-area-seats', {
   }
 }, {actions: false});
 
-// ── Chart D4: Multi-line — sub-areas ──
+// ── Chart D4: Multi-line — key sub-areas only ──
 vegaEmbed('#chart-multiline', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
   data: {url: BASE + '06_clue_area_trend.json'},
   config: CONFIG,
   width: 'container', height: 240,
   transform: [
-    {filter: "datum.area != 'Unincorporated CBD' && datum.area != 'Melbourne (CBD)'"},
+    {filter: "datum.area === 'Carlton' || datum.area === 'Docklands' || datum.area === 'Southbank' || datum.area === 'East Melbourne' || datum.area === 'North Melbourne'"},
     {filter: 'datum.count > 0'}
   ],
-  mark: {type: 'line', strokeWidth: 1.8, point: {filled: true, size: 20, opacity: 0.7}},
+  mark: {type: 'line', strokeWidth: 2, point: {filled: true, size: 40}},
   encoding: {
     x: {field: 'year', type: 'quantitative', title: null, axis: {format: 'd', tickCount: 6}},
     y: {field: 'count', type: 'quantitative', title: 'Restaurants'},
     color: {
       field: 'area', type: 'nominal',
-      scale: {scheme: 'tableau10'},
-      legend: {title: null, columns: 2}
+      scale: {
+        domain: ['Carlton','Docklands','Southbank','East Melbourne','North Melbourne'],
+        range:  ['#1d7a68','#c94030','#378add','#7f6ab8','#e8863a']
+      },
+      legend: {title: null}
     },
     tooltip: [{field:'year',title:'Year'},{field:'area',title:'Area'},{field:'count',title:'Restaurants'}]
   }
