@@ -776,6 +776,16 @@ vegaEmbed('#chart-scatter', {
       }
     },
     {
+      mark: {type: 'text', dy: -11, fontSize: 10, fontWeight: 400},
+      transform: [{filter: "datum.suburb !== 'Box Hill' && datum.suburb !== 'Glen Waverley' && datum.suburb !== 'Springvale' && datum.suburb !== 'Melbourne CBD'"}],
+      encoding: {
+        x: {field: 'pct_asian_pop', type: 'quantitative'},
+        y: {field: 'pct_asian_restaurants', type: 'quantitative'},
+        text: {field: 'suburb'},
+        color: {value: '#b0a89e'}
+      }
+    },
+    {
       mark: {type: 'text', dy: -13, fontSize: 11, fontWeight: 600},
       transform: [{filter: "datum.suburb === 'Box Hill' || datum.suburb === 'Springvale'"}],
       encoding: {
