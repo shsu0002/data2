@@ -2,25 +2,25 @@
   {
     "suburb": "Box Hill",
     "pct_asian_pop": 53.6,
-    "pct_asian_restaurants": 80.0,
+    "pct_asian_restaurants": 77.3,
     "total_restaurants": 75,
-    "asian_restaurants": 60,
+    "asian_restaurants": 58,
     "population": 14353
   },
   {
     "suburb": "Springvale",
-    "pct_asian_pop": 56.4,
-    "pct_asian_restaurants": 58.2,
+    "pct_asian_pop": 56.6,
+    "pct_asian_restaurants": 61.8,
     "total_restaurants": 55,
-    "asian_restaurants": 32,
+    "asian_restaurants": 34,
     "population": 22174
   },
   {
     "suburb": "Glen Waverley",
-    "pct_asian_pop": 47.9,
-    "pct_asian_restaurants": 59.5,
+    "pct_asian_pop": 48.1,
+    "pct_asian_restaurants": 64.9,
     "total_restaurants": 37,
-    "asian_restaurants": 22,
+    "asian_restaurants": 24,
     "population": 42642
   },
   {
@@ -49,11 +49,11 @@
   },
   {
     "suburb": "Melbourne CBD",
-    "pct_asian_pop": 8.3,
-    "pct_asian_restaurants": 59.8,
+    "pct_asian_pop": 48.4,
+    "pct_asian_restaurants": 70.8,
     "total_restaurants": 624,
-    "asian_restaurants": 373,
-    "population": 4896
+    "asian_restaurants": 442,
+    "population": 54941
   },
   {
     "suburb": "Doncaster",
