@@ -9,7 +9,7 @@ const STOPS = [
     remyLeft: '60.8%', remyTop: '26.4%',
     pop: '14,353', pct: '53.6%',
     bars: [
-      {country:'China',     pct:29.5, color:'#1d7a68'}, 
+      {country:'China',     pct:29.5, color:'#1d7a68'},
       {country:'Malaysia',  pct:6.4,  color:'#c94030'},
       {country:'India',     pct:4.5,  color:'#7f6ab8'},
       {country:'Hong Kong', pct:2.5,  color:'#b87c2a'}, 
@@ -782,8 +782,11 @@ vegaEmbed('#chart-scatter', {
         y: {field: 'pct_asian_restaurants', type: 'quantitative'},
         text: {field: 'suburb'},
         color: {
-          field: 'suburb', type: 'nominal',
-          scale: {domain: ['Box Hill','Springvale'], range: ['#1d7a68','#378add']},
+          field: 'focus', type: 'nominal',
+          scale: {
+            domain: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne CBD', 'other'],
+            range:  ['#1d7a68',  '#7f6ab8',        '#378add',    '#c94030',       '#c0b8b0']
+          },
           legend: null
         }
       }
