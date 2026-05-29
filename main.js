@@ -595,12 +595,12 @@ vegaEmbed('#chart-binmap', {
   layer: [
     {
       data: {url: BASE + 'vic_suburbs_real.geojson', format: {type: 'json', property: 'features'}},
-      mark: {type: 'geoshape', stroke: 'white', strokeWidth: 0.5},
+      mark: {type: 'geoshape', stroke: '#ccc8c0', strokeWidth: 0.4},
       encoding: {
         color: {
           field: 'pct_asian', type: 'quantitative',
           title: 'Asian-born %',
-          scale: {domain: [0, 60], range: ['#e8e0d4', '#1d7a68'], null: '#f0ece4'},
+          scale: {domain: [0, 60], range: ['#dcd7ce', '#1d7a68'], null: '#ede9e3'},
           legend: {orient: 'bottom-right', gradientLength: 120, title: 'Asian-born %'}
         },
         tooltip: [
@@ -612,8 +612,8 @@ vegaEmbed('#chart-binmap', {
     },
     {
       data: {url: BASE + 'vic_suburbs_real.geojson', format: {type: 'json', property: 'features'}},
-      transform: [{filter: "datum.focus !== 'other'"}],
-      mark: {type: 'geoshape', filled: false, stroke: '#c94030', strokeWidth: 2.5},
+      transform: [{filter: "datum.focus !== 'other' && datum.focus !== null"}],
+      mark: {type: 'geoshape', filled: false, stroke: '#c94030', strokeWidth: 2.2},
       encoding: {
         tooltip: [
           {field: 'suburb',    title: 'Suburb'},
