@@ -614,7 +614,13 @@ vegaEmbed('#chart-binmap', {
       data: {url: BASE + 'vic_suburbs_simple.geojson', format: {type: 'json', property: 'features'}},
       transform: [{filter: "datum.focus !== 'other'"}],
       mark: {type: 'geoshape', filled: false, stroke: '#c94030', strokeWidth: 2.5},
-      encoding: {}
+      encoding: {
+        tooltip: [
+          {field: 'suburb',    title: 'Suburb'},
+          {field: 'pct_asian', title: 'Asian-born %', format: '.1f'},
+          {field: 'total_pop', title: 'Population',   format: ','}
+        ]
+      }
     }
   ]
 }, {actions: false});
