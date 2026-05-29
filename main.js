@@ -759,13 +759,10 @@ vegaEmbed('#chart-scatter', {
                legend: {orient: 'bottom-right', title: 'Total restaurants'}},
         color: {
           field: 'suburb', type: 'nominal',
-          condition: [
-            {test: "datum.suburb === 'Box Hill'",      value: '#1d7a68'},
-            {test: "datum.suburb === 'Glen Waverley'", value: '#7f6ab8'},
-            {test: "datum.suburb === 'Springvale'",    value: '#378add'},
-            {test: "datum.suburb === 'Melbourne CBD'", value: '#c94030'}
-          ],
-          value: '#c8c4bc',
+          scale: {
+            domain: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne CBD'],
+            range:  ['#1d7a68',  '#7f6ab8',        '#378add',    '#c94030']
+          },
           legend: null
         },
         tooltip: [
@@ -786,13 +783,10 @@ vegaEmbed('#chart-scatter', {
         text: {field: 'suburb'},
         color: {
           field: 'suburb', type: 'nominal',
-          condition: [
-            {test: "datum.suburb === 'Box Hill'",      value: '#1d7a68'},
-            {test: "datum.suburb === 'Glen Waverley'", value: '#7f6ab8'},
-            {test: "datum.suburb === 'Springvale'",    value: '#378add'},
-            {test: "datum.suburb === 'Melbourne CBD'", value: '#c94030'}
-          ],
-          value: '#4a4540',
+          scale: {
+            domain: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne CBD'],
+            range:  ['#1d7a68',  '#7f6ab8',        '#378add',    '#c94030']
+          },
           legend: null
         }
       }
