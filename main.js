@@ -765,6 +765,10 @@ vegaEmbed('#chart-scatter', {
           },
           legend: null
         },
+        opacity: {
+          condition: {test: "datum.suburb === 'Box Hill' || datum.suburb === 'Glen Waverley' || datum.suburb === 'Springvale' || datum.suburb === 'Melbourne CBD'", value: 0.9},
+          value: 0.35
+        },
         tooltip: [
           {field: 'suburb',                  title: 'Suburb'},
           {field: 'pct_asian_pop',           title: 'Asian-born %',        format: '.1f'},
@@ -775,15 +779,11 @@ vegaEmbed('#chart-scatter', {
       }
     },
     {
-      mark: {type: 'text', fontSize: 11, fontWeight: 600},
-      transform: [{filter: "datum.suburb === 'Box Hill' || datum.suburb === 'Glen Waverley' || datum.suburb === 'Springvale' || datum.suburb === 'Melbourne CBD'"},
-                  {calculate: "datum.suburb === 'Box Hill' ? -16 : datum.suburb === 'Melbourne CBD' ? -14 : datum.suburb === 'Glen Waverley' ? 16 : -16", as: 'label_dy'},
-                  {calculate: "datum.suburb === 'Melbourne CBD' ? -8 : datum.suburb === 'Glen Waverley' ? 0 : 0", as: 'label_dx'}],
+      mark: {type: 'text', dy: -14, fontSize: 11, fontWeight: 600},
+      transform: [{filter: "datum.suburb === 'Box Hill' || datum.suburb === 'Springvale'"}],
       encoding: {
         x: {field: 'pct_asian_pop', type: 'quantitative'},
         y: {field: 'pct_asian_restaurants', type: 'quantitative'},
-        dx: {field: 'label_dx', type: 'quantitative'},
-        dy: {field: 'label_dy', type: 'quantitative'},
         text: {field: 'suburb'},
         color: {
           field: 'suburb', type: 'nominal',
@@ -793,6 +793,26 @@ vegaEmbed('#chart-scatter', {
           },
           legend: null
         }
+      }
+    },
+    {
+      mark: {type: 'text', dy: 16, fontSize: 11, fontWeight: 600},
+      transform: [{filter: "datum.suburb === 'Glen Waverley'"}],
+      encoding: {
+        x: {field: 'pct_asian_pop', type: 'quantitative'},
+        y: {field: 'pct_asian_restaurants', type: 'quantitative'},
+        text: {field: 'suburb'},
+        color: {value: '#7f6ab8'}
+      }
+    },
+    {
+      mark: {type: 'text', dy: -14, dx: -14, fontSize: 11, fontWeight: 600},
+      transform: [{filter: "datum.suburb === 'Melbourne CBD'"}],
+      encoding: {
+        x: {field: 'pct_asian_pop', type: 'quantitative'},
+        y: {field: 'pct_asian_restaurants', type: 'quantitative'},
+        text: {field: 'suburb'},
+        color: {value: '#c94030'}
       }
     }
   ]
