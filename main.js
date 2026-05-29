@@ -589,19 +589,47 @@ const CONFIG = {
 // ── Chart A1: Australia choropleth — Asian-born % by state ──
 vegaEmbed('#chart-binmap', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  width: 'container', height: 400,
+  width: 'container', height: 380,
   config: CONFIG,
+  projection: {type: 'mercator'},
   layer: [
     {
-      data: {url: 'data:application/json;base64,eyJ0eXBlIjoiRmVhdHVyZUNvbGxlY3Rpb24iLCJmZWF0dXJlcyI6W3sidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InN0YXRlIjoiVklDIiwic3RhdGVfbmFtZSI6IlZpY3RvcmlhIiwidG90YWxfcG9wIjo2NTAzNDkxLCJhc2lhbl9ib3JuIjoxMDM4MDQyLCJwY3RfYXNpYW4iOjE2LjB9LCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9seWdvbiIsImNvb3JkaW5hdGVzIjpbW1sxNDAuOSwtMzQuMF0sWzE0MS4wLC0zOC4wXSxbMTQyLjAsLTM4LjVdLFsxNDMuMCwtMzkuMF0sWzE0NC4wLC0zOC44XSxbMTQ1LjAsLTM4LjVdLFsxNDYuNSwtMzguOF0sWzE0OC4wLC0zNy44XSxbMTUwLjAsLTM3LjVdLFsxNDkuMCwtMzcuMF0sWzE0OC41LC0zNy4zXSxbMTQ3LjAsLTM2LjBdLFsxNDUuMCwtMzUuOV0sWzE0My4wLC0zNC45XSxbMTQxLjAsLTM0LjBdLFsxNDAuOSwtMzQuMF1dXX19LHsidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InN0YXRlIjoiTlNXIiwic3RhdGVfbmFtZSI6Ik5ldyBTb3V0aCBXYWxlcyIsInRvdGFsX3BvcCI6ODA3MjE2MywiYXNpYW5fYm9ybiI6MTIyMjU2NSwicGN0X2FzaWFuIjoxNS4xfSwiZ2VvbWV0cnkiOnsidHlwZSI6IlBvbHlnb24iLCJjb29yZGluYXRlcyI6W1tbMTQxLjAsLTI2LjBdLFsxNDEuMCwtMzQuMF0sWzE0My4wLC0zNC45XSxbMTQ1LjAsLTM1LjldLFsxNDcuMCwtMzYuMF0sWzE0OC41LC0zNy4zXSxbMTUwLjAsLTM3LjVdLFsxNTEuMCwtMzMuNV0sWzE1MS42LC0zMi4wXSxbMTUyLjUsLTI4LjBdLFsxNTMuNiwtMjQuMF0sWzE1Mi4wLC0yMy4wXSxbMTQ5LjAsLTIyLjBdLFsxNDUuMCwtMjIuMF0sWzE0MS4wLC0yMi4wXSxbMTQxLjAsLTI2LjBdXV19fSx7InR5cGUiOiJGZWF0dXJlIiwicHJvcGVydGllcyI6eyJzdGF0ZSI6IlFMRCIsInN0YXRlX25hbWUiOiJRdWVlbnNsYW5kIiwidG90YWxfcG9wIjo1MTg1OTA1LCJhc2lhbl9ib3JuIjo1MDQ4NzMsInBjdF9hc2lhbiI6OS43fSwiZ2VvbWV0cnkiOnsidHlwZSI6IlBvbHlnb24iLCJjb29yZGluYXRlcyI6W1tbMTM4LjAsLTI2LjBdLFsxNDEuMCwtMjYuMF0sWzE0MS4wLC0yMi4wXSxbMTQ1LjAsLTIyLjBdLFsxNDkuMCwtMjIuMF0sWzE1Mi4wLC0yMy4wXSxbMTUzLjYsLTI0LjBdLFsxNTMuNiwtMjguMF0sWzE1My4wLC0zMC4wXSxbMTQ4LjAsLTIwLjBdLFsxNDYuNSwtMTkuNV0sWzE0NS41LC0xOC4wXSxbMTQ0LjUsLTE0LjVdLFsxNDMuMCwtMTIuMF0sWzE0MS4wLC0xMy4wXSxbMTM4LjUsLTE0LjBdLFsxMzguMCwtMTcuMF0sWzEzOC4wLC0yNi4wXV1dfX0seyJ0eXBlIjoiRmVhdHVyZSIsInByb3BlcnRpZXMiOnsic3RhdGUiOiJTQSIsInN0YXRlX25hbWUiOiJTb3V0aCBBdXN0cmFsaWEiLCJ0b3RhbF9wb3AiOjE4MjA0OTUsImFzaWFuX2Jvcm4iOjE3NTM4NiwicGN0X2FzaWFuIjo5LjZ9LCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9seWdvbiIsImNvb3JkaW5hdGVzIjpbW1sxMjkuMCwtMjYuMF0sWzE0MS4wLC0yNi4wXSxbMTQxLjAsLTM0LjBdLFsxNDAuOSwtMzQuMF0sWzE0MC45LC0zOC4wXSxbMTM5LjUsLTM2LjBdLFsxMzguNSwtMzUuOF0sWzEzNy4wLC0zNS44XSxbMTM1LjAsLTM0LjVdLFsxMzMuMCwtMzIuNV0sWzEzMS4wLC0zMy4wXSxbMTI5LjAsLTM0LjBdLFsxMjkuMCwtMjYuMF1dXX19LHsidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InN0YXRlIjoiV0EiLCJzdGF0ZV9uYW1lIjoiV2VzdGVybiBBdXN0cmFsaWEiLCJ0b3RhbF9wb3AiOjI2NjAwODgsImFzaWFuX2Jvcm4iOjM0NzAyNiwicGN0X2FzaWFuIjoxMy4wfSwiZ2VvbWV0cnkiOnsidHlwZSI6IlBvbHlnb24iLCJjb29yZGluYXRlcyI6W1tbMTI5LjAsLTEzLjVdLFsxMjkuMCwtMzQuMF0sWzExNS41LC0zNC41XSxbMTE0LjAsLTMyLjVdLFsxMTMuMCwtMjYuMF0sWzExMy41LC0yMi4wXSxbMTE0LjUsLTIwLjVdLFsxMTYuMCwtMTYuNV0sWzExOS4wLC0xNC4wXSxbMTIyLjAsLTEzLjVdLFsxMjYuMCwtMTMuNV0sWzEyOS4wLC0xMy41XV1dfX0seyJ0eXBlIjoiRmVhdHVyZSIsInByb3BlcnRpZXMiOnsic3RhdGUiOiJUQVMiLCJzdGF0ZV9uYW1lIjoiVGFzbWFuaWEiLCJ0b3RhbF9wb3AiOjU0MTQ3OSwiYXNpYW5fYm9ybiI6Mjc2OTgsInBjdF9hc2lhbiI6NS4xfSwiZ2VvbWV0cnkiOnsidHlwZSI6IlBvbHlnb24iLCJjb29yZGluYXRlcyI6W1tbMTQ0LjUsLTQwLjBdLFsxNDYuMCwtNDEuMF0sWzE0OC4wLC00MS4wXSxbMTQ4LjUsLTQwLjVdLFsxNDguMywtNDMuMF0sWzE0Ny41LC00My41XSxbMTQ2LjUsLTQzLjVdLFsxNDUuNSwtNDMuMF0sWzE0NC41LC00My4wXSxbMTQ0LjAsLTQyLjBdLFsxNDQuNSwtNDAuMF1dXX19LHsidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InN0YXRlIjoiTlQiLCJzdGF0ZV9uYW1lIjoiTm9ydGhlcm4gVGVycml0b3J5IiwidG90YWxfcG9wIjoyNTAyMzAsImFzaWFuX2Jvcm4iOjIxOTQ1LCJwY3RfYXNpYW4iOjguOH0sImdlb21ldHJ5Ijp7InR5cGUiOiJQb2x5Z29uIiwiY29vcmRpbmF0ZXMiOltbWzEyOS4wLC0xMy41XSxbMTI5LjAsLTI2LjBdLFsxMzguMCwtMjYuMF0sWzEzOC4wLC0xNy4wXSxbMTM4LjUsLTE0LjBdLFsxMzYuMCwtMTIuMF0sWzEzMi4wLC0xMS41XSxbMTMwLjAsLTEyLjBdLFsxMjkuMCwtMTMuNV1dXX19LHsidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InN0YXRlIjoiQUNUIiwic3RhdGVfbmFtZSI6IkF1c3RyYWxpYW4gQ2FwaXRhbCBUZXJyaXRvcnkiLCJ0b3RhbF9wb3AiOjQ1MzU1NywiYXNpYW5fYm9ybiI6NzQwMjAsInBjdF9hc2lhbiI6MTYuM30sImdlb21ldHJ5Ijp7InR5cGUiOiJQb2x5Z29uIiwiY29vcmRpbmF0ZXMiOltbWzE0OS4wLC0zNS4xXSxbMTQ5LjQsLTM1LjFdLFsxNDkuNCwtMzUuOV0sWzE0OS4wLC0zNS45XSxbMTQ4LjgsLTM1LjVdLFsxNDkuMCwtMzUuMV1dXX19XX0=', format: {type: 'json', property: 'features'}},
-      projection: {type: 'mercator', center: [134.0, -28.0], scale: 750},
-      mark: {type: 'geoshape', stroke: 'white', strokeWidth: 1.2},
+      data: {
+        url: 'https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json',
+        format: {type: 'topojson', feature: 'countries'}
+      },
+      transform: [{filter: 'datum.id >= 36 && datum.id <= 36'}],
+      mark: {type: 'geoshape', fill: '#e8e0d4', stroke: 'white', strokeWidth: 0.5}
+    },
+    {
+      data: {values: [
+        {state:'ACT', state_name:'Australian Capital Territory', pct_asian:16.3, asian_born:74020,  total_pop:453557,  lat:-35.5, lon:149.0},
+        {state:'VIC', state_name:'Victoria',                    pct_asian:16.0, asian_born:1038042, total_pop:6503491, lat:-37.0, lon:144.5},
+        {state:'NSW', state_name:'New South Wales',             pct_asian:15.1, asian_born:1222565, total_pop:8072163, lat:-32.0, lon:147.0},
+        {state:'WA',  state_name:'Western Australia',           pct_asian:13.0, asian_born:347026,  total_pop:2660088, lat:-25.0, lon:121.0},
+        {state:'QLD', state_name:'Queensland',                  pct_asian:9.7,  asian_born:504873,  total_pop:5185905, lat:-22.0, lon:144.0},
+        {state:'SA',  state_name:'South Australia',             pct_asian:9.6,  asian_born:175386,  total_pop:1820495, lat:-30.0, lon:135.0},
+        {state:'NT',  state_name:'Northern Territory',          pct_asian:8.8,  asian_born:21945,   total_pop:250230,  lat:-19.0, lon:133.0},
+        {state:'TAS', state_name:'Tasmania',                    pct_asian:5.1,  asian_born:27698,   total_pop:541479,  lat:-42.0, lon:146.5}
+      ]},
+      mark: {type: 'circle', stroke: 'white', strokeWidth: 1.5},
       encoding: {
+        longitude: {field: 'lon', type: 'quantitative'},
+        latitude:  {field: 'lat', type: 'quantitative'},
+        size: {
+          field: 'total_pop', type: 'quantitative',
+          scale: {range: [500, 4000]},
+          legend: null
+        },
         color: {
           field: 'pct_asian', type: 'quantitative',
           title: 'Asian-born %',
-          scale: {domain: [0, 18], range: ['#e8e0d4', '#1d7a68']},
-          legend: {orient: 'bottom-right', gradientLength: 120, title: 'Asian-born %'}
+          scale: {domain: [0, 18], range: ['#dcd7ce', '#1d7a68']},
+          legend: {orient: 'bottom-right', gradientLength: 100, title: 'Asian-born %'}
+        },
+        stroke: {
+          condition: {test: "datum.state === 'VIC'", value: '#c94030'},
+          value: 'white'
         },
         tooltip: [
           {field: 'state_name', title: 'State'},
@@ -612,16 +640,18 @@ vegaEmbed('#chart-binmap', {
       }
     },
     {
-      data: {url: 'data:application/json;base64,eyJ0eXBlIjoiRmVhdHVyZUNvbGxlY3Rpb24iLCJmZWF0dXJlcyI6W3sidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InN0YXRlIjoiVklDIiwic3RhdGVfbmFtZSI6IlZpY3RvcmlhIiwidG90YWxfcG9wIjo2NTAzNDkxLCJhc2lhbl9ib3JuIjoxMDM4MDQyLCJwY3RfYXNpYW4iOjE2LjB9LCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9seWdvbiIsImNvb3JkaW5hdGVzIjpbW1sxNDAuOSwtMzQuMF0sWzE0MS4wLC0zOC4wXSxbMTQyLjAsLTM4LjVdLFsxNDMuMCwtMzkuMF0sWzE0NC4wLC0zOC44XSxbMTQ1LjAsLTM4LjVdLFsxNDYuNSwtMzguOF0sWzE0OC4wLC0zNy44XSxbMTUwLjAsLTM3LjVdLFsxNDkuMCwtMzcuMF0sWzE0OC41LC0zNy4zXSxbMTQ3LjAsLTM2LjBdLFsxNDUuMCwtMzUuOV0sWzE0My4wLC0zNC45XSxbMTQxLjAsLTM0LjBdLFsxNDAuOSwtMzQuMF1dXX19LHsidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InN0YXRlIjoiTlNXIiwic3RhdGVfbmFtZSI6Ik5ldyBTb3V0aCBXYWxlcyIsInRvdGFsX3BvcCI6ODA3MjE2MywiYXNpYW5fYm9ybiI6MTIyMjU2NSwicGN0X2FzaWFuIjoxNS4xfSwiZ2VvbWV0cnkiOnsidHlwZSI6IlBvbHlnb24iLCJjb29yZGluYXRlcyI6W1tbMTQxLjAsLTI2LjBdLFsxNDEuMCwtMzQuMF0sWzE0My4wLC0zNC45XSxbMTQ1LjAsLTM1LjldLFsxNDcuMCwtMzYuMF0sWzE0OC41LC0zNy4zXSxbMTUwLjAsLTM3LjVdLFsxNTEuMCwtMzMuNV0sWzE1MS42LC0zMi4wXSxbMTUyLjUsLTI4LjBdLFsxNTMuNiwtMjQuMF0sWzE1Mi4wLC0yMy4wXSxbMTQ5LjAsLTIyLjBdLFsxNDUuMCwtMjIuMF0sWzE0MS4wLC0yMi4wXSxbMTQxLjAsLTI2LjBdXV19fSx7InR5cGUiOiJGZWF0dXJlIiwicHJvcGVydGllcyI6eyJzdGF0ZSI6IlFMRCIsInN0YXRlX25hbWUiOiJRdWVlbnNsYW5kIiwidG90YWxfcG9wIjo1MTg1OTA1LCJhc2lhbl9ib3JuIjo1MDQ4NzMsInBjdF9hc2lhbiI6OS43fSwiZ2VvbWV0cnkiOnsidHlwZSI6IlBvbHlnb24iLCJjb29yZGluYXRlcyI6W1tbMTM4LjAsLTI2LjBdLFsxNDEuMCwtMjYuMF0sWzE0MS4wLC0yMi4wXSxbMTQ1LjAsLTIyLjBdLFsxNDkuMCwtMjIuMF0sWzE1Mi4wLC0yMy4wXSxbMTUzLjYsLTI0LjBdLFsxNTMuNiwtMjguMF0sWzE1My4wLC0zMC4wXSxbMTQ4LjAsLTIwLjBdLFsxNDYuNSwtMTkuNV0sWzE0NS41LC0xOC4wXSxbMTQ0LjUsLTE0LjVdLFsxNDMuMCwtMTIuMF0sWzE0MS4wLC0xMy4wXSxbMTM4LjUsLTE0LjBdLFsxMzguMCwtMTcuMF0sWzEzOC4wLC0yNi4wXV1dfX0seyJ0eXBlIjoiRmVhdHVyZSIsInByb3BlcnRpZXMiOnsic3RhdGUiOiJTQSIsInN0YXRlX25hbWUiOiJTb3V0aCBBdXN0cmFsaWEiLCJ0b3RhbF9wb3AiOjE4MjA0OTUsImFzaWFuX2Jvcm4iOjE3NTM4NiwicGN0X2FzaWFuIjo5LjZ9LCJnZW9tZXRyeSI6eyJ0eXBlIjoiUG9seWdvbiIsImNvb3JkaW5hdGVzIjpbW1sxMjkuMCwtMjYuMF0sWzE0MS4wLC0yNi4wXSxbMTQxLjAsLTM0LjBdLFsxNDAuOSwtMzQuMF0sWzE0MC45LC0zOC4wXSxbMTM5LjUsLTM2LjBdLFsxMzguNSwtMzUuOF0sWzEzNy4wLC0zNS44XSxbMTM1LjAsLTM0LjVdLFsxMzMuMCwtMzIuNV0sWzEzMS4wLC0zMy4wXSxbMTI5LjAsLTM0LjBdLFsxMjkuMCwtMjYuMF1dXX19LHsidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InN0YXRlIjoiV0EiLCJzdGF0ZV9uYW1lIjoiV2VzdGVybiBBdXN0cmFsaWEiLCJ0b3RhbF9wb3AiOjI2NjAwODgsImFzaWFuX2Jvcm4iOjM0NzAyNiwicGN0X2FzaWFuIjoxMy4wfSwiZ2VvbWV0cnkiOnsidHlwZSI6IlBvbHlnb24iLCJjb29yZGluYXRlcyI6W1tbMTI5LjAsLTEzLjVdLFsxMjkuMCwtMzQuMF0sWzExNS41LC0zNC41XSxbMTE0LjAsLTMyLjVdLFsxMTMuMCwtMjYuMF0sWzExMy41LC0yMi4wXSxbMTE0LjUsLTIwLjVdLFsxMTYuMCwtMTYuNV0sWzExOS4wLC0xNC4wXSxbMTIyLjAsLTEzLjVdLFsxMjYuMCwtMTMuNV0sWzEyOS4wLC0xMy41XV1dfX0seyJ0eXBlIjoiRmVhdHVyZSIsInByb3BlcnRpZXMiOnsic3RhdGUiOiJUQVMiLCJzdGF0ZV9uYW1lIjoiVGFzbWFuaWEiLCJ0b3RhbF9wb3AiOjU0MTQ3OSwiYXNpYW5fYm9ybiI6Mjc2OTgsInBjdF9hc2lhbiI6NS4xfSwiZ2VvbWV0cnkiOnsidHlwZSI6IlBvbHlnb24iLCJjb29yZGluYXRlcyI6W1tbMTQ0LjUsLTQwLjBdLFsxNDYuMCwtNDEuMF0sWzE0OC4wLC00MS4wXSxbMTQ4LjUsLTQwLjVdLFsxNDguMywtNDMuMF0sWzE0Ny41LC00My41XSxbMTQ2LjUsLTQzLjVdLFsxNDUuNSwtNDMuMF0sWzE0NC41LC00My4wXSxbMTQ0LjAsLTQyLjBdLFsxNDQuNSwtNDAuMF1dXX19LHsidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InN0YXRlIjoiTlQiLCJzdGF0ZV9uYW1lIjoiTm9ydGhlcm4gVGVycml0b3J5IiwidG90YWxfcG9wIjoyNTAyMzAsImFzaWFuX2Jvcm4iOjIxOTQ1LCJwY3RfYXNpYW4iOjguOH0sImdlb21ldHJ5Ijp7InR5cGUiOiJQb2x5Z29uIiwiY29vcmRpbmF0ZXMiOltbWzEyOS4wLC0xMy41XSxbMTI5LjAsLTI2LjBdLFsxMzguMCwtMjYuMF0sWzEzOC4wLC0xNy4wXSxbMTM4LjUsLTE0LjBdLFsxMzYuMCwtMTIuMF0sWzEzMi4wLC0xMS41XSxbMTMwLjAsLTEyLjBdLFsxMjkuMCwtMTMuNV1dXX19LHsidHlwZSI6IkZlYXR1cmUiLCJwcm9wZXJ0aWVzIjp7InN0YXRlIjoiQUNUIiwic3RhdGVfbmFtZSI6IkF1c3RyYWxpYW4gQ2FwaXRhbCBUZXJyaXRvcnkiLCJ0b3RhbF9wb3AiOjQ1MzU1NywiYXNpYW5fYm9ybiI6NzQwMjAsInBjdF9hc2lhbiI6MTYuM30sImdlb21ldHJ5Ijp7InR5cGUiOiJQb2x5Z29uIiwiY29vcmRpbmF0ZXMiOltbWzE0OS4wLC0zNS4xXSxbMTQ5LjQsLTM1LjFdLFsxNDkuNCwtMzUuOV0sWzE0OS4wLC0zNS45XSxbMTQ4LjgsLTM1LjVdLFsxNDkuMCwtMzUuMV1dXX19XX0=', format: {type: 'json', property: 'features'}},
-      projection: {type: 'mercator', center: [134.0, -28.0], scale: 750},
-      transform: [{filter: "datum.state === 'VIC'"}],
-      mark: {type: 'geoshape', filled: false, stroke: '#c94030', strokeWidth: 3},
+      data: {values: [
+        {state:'VIC', lat:-37.0, lon:144.5, label:'Victoria 16%'},
+        {state:'NSW', lat:-32.0, lon:147.0, label:'NSW 15.1%'},
+        {state:'WA',  lat:-25.0, lon:121.0, label:'WA 13%'},
+        {state:'QLD', lat:-22.0, lon:144.0, label:'QLD 9.7%'},
+        {state:'TAS', lat:-42.0, lon:146.5, label:'TAS 5.1%'}
+      ]},
+      mark: {type: 'text', dy: -16, fontSize: 10, fontWeight: 500, color: '#4a4540'},
       encoding: {
-        tooltip: [
-          {field: 'state_name', title: 'State'},
-          {field: 'pct_asian',  title: 'Asian-born %', format: '.1f'},
-          {field: 'asian_born', title: 'Asian-born',   format: ','}
-        ]
+        longitude: {field: 'lon', type: 'quantitative'},
+        latitude:  {field: 'lat', type: 'quantitative'},
+        text: {field: 'label'}
       }
     }
   ]
