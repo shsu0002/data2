@@ -807,7 +807,7 @@ vegaEmbed('#chart-donut-section', {
       tooltip: [{field:'cuisine',title:'Cuisine'},{field:'count',title:'Restaurants'},{field:'pct',title:'Share %',format:'.1f'}]
     }
   }]
-}, {actions: false}).then(function(r){ addHoverRemy(r, 'chart-donut-section'); });
+}, {actions: false});
 
 // ── Chart B2: Heatmap — cuisine by suburb cluster ──
 vegaEmbed('#chart-heatmap', {
@@ -1080,7 +1080,7 @@ vegaEmbed('#chart-line-asian', {
     },
     tooltip: [{field:'year',title:'Year'},{field:'type',title:'Type'},{field:'count',title:'Count'}]
   }
-}, {actions: false}).then(function(r){ addHoverRemy(r, 'chart-binmap'); });
+}, {actions: false});
 
 // ── Chart D3: Stacked area — seats ──
 vegaEmbed('#chart-area-seats', {
@@ -1099,7 +1099,7 @@ vegaEmbed('#chart-area-seats', {
     },
     tooltip: [{field:'year',title:'Year'},{field:'seating_type',title:'Type'},{field:'total_seats',title:'Seats',format:','}]
   }
-}, {actions: false}).then(function(r){ addHoverRemy(r, 'chart-line-asian'); });
+}, {actions: false});
 
 // ── Chart D4: Multi-line — key sub-areas only ──
 vegaEmbed('#chart-multiline', {
@@ -1125,7 +1125,7 @@ vegaEmbed('#chart-multiline', {
     },
     tooltip: [{field:'year',title:'Year'},{field:'area',title:'Area'},{field:'count',title:'Restaurants'}]
   }
-}, {actions: false}).then(function(r){ addHoverRemy(r, 'chart-multiline'); });
+}, {actions: false});
 
 // ── Remy chart commentary ──
 const REMY_CHART_COMMENTS = {
@@ -1135,10 +1135,10 @@ const REMY_CHART_COMMENTS = {
   'chart-donut-section':["Chinese and Japanese together — nearly half of all Asian restaurants in Melbourne! Magnifique!", "Eleven different cuisines competing for Melbourne's appetite. I want to try them all!", "Thai and Vietnamese neck and neck — Melbourne truly has it all."],
   'chart-heatmap':      ["Look at that dark green block for Indian food in Melbourne CBD — 120 restaurants!", "Box Hill is almost entirely Chinese. Springvale dominated by Vietnamese. The pattern is so clear!", "Glen Waverley has the most balanced mix — Chinese, Indian, Japanese all competing."],
   'chart-scatter':      ["The further right and up, the more Asian the suburb — in people AND restaurants. It all connects!", "Box Hill: highest Asian restaurant share. The community literally built the food scene.", "See those grey dots? Every suburb has a story. But our four are the stars of this show."],
-  'chart-line-total':   ["From 400 to over 1,400 restaurants in 20 years — Melbourne was hungry and kept getting hungrier!", "That dip around 2020? COVID. Even Melbourne's food scene couldn't escape it.", "The growth is relentless. Melbourne's CBD is one of the world's great eating destinations."],
-  'chart-line-asian':   ["Asian restaurants grew FASTER than the rest. The community's influence is undeniable!", "By 2023, Asian venues are over 40% of all CBD dining. Extraordinary!", "Other cuisines grew too — but nothing like the pace of Asian food in Melbourne."],
-  'chart-area-seats':   ["Indoor seating peaked around 2015, then COVID hit. But Melbourne always bounces back!", "Outdoor dining grew steadily from 2010 — Melbourne's laneway culture at work!", "160,000 indoor seats at the peak — that's a LOT of dumplings being eaten simultaneously."],
-  'chart-multiline':    ["Carlton and Docklands neck and neck — two very different neighbourhoods, same hunger!", "Southbank grew quietly but steadily — riverside dining became Melbourne's thing.", "North Melbourne stayed small but loyal. Every neighbourhood has its place in this food story."],
+  'chart-line-total':   ["This chart shows total restaurants in Melbourne CBD from 2002 to 2023 — the number tripled in two decades!", "Notice the dip around 2020? That's COVID. But Melbourne bounced straight back!", "From 400 restaurants in 2002 to over 1,400 by 2019 — Melbourne's food scene never stopped growing."],
+  'chart-line-asian':   ["This chart compares Asian-identified vs other restaurants in Melbourne CBD over time.", "Asian food grew steadily while 'Other' cuisine surged then dipped — COVID hit non-Asian venues harder!", "By 2023, Asian restaurants make up a growing share of Melbourne CBD dining."],
+  'chart-area-seats':   ["This chart shows indoor vs outdoor seating capacity in Melbourne CBD restaurants from 2002–2023.", "Outdoor dining grew after 2010 — Melbourne's famous laneway culture in action!", "Indoor seats peaked at 160,000 around 2015. That is a LOT of dumplings being eaten at once!"],
+  'chart-multiline':    ["This chart shows restaurant growth across Melbourne CBD sub-areas — Carlton, Docklands, Southbank and more.", "Carlton leads with its famous Lygon Street dining strip. Southbank grew steadily along the river.", "Each sub-area tells a different story — but all of them grew. Melbourne never stopped eating!"],
 };
 
 const _remyChartCounters = {};
