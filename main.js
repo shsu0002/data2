@@ -923,3 +923,34 @@ vegaEmbed('#chart-multiline', {
     tooltip: [{field:'year',title:'Year'},{field:'area',title:'Area'},{field:'count',title:'Restaurants'}]
   }
 }, {actions: false});
+
+// ── Remy chart commentary ──
+const REMY_CHART_COMMENTS = {
+  'chart-binmap':       ["Victoria and ACT lead Australia — but Melbourne is where the story really begins!", "See that red circle? That's home. Victoria has the highest Asian-born share of any large state!", "NSW is big, but Victoria punches above its weight when it comes to Asian communities."],
+  'chart-bar-suburbs':  ["Springvale and Box Hill at the top — no surprise there! I've eaten my way through both.", "Look how far ahead our four suburbs are from the rest of Melbourne!", "Clayton and Springvale South sneak in too — the south-east corridor is truly Asia's backyard in Melbourne."],
+  'chart-pop-growth':   ["Ten years of growth — every suburb trending up. Migration shaped this city one family at a time.", "The CBD surged fastest after 2016 — international students and young professionals flooding in!", "Box Hill overtook Glen Waverley by 2016. The Chinese community kept growing and growing."],
+  'chart-donut-section':["Chinese and Japanese together — nearly half of all Asian restaurants in Melbourne! Magnifique!", "Eleven different cuisines competing for Melbourne's appetite. I want to try them all!", "Thai and Vietnamese neck and neck — Melbourne truly has it all."],
+  'chart-heatmap':      ["Look at that dark green block for Indian food in Melbourne CBD — 120 restaurants!", "Box Hill is almost entirely Chinese. Springvale dominated by Vietnamese. The pattern is so clear!", "Glen Waverley has the most balanced mix — Chinese, Indian, Japanese all competing."],
+  'chart-scatter':      ["The further right and up, the more Asian the suburb — in people AND restaurants. It all connects!", "Box Hill: highest Asian restaurant share. The community literally built the food scene.", "See those grey dots? Every suburb has a story. But our four are the stars of this show."],
+  'chart-line-total':   ["From 400 to over 1,400 restaurants in 20 years — Melbourne was hungry and kept getting hungrier!", "That dip around 2020? COVID. Even Melbourne's food scene couldn't escape it.", "The growth is relentless. Melbourne's CBD is one of the world's great eating destinations."],
+  'chart-line-asian':   ["Asian restaurants grew FASTER than the rest. The community's influence is undeniable!", "By 2023, Asian venues are over 40% of all CBD dining. Extraordinary!", "Other cuisines grew too — but nothing like the pace of Asian food in Melbourne."],
+  'chart-area-seats':   ["Indoor seating peaked around 2015, then COVID hit. But Melbourne always bounces back!", "Outdoor dining grew steadily from 2010 — Melbourne's laneway culture at work!", "160,000 indoor seats at the peak — that's a LOT of dumplings being eaten simultaneously."],
+  'chart-multiline':    ["Carlton and Docklands neck and neck — two very different neighbourhoods, same hunger!", "Southbank grew quietly but steadily — riverside dining became Melbourne's thing.", "North Melbourne stayed small but loyal. Every neighbourhood has its place in this food story."],
+};
+
+const _remyChartCounters = {};
+function remyChartSay(chartId) {
+  var comments = REMY_CHART_COMMENTS[chartId] || ["What a fascinating chart!"];
+  var idx = _remyChartCounters[chartId] || 0;
+  var msg = comments[idx % comments.length];
+  _remyChartCounters[chartId] = idx + 1;
+  var el = document.getElementById('remy-' + chartId + '-text');
+  if (!el) return;
+  el.textContent = '';
+  var i = 0;
+  if (el._t) clearInterval(el._t);
+  el._t = setInterval(function() {
+    if (i < msg.length) { el.textContent = msg.slice(0, ++i); }
+    else { clearInterval(el._t); }
+  }, 20);
+}
