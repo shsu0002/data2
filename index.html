@@ -15,7 +15,7 @@ html,body{margin:0;padding:0;width:100%;overflow-x:hidden;}
   --ink:#1a1714;--ink-mid:#4a4540;--ink-muted:#8a837a; 
   --paper:#faf8f4;--paper-warm:#f2ede5;--paper-dark:#e8e0d4;
   --red:#c94030;--red-light:#f5e8e6;
-  --teal:#1d7a68;--teal-light:#ddf0eb; 
+  --teal:#1d7a68;--teal-light:#ddf0eb;
   --gold:#b87c2a;--gold-light:#faf0dc;
   --rule:rgba(26,23,20,0.1);
   --serif:'Playfair Display',Georgia,serif;
@@ -754,7 +754,7 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
   <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;margin-bottom:1.5rem">
     <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart A1 · ABS Census 2021</div>
     <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.3rem">Asian-born population across Australia — Victoria leads</div>
-    <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem;max-width:65ch">Each circle is a state. Size = population, colour = Asian-born share. Victoria (red outline) and ACT lead the nation. Hover for details.</div>
+    <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem;max-width:65ch">Each circle is a state. Size = population, colour = Asian-born share. Victoria (red outline) and ACT lead the nation. Tap any circle for details.</div>
     <div id="chart-binmap" style="width:100%"></div>
     <div id="remy-chart-binmap" style="display:flex;align-items:flex-start;gap:0.75rem;padding:0.75rem 1rem;background:#faf7f2;border-top:1px solid var(--rule);border-radius:0 0 6px 6px;cursor:pointer" onclick="remyChartSay('chart-binmap')" title="Click Remy for a comment!">
       <div style="flex-shrink:0;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="-18 -8 156 162" width="48" height="52" style="display:block;flex-shrink:0">
@@ -796,7 +796,7 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
       <div style="flex:1;min-width:0;padding-top:0.35rem">
         <div id="remy-chart-binmap-text" style="font-family:var(--sans);font-size:0.8rem;color:var(--ink-mid);line-height:1.5;font-style:italic;min-height:1.3rem"></div>
         <div style="font-family:var(--sans);font-size:0.68rem;color:var(--ink-muted);display:flex;align-items:center;gap:0.4rem;margin-top:0.3rem">
-          <span style="background:#f0ece4;border:1px solid var(--rule);border-radius:3px;padding:1px 7px;font-size:0.65rem;letter-spacing:0.04em;white-space:nowrap">🖱️ hover over a circle</span>
+          <span style="background:#f0ece4;border:1px solid var(--rule);border-radius:3px;padding:1px 7px;font-size:0.65rem;letter-spacing:0.04em;white-space:nowrap">👆 tap a circle</span>
           <span>and I'll tell you about that state!</span>
         </div>
       </div>
@@ -965,7 +965,7 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
       <div style="flex:1;min-width:0;padding-top:0.35rem">
         <div id="remy-chart-donut-section-text" style="font-family:var(--sans);font-size:0.8rem;color:var(--ink-mid);line-height:1.5;font-style:italic;min-height:1.3rem"></div>
         <div style="font-family:var(--sans);font-size:0.68rem;color:var(--ink-muted);display:flex;align-items:center;gap:0.4rem;margin-top:0.3rem">
-          <span style="background:#f0ece4;border:1px solid var(--rule);border-radius:3px;padding:1px 7px;font-size:0.65rem;letter-spacing:0.04em;white-space:nowrap">🖱️ hover over a slice</span>
+          <span style="background:#f0ece4;border:1px solid var(--rule);border-radius:3px;padding:1px 7px;font-size:0.65rem;letter-spacing:0.04em;white-space:nowrap">👆 tap a slice</span>
           <span>and I'll sniff out what cuisine it is!</span>
         </div>
       </div>
@@ -1038,7 +1038,7 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
   <div style="background:white;border:1px solid var(--rule);border-radius:6px;padding:1.5rem;margin-bottom:4rem">
     <div style="font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.3rem">Chart C1 · ABS Census 2021 + OpenStreetMap 2025</div>
     <div style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.3rem">Asian-born population share vs Asian restaurant share, by suburb</div>
-    <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem;max-width:65ch">Each dot is a suburb. Four focus suburbs are labelled in colour. Hover for details.</div>
+    <div style="font-size:0.8rem;color:var(--ink-muted);margin-bottom:1rem;max-width:65ch">Each dot is a suburb. Four focus suburbs are labelled in colour. Tap any dot for details.</div>
     <div id="chart-scatter" style="width:100%"></div>
     <div id="remy-chart-scatter" style="display:flex;align-items:flex-start;gap:0.75rem;padding:0.75rem 1rem;background:#faf7f2;border-top:1px solid var(--rule);border-radius:0 0 6px 6px;cursor:pointer" onclick="remyChartSay('chart-scatter')" title="Click Remy for a comment!">
       <div style="flex-shrink:0;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="-18 -8 156 162" width="48" height="52" style="display:block;flex-shrink:0">
@@ -1144,7 +1144,7 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
       <div style="flex:1;min-width:0;padding-top:0.35rem">
         <div id="remy-chart-line-total-text" style="font-family:var(--sans);font-size:0.8rem;color:var(--ink-mid);line-height:1.5;font-style:italic;min-height:1.3rem"></div>
         <div style="font-family:var(--sans);font-size:0.68rem;color:var(--ink-muted);display:flex;align-items:center;gap:0.4rem;margin-top:0.3rem">
-          <span style="background:#f0ece4;border:1px solid var(--rule);border-radius:3px;padding:1px 7px;font-size:0.65rem;letter-spacing:0.04em;white-space:nowrap">🖱️ hover the line</span>
+          <span style="background:#f0ece4;border:1px solid var(--rule);border-radius:3px;padding:1px 7px;font-size:0.65rem;letter-spacing:0.04em;white-space:nowrap">👆 tap the line</span>
           <span>and I'll tell you what was cooking that year!</span>
         </div>
       </div>
@@ -1195,7 +1195,7 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
       <div style="flex:1;min-width:0;padding-top:0.35rem">
         <div id="remy-chart-line-asian-text" style="font-family:var(--sans);font-size:0.8rem;color:var(--ink-mid);line-height:1.5;font-style:italic;min-height:1.3rem"></div>
         <div style="font-family:var(--sans);font-size:0.68rem;color:var(--ink-muted);display:flex;align-items:center;gap:0.4rem;margin-top:0.3rem">
-          <span style="background:#f0ece4;border:1px solid var(--rule);border-radius:3px;padding:1px 7px;font-size:0.65rem;letter-spacing:0.04em;white-space:nowrap">🖱️ hover the lines</span>
+          <span style="background:#f0ece4;border:1px solid var(--rule);border-radius:3px;padding:1px 7px;font-size:0.65rem;letter-spacing:0.04em;white-space:nowrap">👆 tap the lines</span>
           <span>and I'll compare Asian vs other!</span>
         </div>
       </div>
@@ -1249,7 +1249,7 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
       <div style="flex:1;min-width:0;padding-top:0.35rem">
         <div id="remy-chart-area-seats-text" style="font-family:var(--sans);font-size:0.8rem;color:var(--ink-mid);line-height:1.5;font-style:italic;min-height:1.3rem"></div>
         <div style="font-family:var(--sans);font-size:0.68rem;color:var(--ink-muted);display:flex;align-items:center;gap:0.4rem;margin-top:0.3rem">
-          <span style="background:#f0ece4;border:1px solid var(--rule);border-radius:3px;padding:1px 7px;font-size:0.65rem;letter-spacing:0.04em;white-space:nowrap">🖱️ hover the chart</span>
+          <span style="background:#f0ece4;border:1px solid var(--rule);border-radius:3px;padding:1px 7px;font-size:0.65rem;letter-spacing:0.04em;white-space:nowrap">👆 tap the chart</span>
           <span>and I'll tell you about Melbourne dining!</span>
         </div>
       </div>
@@ -1300,7 +1300,7 @@ body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-fo
       <div style="flex:1;min-width:0;padding-top:0.35rem">
         <div id="remy-chart-multiline-text" style="font-family:var(--sans);font-size:0.8rem;color:var(--ink-mid);line-height:1.5;font-style:italic;min-height:1.3rem"></div>
         <div style="font-family:var(--sans);font-size:0.68rem;color:var(--ink-muted);display:flex;align-items:center;gap:0.4rem;margin-top:0.3rem">
-          <span style="background:#f0ece4;border:1px solid var(--rule);border-radius:3px;padding:1px 7px;font-size:0.65rem;letter-spacing:0.04em;white-space:nowrap">🖱️ hover a line</span>
+          <span style="background:#f0ece4;border:1px solid var(--rule);border-radius:3px;padding:1px 7px;font-size:0.65rem;letter-spacing:0.04em;white-space:nowrap">👆 tap a line</span>
           <span>and I'll tell you about that neighbourhood!</span>
         </div>
       </div>
