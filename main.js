@@ -8,7 +8,7 @@ function remyChartSpeak(chartId, msg) {
   el._t = setInterval(function() {
     if (i < msg.length) { el.textContent = msg.slice(0, ++i); }
     else { clearInterval(el._t); }
-  }, 18);
+  }, 18); 
 }
 
 // ── Hover listeners for non-click charts ──
