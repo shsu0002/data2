@@ -1,3 +1,16 @@
+// ── Remy chart speak functions (defined early so click listeners can use them) ──
+function remyChartSpeak(chartId, msg) {
+  var el = document.getElementById('remy-' + chartId + '-text');
+  if (!el) return;
+  el.textContent = '';
+  var i = 0;
+  if (el._t) clearInterval(el._t);
+  el._t = setInterval(function() {
+    if (i < msg.length) { el.textContent = msg.slice(0, ++i); }
+    else { clearInterval(el._t); }
+  }, 18);
+}
+
 // ── Journey stops + interactivity ──
 
 const STOPS = [
