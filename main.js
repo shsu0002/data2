@@ -8,14 +8,14 @@ function remyChartSpeak(chartId, msg) {
   el._t = setInterval(function() {
     if (i < msg.length) { el.textContent = msg.slice(0, ++i); }
     else { clearInterval(el._t); }
-  }, 18); 
+  }, 18);
 }
 
 // ── Hover listeners for non-click charts ──
 function addHoverRemy(resultOrPromise, chartId) {
   var p = (resultOrPromise && typeof resultOrPromise.then === 'function') ? resultOrPromise : Promise.resolve(resultOrPromise);
   p.then(function(result) {
-    result.view.addEventListener('mouseover', function(event, item) {
+    result.view.addEventListener('click', function(event, item) {
       if (!item || !item.datum) return;
       var d = item.datum;
 
