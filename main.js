@@ -10,7 +10,7 @@ const STOPS = [
     pop: '14,353', pct: '53.6%',
     bars: [
       {country:'China',     pct:29.5, color:'#1d7a68'},
-      {country:'Malaysia',  pct:6.4,  color:'#c94030'},
+      {country:'Malaysia',  pct:6.4,  color:'#c94030'}, 
       {country:'India',     pct:4.5,  color:'#7f6ab8'},
       {country:'Hong Kong', pct:2.5,  color:'#b87c2a'}, 
       {country:'Vietnam',   pct:1.9,  color:'#378add'},
