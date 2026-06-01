@@ -11,6 +11,80 @@ function remyChartSpeak(chartId, msg) {
   }, 18);
 }
 
+// ── Hover listeners for non-click charts ──
+function addHoverRemy(resultOrPromise, chartId) {
+  var p = (resultOrPromise && typeof resultOrPromise.then === 'function') ? resultOrPromise : Promise.resolve(resultOrPromise);
+  p.then(function(result) {
+    result.view.addEventListener('mouseover', function(event, item) {
+      if (!item || !item.datum) return;
+      var d = item.datum;
+
+      if (chartId === 'chart-binmap') {
+        var name = d.state_name || (d.datum && d.datum.state_name);
+        var pct  = d.pct_asian  || (d.datum && d.datum.pct_asian);
+        if (!name) return;
+        remyChartSpeak(chartId, name + ': ' + (pct||0).toFixed(1) + '% Asian-born. ' + (name === 'Victoria' ? 'Home sweet home!' : name === 'Australian Capital Territory' ? 'ACT punches above its weight!' : 'Every state has its Asian community.'));
+      }
+
+      else if (chartId === 'chart-donut-section') {
+        var cuisine = d.cuisine || (d.datum && d.datum.cuisine);
+        var pct     = d.pct     || (d.datum && d.datum.pct);
+        if (!cuisine) return;
+        var msgs = {
+          'Chinese':    'Chinese food leads Melbourne at ' + (pct||0).toFixed(1) + '% — dim sum, hot pot, bubble tea!',
+          'Japanese':   'Japanese cuisine at ' + (pct||0).toFixed(1) + '% — ramen, sushi, and so much more!',
+          'Indian':     'Indian food at ' + (pct||0).toFixed(1) + '% — the spices are calling my name!',
+          'Vietnamese': 'Vietnamese at ' + (pct||0).toFixed(1) + '% — pho and banh mi forever!',
+          'Thai':       'Thai cuisine at ' + (pct||0).toFixed(1) + '% — sweet, sour, spicy perfection!',
+          'Korean':     'Korean food at ' + (pct||0).toFixed(1) + '% — K-BBQ is taking over Melbourne!',
+          'Malaysian':  'Malaysian at ' + (pct||0).toFixed(1) + '% — laksa is my weakness!',
+        };
+        var msg = msgs[cuisine] || (cuisine + ' at ' + (pct||0).toFixed(1) + '% — delicious!');
+        remyChartSpeak(chartId, msg);
+      }
+
+      else if (chartId === 'chart-line-total') {
+        var year  = d.year  || (d.datum && d.datum.year);
+        var count = d.restaurant_count || (d.datum && d.datum.restaurant_count);
+        if (!year || !count) return;
+        remyChartSpeak(chartId, 'In ' + year + ': ' + count + ' restaurants in the CBD. ' + (year < 2010 ? 'The food scene was just warming up!' : year < 2020 ? 'Melbourne was really cooking now!' : year === 2020 ? 'COVID hit hard that year...' : 'Bouncing back stronger than ever!'));
+      }
+
+      else if (chartId === 'chart-line-asian') {
+        var year = d.year || (d.datum && d.datum.year);
+        var type = d.type || (d.datum && d.datum.type);
+        var count = d.count || (d.datum && d.datum.count);
+        if (!year || !count) return;
+        remyChartSpeak(chartId, (type || 'Restaurants') + ' in ' + year + ': ' + count + '. ' + (type && type.includes('Asian') ? 'Asian food keeps growing!' : 'The rest keep up, but Asian leads!'));
+      }
+
+      else if (chartId === 'chart-area-seats') {
+        var year  = d.year  || (d.datum && d.datum.year);
+        var seats = d.total_seats || (d.datum && d.datum.total_seats);
+        var type  = d.seating_type || (d.datum && d.datum.seating_type);
+        if (!year || !seats) return;
+        var label = type && type.includes('Outdoor') ? 'outdoor' : 'indoor';
+        remyChartSpeak(chartId, year + ': ' + seats.toLocaleString() + ' ' + label + ' seats. ' + (label === 'Outdoor' && year > 2010 ? 'Melbourne loves eating al fresco!' : 'Cosy indoor dining at its finest!'));
+      }
+
+      else if (chartId === 'chart-multiline') {
+        var area  = d.area  || (d.datum && d.datum.area);
+        var year  = d.year  || (d.datum && d.datum.year);
+        var count = d.count || (d.datum && d.datum.count);
+        if (!area || !count) return;
+        var quips = {
+          'Carlton':        'Carlton in ' + year + ': ' + count + ' restaurants. Home of Lygon St!',
+          'Docklands':      'Docklands in ' + year + ': ' + count + ' restaurants. The waterfront is booming!',
+          'Southbank':      'Southbank in ' + year + ': ' + count + ' restaurants. Riverside dining at its finest!',
+          'East Melbourne': 'East Melbourne in ' + year + ': ' + count + ' restaurants. Quiet but growing!',
+          'North Melbourne':'North Melbourne in ' + year + ': ' + count + ' restaurants. A neighbourhood gem!',
+        };
+        remyChartSpeak(chartId, quips[area] || (area + ' in ' + year + ': ' + count + ' restaurants.'));
+      }
+    });
+  });
+}
+
 // ── Journey stops + interactivity ──
 
 const STOPS = [
@@ -733,7 +807,7 @@ vegaEmbed('#chart-donut-section', {
       tooltip: [{field:'cuisine',title:'Cuisine'},{field:'count',title:'Restaurants'},{field:'pct',title:'Share %',format:'.1f'}]
     }
   }]
-}, {actions: false});
+}, {actions: false}).then(function(r){ addHoverRemy(r, 'chart-donut-section'); });
 
 // ── Chart B2: Heatmap — cuisine by suburb cluster ──
 vegaEmbed('#chart-heatmap', {
@@ -1006,7 +1080,7 @@ vegaEmbed('#chart-line-asian', {
     },
     tooltip: [{field:'year',title:'Year'},{field:'type',title:'Type'},{field:'count',title:'Count'}]
   }
-}, {actions: false});
+}, {actions: false}).then(function(r){ addHoverRemy(r, 'chart-binmap'); });
 
 // ── Chart D3: Stacked area — seats ──
 vegaEmbed('#chart-area-seats', {
@@ -1025,7 +1099,7 @@ vegaEmbed('#chart-area-seats', {
     },
     tooltip: [{field:'year',title:'Year'},{field:'seating_type',title:'Type'},{field:'total_seats',title:'Seats',format:','}]
   }
-}, {actions: false});
+}, {actions: false}).then(function(r){ addHoverRemy(r, 'chart-line-asian'); });
 
 // ── Chart D4: Multi-line — key sub-areas only ──
 vegaEmbed('#chart-multiline', {
@@ -1051,7 +1125,7 @@ vegaEmbed('#chart-multiline', {
     },
     tooltip: [{field:'year',title:'Year'},{field:'area',title:'Area'},{field:'count',title:'Restaurants'}]
   }
-}, {actions: false});
+}, {actions: false}).then(function(r){ addHoverRemy(r, 'chart-multiline'); });
 
 // ── Remy chart commentary ──
 const REMY_CHART_COMMENTS = {
