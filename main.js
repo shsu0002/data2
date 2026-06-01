@@ -10,7 +10,7 @@ const STOPS = [
     pop: '14,353', pct: '53.6%',
     bars: [
       {country:'China',     pct:29.5, color:'#1d7a68'},
-      {country:'Malaysia',  pct:6.4,  color:'#c94030'}, 
+      {country:'Malaysia',  pct:6.4,  color:'#c94030'},
       {country:'India',     pct:4.5,  color:'#7f6ab8'},
       {country:'Hong Kong', pct:2.5,  color:'#b87c2a'}, 
       {country:'Vietnam',   pct:1.9,  color:'#378add'},
@@ -26,7 +26,7 @@ const STOPS = [
     ],
     chart2Title:'Asian restaurants in Box Hill by cuisine',
     foods: ['Cantonese','Dim sum','Hot pot','Bubble tea','BBQ'],
-    story: 'Box Hill\'s main street is unmistakable — the signage is bilingual, the food courts multilevel, and 46% of residents have Chinese ancestry. With the highest concentration of Chinese-born residents anywhere in Melbourne, it\'s earned its place as the city\'s unofficial Chinatown.'
+    story: 'Box Hill\'s main street is unmistakable — the signage is bilingual, the food courts multilevel, and 46% of residents have Chinese ancestry. With the highest concentration of Chinese-born residents anywhere in Melbourne, its earned its place as the city\'s unofficial Chinatown.'
   },
   {
     id: 'glen',
@@ -613,7 +613,25 @@ vegaEmbed('#chart-bar-suburbs', {
       {field: 'total_pop', title: 'Population', format: ','}
     ]
   }
-}, {actions: false});
+}, {actions: false}).then(function(result) {
+  result.view.addEventListener('click', function(event, item) {
+    if (item && item.datum) {
+      var d = item.datum;
+      var suburb = d.suburb || (d.datum && d.datum.suburb);
+      if (!suburb) return;
+      var pct = d.pct_asian || (d.datum && d.datum.pct_asian);
+      var msgs = {
+        'Springvale': 'Springvale tops the list at ' + (pct||56.6).toFixed(1) + '% Asian-born — the highest of any Melbourne suburb!',
+        'Box Hill': 'Box Hill at ' + (pct||53.6).toFixed(1) + '% — the heart of Chinese Melbourne!',
+        'Clayton': 'Clayton at ' + (pct||52.3).toFixed(1) + '% — Monash University home suburb draws students from across Asia.',
+        'Melbourne': 'Melbourne CBD at ' + (pct||48.4).toFixed(1) + '% — every Asian community has a presence here.',
+        'Glen Waverley': 'Glen Waverley at ' + (pct||48.1).toFixed(1) + '% — where East Asia meets South Asia!',
+      };
+      var msg = msgs[suburb] || (suburb + ' — ' + (pct ? pct.toFixed(1) + '% Asian-born.' : 'a fascinating suburb!'));
+      remyChartSpeak('chart-bar-suburbs', msg);
+    }
+  });
+});
 
 // ── Chart A2: Line graph — population growth 2011–2021 ──
 vegaEmbed('#chart-pop-growth', {
@@ -662,7 +680,25 @@ vegaEmbed('#chart-pop-growth', {
       }
     }
   ]
-}, {actions: false});
+}, {actions: false}).then(function(result) {
+  result.view.addEventListener('click', function(event, item) {
+    if (item && item.datum) {
+      var d = item.datum;
+      var suburb = d.suburb || (d.datum && d.datum.suburb);
+      var year = d.year || (d.datum && d.datum.year);
+      var pct = d.pct || (d.datum && d.datum.pct);
+      if (!suburb || !year) return;
+      var msgs = {
+        'Springvale':    'Springvale in ' + year + ': ' + pct + '% Asian-born. The Vietnamese community has been here for decades.',
+        'Box Hill':      'Box Hill in ' + year + ': ' + pct + '% Asian-born. The Chinese community just kept growing!',
+        'Glen Waverley': 'Glen Waverley in ' + year + ': ' + pct + '% Asian-born. The most diverse of our four suburbs.',
+        'Melbourne CBD': 'Melbourne CBD in ' + year + ': ' + pct + '% Asian-born. International students changed this suburb dramatically.',
+      };
+      var msg = msgs[suburb] || (suburb + ' in ' + year + ': ' + pct + '% Asian-born.');
+      remyChartSpeak('chart-pop-growth', msg);
+    }
+  });
+});
 
 // ── Chart B1: Donut — Melbourne-wide cuisine breakdown ──
 vegaEmbed('#chart-donut-section', {
@@ -705,7 +741,30 @@ vegaEmbed('#chart-heatmap', {
       legend: {title: 'Restaurants', gradientLength: 100}},
     tooltip: [{field:'suburb_label',title:'Suburb'},{field:'cuisine',title:'Cuisine'},{field:'count',title:'Restaurants'}]
   }
-}, {actions: false});
+}, {actions: false}).then(function(result) {
+  result.view.addEventListener('click', function(event, item) {
+    if (item && item.datum) {
+      var d = item.datum;
+      var suburb = d.suburb_label || (d.datum && d.datum.suburb_label);
+      var cuisine = d.cuisine || (d.datum && d.datum.cuisine);
+      var count = d.count || (d.datum && d.datum.count);
+      if (!suburb || !cuisine) return;
+      var quips = {
+        'Chinese':    ['The dumplings! The hot pot! Chinese cuisine dominates', 'Cantonese, Szechuan, Shanghainese — its all here in'],
+        'Japanese':   ['Ramen, sushi, tonkotsu — Japanese cuisine is huge in', 'The Japanese food scene is thriving in'],
+        'Vietnamese': ['Phở, bánh mì, fresh spring rolls — Vietnamese food shines in', 'Little Saigon vibes in'],
+        'Indian':     ['Curry, dosa, biryani — South Asian food is essential to', 'The spices! Indian cuisine is a cornerstone of'],
+        'Korean':     ['K-BBQ and kimchi jjigae — Korean food is everywhere in', 'Korean food is having its moment in'],
+        'Malaysian':  ['Laksa! Nasi lemak! Malaysian food is a treasure in', 'Malaysian cuisine brings the best of Southeast Asia to'],
+        'Thai':       ['Pad Thai, green curry — Thai food is beloved in', 'Sweet, sour, spicy — Thai cuisine thrives in'],
+      };
+      var arr = quips[cuisine] || ['Such an interesting cuisine choice in'];
+      var quip = arr[Math.floor(Math.random() * arr.length)];
+      var msg = quip + ' ' + suburb + ' — ' + count + ' restaurants!';
+      remyChartSpeak('chart-heatmap', msg);
+    }
+  });
+});
 
 // ── Chart C1: Dot plot — Asian pop % vs Asian restaurant % ──
 vegaEmbed('#chart-scatter', {
@@ -776,7 +835,26 @@ vegaEmbed('#chart-scatter', {
       }
     }
   ]
-}, {actions: false});
+}, {actions: false}).then(function(result) {
+  result.view.addEventListener('click', function(event, item) {
+    if (item && item.datum) {
+      var d = item.datum;
+      var suburb = d.suburb || (d.datum && d.datum.suburb);
+      if (!suburb) return;
+      var popPct = d.pct_asian_pop || (d.datum && d.datum.pct_asian_pop);
+      var restPct = d.pct_asian_restaurants || (d.datum && d.datum.pct_asian_restaurants);
+      if (!popPct) return;
+      var msgs = {
+        'Box Hill':      'Box Hill: ' + popPct.toFixed(1) + '% Asian-born residents, ' + restPct.toFixed(1) + '% Asian restaurants. The community built the food scene!',
+        'Glen Waverley': 'Glen Waverley: ' + popPct.toFixed(1) + '% Asian-born, ' + restPct.toFixed(1) + '% Asian restaurants. Diverse people, diverse plates!',
+        'Springvale':    'Springvale: ' + popPct.toFixed(1) + '% Asian-born, ' + restPct.toFixed(1) + '% Asian restaurants. Little Saigon in numbers!',
+        'Melbourne CBD': 'Melbourne CBD: ' + popPct.toFixed(1) + '% Asian-born, ' + restPct.toFixed(1) + '% Asian restaurants. The great mixing bowl!',
+      };
+      var msg = msgs[suburb] || (suburb + ': ' + popPct.toFixed(1) + '% Asian-born, ' + restPct.toFixed(1) + '% Asian restaurants.');
+      remyChartSpeak('chart-scatter', msg);
+    }
+  });
+});
 
 // ── Chart A1 (Map): Australia bubble map ──
 vegaEmbed('#chart-binmap', {
@@ -833,7 +911,26 @@ vegaEmbed('#chart-binmap', {
       }
     }
   ]
-}, {actions: false});
+}, {actions: false}).then(function(result) {
+  result.view.addEventListener('click', function(event, item) {
+    if (item && item.datum) {
+      var d = item.datum;
+      var suburb = d.suburb || (d.datum && d.datum.suburb);
+      if (!suburb) return;
+      var popPct = d.pct_asian_pop || (d.datum && d.datum.pct_asian_pop);
+      var restPct = d.pct_asian_restaurants || (d.datum && d.datum.pct_asian_restaurants);
+      if (!popPct) return;
+      var msgs = {
+        'Box Hill':      'Box Hill: ' + popPct.toFixed(1) + '% Asian-born residents, ' + restPct.toFixed(1) + '% Asian restaurants. The community built the food scene!',
+        'Glen Waverley': 'Glen Waverley: ' + popPct.toFixed(1) + '% Asian-born, ' + restPct.toFixed(1) + '% Asian restaurants. Diverse people, diverse plates!',
+        'Springvale':    'Springvale: ' + popPct.toFixed(1) + '% Asian-born, ' + restPct.toFixed(1) + '% Asian restaurants. Little Saigon in numbers!',
+        'Melbourne CBD': 'Melbourne CBD: ' + popPct.toFixed(1) + '% Asian-born, ' + restPct.toFixed(1) + '% Asian restaurants. The great mixing bowl!',
+      };
+      var msg = msgs[suburb] || (suburb + ': ' + popPct.toFixed(1) + '% Asian-born, ' + restPct.toFixed(1) + '% Asian restaurants.');
+      remyChartSpeak('chart-scatter', msg);
+    }
+  });
+});
 
 // ── Chart D1: Line — total CBD restaurants ──
 vegaEmbed('#chart-line-total', {
@@ -858,7 +955,26 @@ vegaEmbed('#chart-line-total', {
       }
     }
   ]
-}, {actions: false});
+}, {actions: false}).then(function(result) {
+  result.view.addEventListener('click', function(event, item) {
+    if (item && item.datum) {
+      var d = item.datum;
+      var suburb = d.suburb || (d.datum && d.datum.suburb);
+      if (!suburb) return;
+      var popPct = d.pct_asian_pop || (d.datum && d.datum.pct_asian_pop);
+      var restPct = d.pct_asian_restaurants || (d.datum && d.datum.pct_asian_restaurants);
+      if (!popPct) return;
+      var msgs = {
+        'Box Hill':      'Box Hill: ' + popPct.toFixed(1) + '% Asian-born residents, ' + restPct.toFixed(1) + '% Asian restaurants. The community built the food scene!',
+        'Glen Waverley': 'Glen Waverley: ' + popPct.toFixed(1) + '% Asian-born, ' + restPct.toFixed(1) + '% Asian restaurants. Diverse people, diverse plates!',
+        'Springvale':    'Springvale: ' + popPct.toFixed(1) + '% Asian-born, ' + restPct.toFixed(1) + '% Asian restaurants. Little Saigon in numbers!',
+        'Melbourne CBD': 'Melbourne CBD: ' + popPct.toFixed(1) + '% Asian-born, ' + restPct.toFixed(1) + '% Asian restaurants. The great mixing bowl!',
+      };
+      var msg = msgs[suburb] || (suburb + ': ' + popPct.toFixed(1) + '% Asian-born, ' + restPct.toFixed(1) + '% Asian restaurants.');
+      remyChartSpeak('chart-scatter', msg);
+    }
+  });
+});
 
 // ── Chart D2: Line — Asian vs Other ──
 vegaEmbed('#chart-line-asian', {
@@ -939,7 +1055,7 @@ const REMY_CHART_COMMENTS = {
 };
 
 const _remyChartCounters = {};
-function remyChartSay(chartId) {
+window.remyChartSay = function(chartId) {
   var comments = REMY_CHART_COMMENTS[chartId] || ["What a fascinating chart!"];
   var idx = _remyChartCounters[chartId] || 0;
   var msg = comments[idx % comments.length];
