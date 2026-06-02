@@ -685,7 +685,9 @@ vegaEmbed('#chart-bar-suburbs', {
     {filter: 'datum.rank <= 15'},
     {calculate: "datum.suburb === 'Box Hill' ? 'Box Hill' : datum.suburb === 'Glen Waverley' ? 'Glen Waverley' : datum.suburb === 'Springvale' ? 'Springvale' : datum.suburb === 'Melbourne' ? 'Melbourne CBD' : 'other'", as: 'grp'}
   ],
-  mark: {type: 'bar', cornerRadiusEnd: 3},
+  layer: [
+    {
+      mark: {type: 'bar', cornerRadiusEnd: 3},
   encoding: {
     y: {field: 'suburb', type: 'nominal', sort: '-x', axis: {labelLimit: 120, title: null}},
     x: {field: 'pct_asian', type: 'quantitative', title: 'Asian-born (%)', axis: {format: '.0f', tickCount: 5}},
@@ -702,7 +704,20 @@ vegaEmbed('#chart-bar-suburbs', {
       {field: 'pct_asian', title: 'Asian-born %', format: '.1f'},
       {field: 'total_pop', title: 'Population', format: ','}
     ]
-  }
+      }
+    },
+    {
+      data: {values: [
+        {suburb: 'Springvale', pct_asian: 57.5, label: "← Remy's 4 stops"}
+      ]},
+      mark: {type: 'text', align: 'left', dx: 4, fontSize: 9, color: '#c94030', fontStyle: 'italic', fontWeight: 500},
+      encoding: {
+        y: {field: 'suburb', type: 'nominal', sort: {field: 'pct_asian', order: 'descending'}},
+        x: {field: 'pct_asian', type: 'quantitative'},
+        text: {field: 'label'}
+      }
+    }
+  ]
 }, {actions: false}).then(function(result) {
   result.view.addEventListener('click', function(event, item) {
     if (item && item.datum) {
@@ -730,6 +745,20 @@ vegaEmbed('#chart-pop-growth', {
   config: CONFIG,
   width: 'container', height: 280,
   layer: [
+    {
+      data: {values: [{year: '2016', note: 'International students surge'}]},
+      mark: {type: 'rule', strokeDash: [4,3], color: '#c94030', strokeWidth: 1, opacity: 0.5},
+      encoding: {x: {field: 'year', type: 'ordinal'}}
+    },
+    {
+      data: {values: [{year: '2016', pct: 61, note: 'CBD surge begins →'}]},
+      mark: {type: 'text', fontSize: 9, color: '#c94030', align: 'left', dx: 4, dy: 0, fontStyle: 'italic'},
+      encoding: {
+        x: {field: 'year', type: 'ordinal'},
+        y: {field: 'pct', type: 'quantitative'},
+        text: {field: 'note'}
+      }
+    },
     {
       mark: {type: 'line', strokeWidth: 2.5},
       encoding: {
@@ -918,6 +947,23 @@ vegaEmbed('#chart-scatter', {
   width: 'container', height: 360,
   layer: [
     {
+      data: {values: [{x: 0, y: 0}, {x: 70, y: 100}]},
+      mark: {type: 'line', strokeDash: [6,4], color: '#d3d1c7', strokeWidth: 1.2},
+      encoding: {
+        x: {field: 'x', type: 'quantitative'},
+        y: {field: 'y', type: 'quantitative'}
+      }
+    },
+    {
+      data: {values: [{x: 62, y: 95, label: 'perfect correlation →'}]},
+      mark: {type: 'text', fontSize: 9, color: '#b0a89e', angle: 52, fontStyle: 'italic'},
+      encoding: {
+        x: {field: 'x', type: 'quantitative'},
+        y: {field: 'y', type: 'quantitative'},
+        text: {field: 'label'}
+      }
+    },
+    {
       mark: {type: 'point', filled: true, size: 90, stroke: 'white', strokeWidth: 1.2},
       transform: [{calculate: "datum.suburb === 'Box Hill' || datum.suburb === 'Glen Waverley' || datum.suburb === 'Springvale' || datum.suburb === 'Melbourne CBD' ? datum.suburb : 'other'", as: 'focus'}],
       encoding: {
@@ -1096,6 +1142,20 @@ vegaEmbed('#chart-line-total', {
         x: {field: 'year', type: 'quantitative'},
         y: {field: 'restaurant_count', type: 'quantitative'},
         tooltip: [{field:'year',title:'Year'},{field:'restaurant_count',title:'Restaurants'},{field:'total_seats',title:'Seats',format:','}]
+      }
+    },
+    {
+      data: {values: [{year: 2020, restaurant_count: 1809}]},
+      mark: {type: 'rule', strokeDash: [4,3], color: '#8a837a', strokeWidth: 1.2},
+      encoding: {x: {field: 'year', type: 'quantitative'}}
+    },
+    {
+      data: {values: [{year: 2020, restaurant_count: 1950, label: '← COVID-19'}]},
+      mark: {type: 'text', fontSize: 9, color: '#8a837a', align: 'right', fontStyle: 'italic'},
+      encoding: {
+        x: {field: 'year', type: 'quantitative'},
+        y: {field: 'restaurant_count', type: 'quantitative'},
+        text: {field: 'label'}
       }
     }
   ]
