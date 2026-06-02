@@ -8,7 +8,7 @@ function remyChartSpeak(chartId, msg) {
   el._t = setInterval(function() {
     if (i < msg.length) { el.textContent = msg.slice(0, ++i); }
     else { clearInterval(el._t); }
-  }, 18); 
+  }, 18);
 }
 
 // ── Hover listeners for non-click charts ──
@@ -689,7 +689,7 @@ vegaEmbed('#chart-bar-suburbs', {
     {
       mark: {type: 'bar', cornerRadiusEnd: 3},
   encoding: {
-    y: {field: 'suburb', type: 'nominal', sort: '-x', axis: {labelLimit: 120, title: null}},
+    y: {field: 'suburb', type: 'nominal', sort: {field: 'pct_asian', order: 'descending'}, axis: {labelLimit: 120, title: null}},
     x: {field: 'pct_asian', type: 'quantitative', title: 'Asian-born (%)', axis: {format: '.0f', tickCount: 5}},
     color: {
       field: 'grp', type: 'nominal',
