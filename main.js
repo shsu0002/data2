@@ -759,14 +759,43 @@ vegaEmbed('#chart-pop-growth', {
       }
     },
     {
-      mark: {type: 'text', dx: 6, dy: -8, fontSize: 10, fontWeight: 500},
-      transform: [{filter: 'datum.year === 2021'}],
+      mark: {type: 'text', dx: 6, dy: -10, fontSize: 10, fontWeight: 500},
+      transform: [{filter: "datum.year === 2021 && datum.suburb === 'Springvale'"}],
       encoding: {
         x: {field: 'year', type: 'ordinal'},
         y: {field: 'pct', type: 'quantitative'},
         text: {field: 'suburb'},
-        color: {field: 'suburb', type: 'nominal',
-          scale: {domain: ['Box Hill','Glen Waverley','Springvale','Melbourne CBD'], range: ['#1d7a68','#7f6ab8','#378add','#c94030']}, legend: null}
+        color: {value: '#378add'}
+      }
+    },
+    {
+      mark: {type: 'text', dx: 6, dy: -10, fontSize: 10, fontWeight: 500},
+      transform: [{filter: "datum.year === 2021 && datum.suburb === 'Box Hill'"}],
+      encoding: {
+        x: {field: 'year', type: 'ordinal'},
+        y: {field: 'pct', type: 'quantitative'},
+        text: {field: 'suburb'},
+        color: {value: '#1d7a68'}
+      }
+    },
+    {
+      mark: {type: 'text', dx: 6, dy: 14, fontSize: 10, fontWeight: 500},
+      transform: [{filter: "datum.year === 2021 && datum.suburb === 'Melbourne CBD'"}],
+      encoding: {
+        x: {field: 'year', type: 'ordinal'},
+        y: {field: 'pct', type: 'quantitative'},
+        text: {field: 'suburb'},
+        color: {value: '#c94030'}
+      }
+    },
+    {
+      mark: {type: 'text', dx: 6, dy: 14, fontSize: 10, fontWeight: 500},
+      transform: [{filter: "datum.year === 2021 && datum.suburb === 'Glen Waverley'"}],
+      encoding: {
+        x: {field: 'year', type: 'ordinal'},
+        y: {field: 'pct', type: 'quantitative'},
+        text: {field: 'suburb'},
+        color: {value: '#7f6ab8'}
       }
     }
   ]
