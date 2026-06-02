@@ -15,7 +15,7 @@ function remyChartSpeak(chartId, msg) {
 function addHoverRemy(resultOrPromise, chartId) {
   var p = (resultOrPromise && typeof resultOrPromise.then === 'function') ? resultOrPromise : Promise.resolve(resultOrPromise);
   p.then(function(result) {
-    result.view.addEventListener('click', function(event, item) {
+    result.view.addEventListener('click', function(event, item) { 
       if (!item || !item.datum) return;
       var d = item.datum;
 
