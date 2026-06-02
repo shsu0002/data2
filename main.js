@@ -9,7 +9,7 @@ function remyChartSpeak(chartId, msg) {
     if (i < msg.length) { el.textContent = msg.slice(0, ++i); }
     else { clearInterval(el._t); }
   }, 18);
-} 
+}
 
 // ── Hover listeners for non-click charts ──
 function addHoverRemy(resultOrPromise, chartId) {
@@ -738,116 +738,6 @@ vegaEmbed('#chart-bar-suburbs', {
   });
 });
 
-// ── Chart A2: Line graph — population growth 2011–2021 ──
-vegaEmbed('#chart-pop-growth', {
-  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
-  data: {url: BASE + '11_suburb_pop_growth.json'},
-  config: CONFIG,
-  width: 'container', height: 280,
-  layer: [
-    {
-      data: {values: [{year: '2016', note: 'International students surge'}]},
-      mark: {type: 'rule', strokeDash: [4,3], color: '#c94030', strokeWidth: 1, opacity: 0.5},
-      encoding: {x: {field: 'year', type: 'ordinal'}}
-    },
-    {
-      data: {values: [{year: '2016', pct: 61, note: 'CBD surge begins →'}]},
-      mark: {type: 'text', fontSize: 9, color: '#c94030', align: 'left', dx: 4, dy: 0, fontStyle: 'italic'},
-      encoding: {
-        x: {field: 'year', type: 'ordinal'},
-        y: {field: 'pct', type: 'quantitative'},
-        text: {field: 'note'}
-      }
-    },
-    {
-      mark: {type: 'line', strokeWidth: 2.5},
-      encoding: {
-        x: {field: 'year', type: 'ordinal', title: null, axis: {labelAngle: 0}},
-        y: {field: 'pct', type: 'quantitative', title: 'Asian-born (%)', scale: {domain: [28, 62]}},
-        color: {
-          field: 'suburb', type: 'nominal',
-          scale: {domain: ['Box Hill','Glen Waverley','Springvale','Melbourne CBD'], range: ['#1d7a68','#7f6ab8','#378add','#c94030']},
-          legend: {title: null, orient: 'bottom-left'}
-        }
-      }
-    },
-    {
-      mark: {type: 'point', filled: true, size: 70},
-      encoding: {
-        x: {field: 'year', type: 'ordinal'},
-        y: {field: 'pct', type: 'quantitative'},
-        color: {field: 'suburb', type: 'nominal',
-          scale: {domain: ['Box Hill','Glen Waverley','Springvale','Melbourne CBD'], range: ['#1d7a68','#7f6ab8','#378add','#c94030']}, legend: null},
-        tooltip: [
-          {field: 'suburb', title: 'Suburb'},
-          {field: 'year', title: 'Year'},
-          {field: 'pct', title: 'Asian-born %', format: '.1f'},
-          {field: 'asian_born', title: 'Asian-born', format: ','},
-          {field: 'total_pop', title: 'Total population', format: ','}
-        ]
-      }
-    },
-    {
-      mark: {type: 'text', dx: 6, dy: -10, fontSize: 10, fontWeight: 500},
-      transform: [{filter: "datum.year === 2021 && datum.suburb === 'Springvale'"}],
-      encoding: {
-        x: {field: 'year', type: 'ordinal'},
-        y: {field: 'pct', type: 'quantitative'},
-        text: {field: 'suburb'},
-        color: {value: '#378add'}
-      }
-    },
-    {
-      mark: {type: 'text', dx: 6, dy: -10, fontSize: 10, fontWeight: 500},
-      transform: [{filter: "datum.year === 2021 && datum.suburb === 'Box Hill'"}],
-      encoding: {
-        x: {field: 'year', type: 'ordinal'},
-        y: {field: 'pct', type: 'quantitative'},
-        text: {field: 'suburb'},
-        color: {value: '#1d7a68'}
-      }
-    },
-    {
-      mark: {type: 'text', dx: 6, dy: 6, fontSize: 10, fontWeight: 500},
-      transform: [{filter: "datum.year === 2021 && datum.suburb === 'Melbourne CBD'"}],
-      encoding: {
-        x: {field: 'year', type: 'ordinal'},
-        y: {field: 'pct', type: 'quantitative'},
-        text: {field: 'suburb'},
-        color: {value: '#c94030'}
-      }
-    },
-    {
-      mark: {type: 'text', dx: 6, dy: 20, fontSize: 10, fontWeight: 500},
-      transform: [{filter: "datum.year === 2021 && datum.suburb === 'Glen Waverley'"}],
-      encoding: {
-        x: {field: 'year', type: 'ordinal'},
-        y: {field: 'pct', type: 'quantitative'},
-        text: {field: 'suburb'},
-        color: {value: '#7f6ab8'}
-      }
-    }
-  ]
-}, {actions: false}).then(function(result) {
-  result.view.addEventListener('click', function(event, item) {
-    if (item && item.datum) {
-      var d = item.datum;
-      var suburb = d.suburb || (d.datum && d.datum.suburb);
-      var year = d.year || (d.datum && d.datum.year);
-      var pct = d.pct || (d.datum && d.datum.pct);
-      if (!suburb || !year) return;
-      var msgs = {
-        'Springvale':    'Springvale in ' + year + ': ' + pct + '% Asian-born. The Vietnamese community has been here for decades.',
-        'Box Hill':      'Box Hill in ' + year + ': ' + pct + '% Asian-born. The Chinese community just kept growing!',
-        'Glen Waverley': 'Glen Waverley in ' + year + ': ' + pct + '% Asian-born. The most diverse of our four suburbs.',
-        'Melbourne CBD': 'Melbourne CBD in ' + year + ': ' + pct + '% Asian-born. International students changed this suburb dramatically.',
-      };
-      var msg = msgs[suburb] || (suburb + ' in ' + year + ': ' + pct + '% Asian-born.');
-      remyChartSpeak('chart-pop-growth', msg);
-    }
-  });
-});
-
 // ── Chart B1: Donut — Melbourne-wide cuisine breakdown ──
 vegaEmbed('#chart-donut-section', {
   $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
@@ -1319,16 +1209,36 @@ vegaEmbed('#chart-slope', {
     },
     {
       mark: {type: 'text', dx: 8, align: 'left', fontSize: 10, fontWeight: 600},
-      transform: [{filter: "datum.year === 2021"}],
+      transform: [{filter: "datum.year === 2021 && (datum.suburb === 'Springvale' || datum.suburb === 'Box Hill')"}],
       encoding: {
         x: {field: 'year', type: 'ordinal'},
         y: {field: 'pct', type: 'quantitative'},
-        text: {field: 'pct', format: '.1f'},
+        text: {field: 'suburb'},
         color: {
           field: 'suburb', type: 'nominal',
-          scale: {domain: ['Box Hill','Glen Waverley','Springvale','Melbourne CBD'], range: ['#1d7a68','#7f6ab8','#378add','#c94030']},
+          scale: {domain: ['Box Hill','Springvale'], range: ['#1d7a68','#378add']},
           legend: null
         }
+      }
+    },
+    {
+      mark: {type: 'text', dx: 8, dy: 12, align: 'left', fontSize: 10, fontWeight: 600},
+      transform: [{filter: "datum.year === 2021 && datum.suburb === 'Melbourne CBD'"}],
+      encoding: {
+        x: {field: 'year', type: 'ordinal'},
+        y: {field: 'pct', type: 'quantitative'},
+        text: {field: 'suburb'},
+        color: {value: '#c94030'}
+      }
+    },
+    {
+      mark: {type: 'text', dx: 8, dy: 24, align: 'left', fontSize: 10, fontWeight: 600},
+      transform: [{filter: "datum.year === 2021 && datum.suburb === 'Glen Waverley'"}],
+      encoding: {
+        x: {field: 'year', type: 'ordinal'},
+        y: {field: 'pct', type: 'quantitative'},
+        text: {field: 'suburb'},
+        color: {value: '#7f6ab8'}
       }
     }
   ]
