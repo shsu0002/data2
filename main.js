@@ -17,7 +17,7 @@ function addHoverRemy(resultOrPromise, chartId) {
   p.then(function(result) {
     result.view.addEventListener('click', function(event, item) {
       if (!item || !item.datum) return;
-      var d = item.datum;
+      var d = item.datum; 
 
       if (chartId === 'chart-binmap') {
         var name = d.state_name || (d.datum && d.datum.state_name);
