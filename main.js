@@ -9,7 +9,7 @@ function remyChartSpeak(chartId, msg) {
     if (i < msg.length) { el.textContent = msg.slice(0, ++i); }
     else { clearInterval(el._t); }
   }, 18);
-} 
+}
 
 // ── Hover listeners for non-click charts ──
 function addHoverRemy(resultOrPromise, chartId) {
@@ -683,7 +683,7 @@ vegaEmbed('#chart-bar-suburbs', {
     {filter: 'datum.pct_asian > 0'},
     {window: [{op:'rank', as:'rank'}], sort:[{field:'pct_asian', order:'descending'}]},
     {filter: 'datum.rank <= 15'},
-    {calculate: "indexof(['Box Hill','Glen Waverley','Springvale','Melbourne'], datum.suburb) >= 0 ? 'focus' : 'other'", as: 'grp'}
+    {calculate: "datum.suburb === 'Box Hill' ? 'Box Hill' : datum.suburb === 'Glen Waverley' ? 'Glen Waverley' : datum.suburb === 'Springvale' ? 'Springvale' : datum.suburb === 'Melbourne' ? 'Melbourne CBD' : 'other'", as: 'grp'}
   ],
   mark: {type: 'bar', cornerRadiusEnd: 3},
   encoding: {
@@ -691,8 +691,11 @@ vegaEmbed('#chart-bar-suburbs', {
     x: {field: 'pct_asian', type: 'quantitative', title: 'Asian-born (%)', axis: {format: '.0f', tickCount: 5}},
     color: {
       field: 'grp', type: 'nominal',
-      scale: {domain: ['focus','other'], range: ['#1d7a68','#c8c4bc']},
-      legend: null
+      scale: {
+        domain: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne CBD', 'other'],
+        range:  ['#1d7a68',  '#7f6ab8',       '#378add',    '#c94030',       '#c8c4bc']
+      },
+      legend: {title: null, values: ['Box Hill', 'Glen Waverley', 'Springvale', 'Melbourne CBD']}
     },
     tooltip: [
       {field: 'suburb', title: 'Suburb'},
