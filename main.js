@@ -707,12 +707,43 @@ vegaEmbed('#chart-bar-suburbs', {
       }
     },
     {
-      mark: {type: 'text', align: 'left', dx: 4, fontSize: 9, color: '#c94030', fontStyle: 'italic'},
+      mark: {type: 'text', align: 'left', dx: 4, fontSize: 9, fontWeight: 500},
+      transform: [{filter: "datum.suburb === 'Box Hill'"}],
+      encoding: {
+        y: {field: 'suburb', type: 'nominal', sort: '-x'},
+        x: {field: 'pct_asian', type: 'quantitative'},
+        text: {value: "← Remy's 1st stop"},
+        color: {value: '#1d7a68'}
+      }
+    },
+    {
+      mark: {type: 'text', align: 'left', dx: 4, fontSize: 9, fontWeight: 500},
+      transform: [{filter: "datum.suburb === 'Glen Waverley'"}],
+      encoding: {
+        y: {field: 'suburb', type: 'nominal', sort: '-x'},
+        x: {field: 'pct_asian', type: 'quantitative'},
+        text: {value: "← 2nd stop"},
+        color: {value: '#7f6ab8'}
+      }
+    },
+    {
+      mark: {type: 'text', align: 'left', dx: 4, fontSize: 9, fontWeight: 500},
       transform: [{filter: "datum.suburb === 'Springvale'"}],
       encoding: {
         y: {field: 'suburb', type: 'nominal', sort: '-x'},
         x: {field: 'pct_asian', type: 'quantitative'},
-        text: {value: '← our four focus suburbs'}
+        text: {value: "← 3rd stop"},
+        color: {value: '#378add'}
+      }
+    },
+    {
+      mark: {type: 'text', align: 'left', dx: 4, fontSize: 9, fontWeight: 500},
+      transform: [{filter: "datum.suburb === 'Melbourne'"}],
+      encoding: {
+        y: {field: 'suburb', type: 'nominal', sort: '-x'},
+        x: {field: 'pct_asian', type: 'quantitative'},
+        text: {value: "← 4th stop"},
+        color: {value: '#c94030'}
       }
     }
   ]
