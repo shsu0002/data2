@@ -17,7 +17,7 @@ function addHoverRemy(resultOrPromise, chartId) {
   p.then(function(result) {
     result.view.addEventListener('click', function(event, item) {
       if (!item || !item.datum) return;
-      var d = item.datum; 
+      var d = item.datum;
 
       if (chartId === 'chart-binmap') {
         var name = d.state_name || (d.datum && d.datum.state_name);
@@ -808,28 +808,30 @@ vegaEmbed('#chart-donut-section', {
     }
   }]
 }, {actions: false}).then(function(result) {
-  // Arc marks need Vega signal listeners, not addEventListener
-  result.view.addSignalListener('cursor_signal', function() {});
   var view = result.view;
+  // Arc marks: use view's internal signal for hover item
   view.addEventListener('click', function(event, item) {
-    if (!item || !item.datum) return;
-    var d = item.datum;
-    var cuisine = d.cuisine || (d.datum && d.datum.cuisine);
-    var pct = d.pct || (d.datum && d.datum.pct);
+    if (!item) return;
+    // Arc datum is nested differently
+    var d = item.datum || {};
+    console.log('donut click:', JSON.stringify(Object.keys(d)));
+    var cuisine = d.cuisine;
+    if (!cuisine && d.datum) cuisine = d.datum.cuisine;
     if (!cuisine) return;
+    var pct = d.pct || (d.datum && d.datum.pct) || 0;
     var msgs = {
-      'Chinese':         'Chinese food leads at ' + (pct||0).toFixed(1) + '% — dim sum, hot pot, bubble tea! Magnifique!',
-      'Japanese':        'Japanese cuisine at ' + (pct||0).toFixed(1) + '% — ramen, sushi, tonkotsu. Oishii!',
-      'Indian':          'Indian food at ' + (pct||0).toFixed(1) + '% — the spices are calling my name!',
-      'Vietnamese':      'Vietnamese at ' + (pct||0).toFixed(1) + '% — pho and banh mi forever!',
-      'Thai':            'Thai cuisine at ' + (pct||0).toFixed(1) + '% — sweet, sour, spicy perfection!',
-      'Korean':          'Korean food at ' + (pct||0).toFixed(1) + '% — K-BBQ is taking over Melbourne!',
-      'Malaysian':       'Malaysian at ' + (pct||0).toFixed(1) + '% — laksa is my absolute weakness!',
-      'Asian (general)': 'General Asian at ' + (pct||0).toFixed(1) + '% — a wonderful catch-all of flavours!',
-      'Noodle':          'Noodle restaurants at ' + (pct||0).toFixed(1) + '% — ramen, udon, pho — I love them all!',
-      'Other Asian':     'Other Asian cuisines at ' + (pct||0).toFixed(1) + '% — so much culinary diversity!',
+      'Chinese':         'Chinese food leads at ' + (+pct).toFixed(1) + '% — dim sum, hot pot, bubble tea! Magnifique!',
+      'Japanese':        'Japanese cuisine at ' + (+pct).toFixed(1) + '% — ramen, sushi, tonkotsu. Oishii!',
+      'Indian':          'Indian food at ' + (+pct).toFixed(1) + '% — the spices are calling my name!',
+      'Vietnamese':      'Vietnamese at ' + (+pct).toFixed(1) + '% — pho and banh mi forever!',
+      'Thai':            'Thai cuisine at ' + (+pct).toFixed(1) + '% — sweet, sour, spicy perfection!',
+      'Korean':          'Korean food at ' + (+pct).toFixed(1) + '% — K-BBQ is taking over Melbourne!',
+      'Malaysian':       'Malaysian at ' + (+pct).toFixed(1) + '% — laksa is my absolute weakness!',
+      'Asian (general)': 'General Asian at ' + (+pct).toFixed(1) + '% — a wonderful catch-all of flavours!',
+      'Noodle':          'Noodle restaurants at ' + (+pct).toFixed(1) + '% — ramen, udon, pho, I love them all!',
+      'Other Asian':     'Other Asian cuisines at ' + (+pct).toFixed(1) + '% — so much culinary diversity!',
     };
-    remyChartSpeak('chart-donut-section', msgs[cuisine] || (cuisine + ' at ' + (pct||0).toFixed(1) + '%!'));
+    remyChartSpeak('chart-donut-section', msgs[cuisine] || (cuisine + ' at ' + (+pct).toFixed(1) + '%!'));
   });
 });
 
