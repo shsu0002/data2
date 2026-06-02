@@ -779,7 +779,7 @@ vegaEmbed('#chart-pop-growth', {
       }
     },
     {
-      mark: {type: 'text', dx: 6, dy: 14, fontSize: 10, fontWeight: 500},
+      mark: {type: 'text', dx: 6, dy: 6, fontSize: 10, fontWeight: 500},
       transform: [{filter: "datum.year === 2021 && datum.suburb === 'Melbourne CBD'"}],
       encoding: {
         x: {field: 'year', type: 'ordinal'},
@@ -789,7 +789,7 @@ vegaEmbed('#chart-pop-growth', {
       }
     },
     {
-      mark: {type: 'text', dx: 6, dy: 14, fontSize: 10, fontWeight: 500},
+      mark: {type: 'text', dx: 6, dy: 20, fontSize: 10, fontWeight: 500},
       transform: [{filter: "datum.year === 2021 && datum.suburb === 'Glen Waverley'"}],
       encoding: {
         x: {field: 'year', type: 'ordinal'},
