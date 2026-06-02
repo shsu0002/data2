@@ -814,7 +814,6 @@ vegaEmbed('#chart-donut-section', {
     if (!item) return;
     // Arc datum is nested differently
     var d = item.datum || {};
-    console.log('donut click:', JSON.stringify(Object.keys(d)));
     var cuisine = d.cuisine;
     if (!cuisine && d.datum) cuisine = d.datum.cuisine;
     if (!cuisine) return;
@@ -1151,7 +1150,24 @@ vegaEmbed('#chart-multiline', {
     },
     tooltip: [{field:'year',title:'Year'},{field:'area',title:'Area'},{field:'count',title:'Restaurants'}]
   }
-}, {actions: false});
+}, {actions: false}).then(function(result) {
+  result.view.addEventListener('click', function(event, item) {
+    if (!item || !item.datum) return;
+    var d = item.datum;
+    var area  = d.area  || (d.datum && d.datum.area);
+    var year  = d.year  || (d.datum && d.datum.year);
+    var count = d.count || (d.datum && d.datum.count);
+    if (!area) return;
+    var quips = {
+      'Carlton':        'Carlton in ' + year + ': ' + count + ' restaurants. Home of Lygon Street — Melbourne\'s Little Italy turned global!',
+      'Docklands':      'Docklands in ' + year + ': ' + count + ' restaurants. The waterfront food scene keeps growing!',
+      'Southbank':      'Southbank in ' + year + ': ' + count + ' restaurants. Riverside dining at its finest!',
+      'East Melbourne': 'East Melbourne in ' + year + ': ' + count + ' restaurants. Quiet but steadily growing!',
+      'North Melbourne':'North Melbourne in ' + year + ': ' + count + ' restaurants. A neighbourhood gem!',
+    };
+    remyChartSpeak('chart-multiline', quips[area] || (area + ' in ' + year + ': ' + count + ' restaurants.'));
+  });
+});
 
 // ── Remy chart commentary ──
 const REMY_CHART_COMMENTS = {
