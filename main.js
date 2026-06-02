@@ -15,7 +15,7 @@ function remyChartSpeak(chartId, msg) {
 function addHoverRemy(resultOrPromise, chartId) {
   var p = (resultOrPromise && typeof resultOrPromise.then === 'function') ? resultOrPromise : Promise.resolve(resultOrPromise);
   p.then(function(result) {
-    result.view.addEventListener('click', function(event, item) { 
+    result.view.addEventListener('click', function(event, item) {
       if (!item || !item.datum) return;
       var d = item.datum;
 
@@ -807,7 +807,31 @@ vegaEmbed('#chart-donut-section', {
       tooltip: [{field:'cuisine',title:'Cuisine'},{field:'count',title:'Restaurants'},{field:'pct',title:'Share %',format:'.1f'}]
     }
   }]
-}, {actions: false});
+}, {actions: false}).then(function(result) {
+  // Arc marks need Vega signal listeners, not addEventListener
+  result.view.addSignalListener('cursor_signal', function() {});
+  var view = result.view;
+  view.addEventListener('click', function(event, item) {
+    if (!item || !item.datum) return;
+    var d = item.datum;
+    var cuisine = d.cuisine || (d.datum && d.datum.cuisine);
+    var pct = d.pct || (d.datum && d.datum.pct);
+    if (!cuisine) return;
+    var msgs = {
+      'Chinese':         'Chinese food leads at ' + (pct||0).toFixed(1) + '% — dim sum, hot pot, bubble tea! Magnifique!',
+      'Japanese':        'Japanese cuisine at ' + (pct||0).toFixed(1) + '% — ramen, sushi, tonkotsu. Oishii!',
+      'Indian':          'Indian food at ' + (pct||0).toFixed(1) + '% — the spices are calling my name!',
+      'Vietnamese':      'Vietnamese at ' + (pct||0).toFixed(1) + '% — pho and banh mi forever!',
+      'Thai':            'Thai cuisine at ' + (pct||0).toFixed(1) + '% — sweet, sour, spicy perfection!',
+      'Korean':          'Korean food at ' + (pct||0).toFixed(1) + '% — K-BBQ is taking over Melbourne!',
+      'Malaysian':       'Malaysian at ' + (pct||0).toFixed(1) + '% — laksa is my absolute weakness!',
+      'Asian (general)': 'General Asian at ' + (pct||0).toFixed(1) + '% — a wonderful catch-all of flavours!',
+      'Noodle':          'Noodle restaurants at ' + (pct||0).toFixed(1) + '% — ramen, udon, pho — I love them all!',
+      'Other Asian':     'Other Asian cuisines at ' + (pct||0).toFixed(1) + '% — so much culinary diversity!',
+    };
+    remyChartSpeak('chart-donut-section', msgs[cuisine] || (cuisine + ' at ' + (pct||0).toFixed(1) + '%!'));
+  });
+});
 
 // ── Chart B2: Heatmap — cuisine by suburb cluster ──
 vegaEmbed('#chart-heatmap', {
