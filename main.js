@@ -1261,6 +1261,91 @@ vegaEmbed('#chart-multiline', {
   });
 });
 
+
+// ── Chart A4: Slope chart — Asian-born % change 2011→2021 ──
+vegaEmbed('#chart-slope', {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  data: {url: BASE + '11_suburb_pop_growth.json'},
+  config: CONFIG,
+  width: 'container', height: 280,
+  transform: [
+    {filter: "datum.year === 2011 || datum.year === 2021"}
+  ],
+  layer: [
+    {
+      mark: {type: 'line', strokeWidth: 2, opacity: 0.6},
+      encoding: {
+        x: {field: 'year', type: 'ordinal', title: null, axis: {labelAngle: 0, labelFontSize: 12, labelFontWeight: 600}},
+        y: {field: 'pct', type: 'quantitative', title: 'Asian-born (%)', scale: {domain: [28, 62]}},
+        color: {
+          field: 'suburb', type: 'nominal',
+          scale: {domain: ['Box Hill','Glen Waverley','Springvale','Melbourne CBD'], range: ['#1d7a68','#7f6ab8','#378add','#c94030']},
+          legend: null
+        },
+        detail: {field: 'suburb'}
+      }
+    },
+    {
+      mark: {type: 'point', filled: true, size: 120, stroke: 'white', strokeWidth: 2},
+      encoding: {
+        x: {field: 'year', type: 'ordinal'},
+        y: {field: 'pct', type: 'quantitative'},
+        color: {
+          field: 'suburb', type: 'nominal',
+          scale: {domain: ['Box Hill','Glen Waverley','Springvale','Melbourne CBD'], range: ['#1d7a68','#7f6ab8','#378add','#c94030']},
+          legend: {title: null, orient: 'right'}
+        },
+        tooltip: [
+          {field: 'suburb', title: 'Suburb'},
+          {field: 'year', title: 'Year'},
+          {field: 'pct', title: 'Asian-born %', format: '.1f'},
+          {field: 'asian_born', title: 'Asian-born residents', format: ','}
+        ]
+      }
+    },
+    {
+      mark: {type: 'text', dx: -8, align: 'right', fontSize: 10, fontWeight: 600},
+      transform: [{filter: "datum.year === 2011"}],
+      encoding: {
+        x: {field: 'year', type: 'ordinal'},
+        y: {field: 'pct', type: 'quantitative'},
+        text: {field: 'pct', format: '.1f'},
+        color: {
+          field: 'suburb', type: 'nominal',
+          scale: {domain: ['Box Hill','Glen Waverley','Springvale','Melbourne CBD'], range: ['#1d7a68','#7f6ab8','#378add','#c94030']},
+          legend: null
+        }
+      }
+    },
+    {
+      mark: {type: 'text', dx: 8, align: 'left', fontSize: 10, fontWeight: 600},
+      transform: [{filter: "datum.year === 2021"}],
+      encoding: {
+        x: {field: 'year', type: 'ordinal'},
+        y: {field: 'pct', type: 'quantitative'},
+        text: {field: 'pct', format: '.1f'},
+        color: {
+          field: 'suburb', type: 'nominal',
+          scale: {domain: ['Box Hill','Glen Waverley','Springvale','Melbourne CBD'], range: ['#1d7a68','#7f6ab8','#378add','#c94030']},
+          legend: null
+        }
+      }
+    }
+  ]
+}, {actions: false}).then(function(result) {
+  result.view.addEventListener('click', function(event, item) {
+    if (!item || !item.datum) return;
+    var d = item.datum;
+    var suburb = d.suburb || (d.datum && d.datum.suburb);
+    var pct = d.pct || (d.datum && d.datum.pct);
+    var year = d.year || (d.datum && d.datum.year);
+    if (!suburb) return;
+    var change = {'Box Hill': '+12.4%', 'Glen Waverley': '+14.6%', 'Springvale': '+8.8%', 'Melbourne CBD': '+7.2%'};
+    var msg = suburb + ' grew by ' + (change[suburb] || '') + ' Asian-born share from 2011 to 2021. In ' + year + ': ' + (pct||0).toFixed(1) + '%.';
+    remyChartSpeak('chart-slope', msg);
+  });
+});
+
 // ── Remy chart commentary ──
 const REMY_CHART_COMMENTS = {
   'chart-binmap':       ["Victoria and ACT lead Australia — but Melbourne is where the story really begins!", "See that red circle? That's home. Victoria has the highest Asian-born share of any large state!", "NSW is big, but Victoria punches above its weight when it comes to Asian communities."],
@@ -1273,6 +1358,7 @@ const REMY_CHART_COMMENTS = {
   'chart-line-asian':   ["This chart compares Asian-identified vs other restaurants in Melbourne CBD over time.", "Asian food grew steadily while 'Other' cuisine surged then dipped — COVID hit non-Asian venues harder!", "By 2023, Asian restaurants make up a growing share of Melbourne CBD dining."],
   'chart-area-seats':   ["This chart shows indoor vs outdoor seating capacity in Melbourne CBD restaurants from 2002–2023.", "Outdoor dining grew after 2010 — Melbourne's famous laneway culture in action!", "Indoor seats peaked at 160,000 around 2015. That is a LOT of dumplings being eaten at once!"],
   'chart-multiline':    ["This chart shows restaurant growth across Melbourne CBD sub-areas — Carlton, Docklands, Southbank and more.", "Carlton leads with its famous Lygon Street dining strip. Southbank grew steadily along the river.", "Each sub-area tells a different story — but all of them grew. Melbourne never stopped eating!"],
+  'chart-slope':        ["This slope chart shows how Asian-born share GREW in every suburb from 2011 to 2021!", "Glen Waverley grew the most — from 33.5% to 48.1%. A remarkable transformation!", "Melbourne CBD had the most dramatic surge — driven by international students after 2016."],
 };
 
 const _remyChartCounters = {};
